@@ -1,0 +1,23 @@
+
+`	java:S112$"FDefine and throw a dedicated exception instead of using a generic one.(½İÿÿÿÿÿÿ
+`	java:S112)"FDefine and throw a dedicated exception instead of using a generic one.(áÌ”ıùÿÿÿÿ
+‡
+java:S1130$"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(½İÿÿÿÿÿÿ
+‡
+java:S1130)"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(áÌ”ıùÿÿÿÿ
+M
+java:S1128"7Remove this unused import 'com.example.be.dto.UserDTO'.(ØÜ”Ï
+S
+java:S1128"8Remove this unused import 'com.example.be.entity.Class'.(ÖÌ—Øÿÿÿÿÿ
+R
+java:S1128"7Remove this unused import 'com.example.be.entity.User'.(‘á•œÿÿÿÿÿ
+a
+java:S1128"FRemove this unused import 'com.example.be.entity.mapped.StudentGrade'.(‰®Åúÿÿÿÿ
+b
+java:S1128"GRemove this unused import 'org.springframework.jdbc.core.JdbcTemplate'.(å ê‹ÿÿÿÿÿ
+_
+java:S1128"DRemove this unused import 'org.springframework.jdbc.core.RowMapper'.(¦¬ÀÙùÿÿÿÿ
+D
+java:S1128"/Remove this unused import 'java.sql.ResultSet'.(ˆóÚw
+H
+java:S1128"2Remove this unused import 'java.sql.SQLException'.(ÛïÆŸ

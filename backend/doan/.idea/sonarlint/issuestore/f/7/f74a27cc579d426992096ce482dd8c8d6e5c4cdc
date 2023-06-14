@@ -1,0 +1,31 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(®øÝùþÿÿÿÿ
+Q	java:S125)"<This block of commented-out lines of code should be removed.(Â§ž™
+B
+java:S1602M",Remove useless curly braces around statement(€ù®¤
+K
+java:S1854f"5Remove this useless assignment to local variable "c".(ìâËò
+P
+java:S1854a"5Remove this useless assignment to local variable "e".(‰±«—þÿÿÿÿ
+Q	java:S125V"<This block of commented-out lines of code should be removed.(õÛÍí
+R
+java:S1854’";Remove this useless assignment to local variable "voucher".(ÃÚ¿
+O	java:S106"9Replace this use of System.out or System.err by a logger.(´¾à†
+C
+java:S1481’",Remove this unused "voucher" local variable.(ÃÚ¿
+C
+java:S1602—",Remove useless curly braces around statement(€ù®¤
+U
+java:S1128"?Remove this unused import 'com.example.be.dto.TeacherClassDTO'.(Ãî°à
+S
+java:S1128"=Remove this unused import 'com.example.be.entity.Department'.(šâï
+3
+java:S1128"Remove this duplicated import.(ßô³S
+3
+java:S1128"Remove this duplicated import.(ßô³S
+\
+java:S1128"FRemove this unused import 'com.example.be.entity.mapped.TeacherClass'.(É¹ÒÍ
+X
+java:S1128"BRemove this unused import 'com.example.be.service.VoucherService'.(Å³á
+L
+java:S1128"6Remove this unused import 'com.example.be.util.Utils'.(×ë²¹
