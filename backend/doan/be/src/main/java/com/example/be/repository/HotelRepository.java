@@ -56,4 +56,8 @@ public interface HotelRepository extends BaseRepository<Hotel, Long>{
             @Param("priceEnd") Integer priceEnd,
             @Param("sale") Integer sale
     );
+
+    @Query(value = "SELECT DISTINCT h.sale FROM Hotel h ORDER BY h.sale ASC", nativeQuery = true)
+    List<Integer> getAvailableSales();
+
 }

@@ -19,6 +19,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class User extends BaseEntity {
     @NotNull
+    @Column(unique = true)
     private String username;
     @NotNull
     private String password;
@@ -29,6 +30,7 @@ public class User extends BaseEntity {
 
     private String phone;
 
+    @Column(unique = true)
     private String email;
 
     private String address;

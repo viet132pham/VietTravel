@@ -1,5 +1,20 @@
 package com.example.be.service;
 
+import com.example.be.entity.mapped.Comment;
+import com.example.be.request.CommentRequest;
+import org.springframework.validation.BindingResult;
+
+import java.util.List;
+
 public interface CommentService {
 
+    Comment createRequest(CommentRequest commentRequest, BindingResult bindingResult);
+
+    void deleteComment(long id);
+
+    Comment updateComment(long id, CommentRequest commentRequest, BindingResult bindingResult);
+
+    List<Comment> getCommentByBlogId(long id, BindingResult bindingResult);
+
+    List<Comment> getAllComment(BindingResult bindingResult);
 }

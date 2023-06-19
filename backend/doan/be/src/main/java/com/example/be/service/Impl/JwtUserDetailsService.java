@@ -43,33 +43,21 @@ public class JwtUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found with username: " + username);
         } else {
             Collection<GrantedAuthority> authorities = new ArrayList<>();
-//            Collection<GrantedAuthority> roles = new ArrayList<>();
 
             if (null != user.getRoles()) user.getRoles().forEach(r -> {
-//                roles.add(new SimpleGrantedAuthority(r.getRoleCode()));
                 authorities.add(new SimpleGrantedAuthority(r.getRoleCode()));
             });
-//            System.out.println(authorities);
-//            System.out.println(roles);
             return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities) {
             };
         }
     }
 
+    public long getUserIdByUsername(String username) {
+        User user = jwtUserRepository.findUserByUsername(username);
+        return user.getId();
+    }
+
     public User save(User user){
-//        User newUser = new User();
-//        newUser.setUsername(user.getUsername());
-//        newUser.setCreatedAt(user.getCreatedAt());
-//        newUser.setId(user.getId());
-//        newUser.setAddress(user.getAddress());
-//        newUser.setDob(user.getDob());
-//        newUser.setEmail(user.getEmail());
-//        newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-//        newUser.setFullName(user.getFullName());
-//        newUser.setPhone(user.getPhone());
-//        newUser.setStatus(user.getStatus());
-//
-//        return jwtUserRepository.saveAndFlush(newUser);
         user.setPassword(bcryptEncoder.encode(user.getPassword()));
         return jwtUserRepository.saveAndFlush(user);
     }

@@ -32,6 +32,11 @@ public class TourController extends BaseController<Tour> {
         return tourRepository.findSaleTour();
     }
 
+    @GetMapping("/get/sale_value")
+    public List<Integer> findSaleValue() {
+        return tourRepository.getAvailableSales();
+    }
+
     @GetMapping("/search/{location}")
     public List<Tour> searchTour(@PathVariable(value = "location") String location) {
         return tourService.findTourByLocation(location);

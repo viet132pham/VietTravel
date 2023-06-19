@@ -35,4 +35,6 @@ public class Comment {
     @NotNull
     private String content;
 
+    private long parentId;
+
 }

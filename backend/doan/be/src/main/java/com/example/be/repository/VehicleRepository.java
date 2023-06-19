@@ -41,4 +41,7 @@ public interface VehicleRepository extends BaseRepository<Vehicle, Long>{
                     @Param("priceEnd") Integer priceEnd,
                     @Param("sale") Integer sale
             );
+
+    @Query(value = "SELECT DISTINCT h.sale FROM Vehicle h ORDER BY h.sale ASC", nativeQuery = true)
+    List<Integer> getAvailableSales();
 }

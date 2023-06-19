@@ -37,4 +37,7 @@ public class Cartitem {
 
     @NotNull
     private int price;
+
+    @NotNull
+    private int quantity;
 }

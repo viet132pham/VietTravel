@@ -11,11 +11,21 @@ import java.util.List;
 @Repository
 public interface CartitemRepository extends JpaRepository<Cartitem, Long>{
     @Modifying
-    @Query(value = "SELECT category_id\n" +
-            "FROM cartitem\n" +
-            "WHERE category_name = :category\n" +
-            "GROUP BY category_id\n" +
-            "ORDER BY COUNT(category_id) DESC\n" +
-            "LIMIT 6;", nativeQuery = true)
+    @Query(value = "SELECT ci.category_id " +
+            "FROM cartitem ci " +
+            "INNER JOIN cart c ON ci.cart_id = c.id " +
+            "WHERE ci.category_name = :category " +
+            "AND c.status = 'DONE' " +
+            "GROUP BY ci.category_id " +
+            "ORDER BY COUNT(ci.category_id) DESC " +
+            "LIMIT 6", nativeQuery = true)
     List<Integer> findCategoryIdInCartitem(String category);
+
+    @Modifying
+    @Query(value = "SELECT id\n" +
+            "FROM cartitem\n" +
+            "WHERE status = 'PROCESS'\n" +
+            "AND cart_id = :cartId;", nativeQuery = true)
+    List<Long> findAllItems(long cartId);
+
 }

@@ -18,8 +18,9 @@ import java.util.Set;
 @NoArgsConstructor
 public class Cart extends BaseEntity{
     @NotNull
-    private int status;
+    private String status;
 
+    @NotNull
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;

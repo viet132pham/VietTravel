@@ -36,6 +36,11 @@ public class HotelController extends BaseController<Hotel> {
         return hotelRepository.findSaleHotel();
     }
 
+    @GetMapping("/get/sale_value")
+    public List<Integer> findSaleValue() {
+        return hotelRepository.getAvailableSales();
+    }
+
     @GetMapping("/search")
     public List<Hotel> searchHotels(
             @RequestParam(value = "location", required = false) String location,

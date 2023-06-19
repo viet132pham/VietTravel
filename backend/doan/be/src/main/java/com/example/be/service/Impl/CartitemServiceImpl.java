@@ -1,11 +1,54 @@
 package com.example.be.service.Impl;
 
-import com.example.be.service.CommentService;
+import com.example.be.entity.Cart;
+import com.example.be.entity.mapped.Cartitem;
+import com.example.be.repository.CartRepository;
+import com.example.be.repository.CartitemRepository;
+import com.example.be.request.CartRequest;
+import com.example.be.request.CartitemRequest;
+import com.example.be.service.CartitemService;
+import com.example.be.util.Utils;
 import lombok.extern.log4j.Log4j2;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
+
+import java.util.Optional;
 
 @Service
 @Log4j2
-public class CartitemServiceImpl implements CommentService {
+public class CartitemServiceImpl implements CartitemService {
+    @Autowired
+    private ModelMapper mapper;
+
+    @Autowired
+    private CartitemRepository cartitemRepository;
+
+    @Autowired
+    private CartRepository cartRepository;
+    @Override
+    public Cartitem createRequest(CartitemRequest cartitemRequest, BindingResult bindingResult) {
+        Cartitem cartitem = new Cartitem();
+        mapper.map(cartitemRequest, cartitem);
+        Cart cart = cartRepository.findById(cartitemRequest.getCartId()).orElseThrow(() -> new IllegalArgumentException(("id not found: " + cartitemRequest.getCartId())));
+        cartitem.setCart(cart);
+        return cartitemRepository.save(cartitem);
+    }
+
+    @Override
+    public void deleteCartitem(long id) {
+        cartitemRepository.deleteById(id);
+    }
+    @Override
+    public Cartitem updateQuantityCart(int quantity, long itemId, BindingResult bindingResult) {
+        Cartitem cartitem = cartitemRepository.findById(itemId).orElseThrow(() -> new IllegalArgumentException(("id not found: " + itemId)));
+        cartitem.setQuantity(quantity);
+        return cartitemRepository.save(cartitem);
+    }
+    @Override
+    public Cartitem getCartitemById(long id) {
+        return cartitemRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(("id not found: " + id)));
+    }
 
 }

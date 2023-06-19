@@ -1,12 +1,18 @@
 package com.example.be.controller;
 
 import com.example.be.config.JwtTokenUtil;
+import com.example.be.dto.UserRegisterDTO;
+import com.example.be.entity.Role;
 import com.example.be.entity.User;
 import com.example.be.model.JwtRequest;
 import com.example.be.model.JwtResponse;
+import com.example.be.repository.JwtUserRepository;
+import com.example.be.repository.RoleRepository;
 import com.example.be.service.Impl.JwtUserDetailsService;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,6 +21,9 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Collections;
+import java.util.Set;
 
 /*
 Expose a POST API /authenticate using the JwtAuthenticationController. The POST API gets username and password in the
@@ -34,22 +43,51 @@ public class JwtAuthenticationController {
     @Autowired
     private JwtUserDetailsService jwtUserDetailsService;
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public User saveUser(@RequestBody User user){
-        return jwtUserDetailsService.save(user);
+    @Autowired
+    private ModelMapper mapper;
+
+    @Autowired
+    private JwtUserRepository jwtUserRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @RequestMapping(value = "/api/register", method = RequestMethod.POST)
+    public ResponseEntity<?> saveUser(@RequestBody UserRegisterDTO userRegisterDTO) {
+
+        if (jwtUserRepository.findUserByUsername(userRegisterDTO.getUsername()) != null) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Tài khoản đã tồn tại.");
+        };
+        if (jwtUserRepository.findUserByEmail(userRegisterDTO.getEmail()) != null) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email đã tồn tại.");
+        };
+
+        User user = new User();
+        mapper.map(userRegisterDTO, user);
+
+        user.setRoles(Collections.singleton(roleRepository.findRoleByRoleCode("USER")));
+        user.setPassword(userRegisterDTO.getPassword());
+
+        return ResponseEntity.ok(jwtUserDetailsService.save(user));
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/login", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+        try {
+            authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Sai tên đăng nhập hoặc mật khẩu.");
+        }
 
-        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
-
-        final UserDetails userDetails = jwtUserDetailsService
-                .loadUserByUsername(authenticationRequest.getUsername());
+        final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+        if (userDetails == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tài khoản không tồn tại.");
+        }
 
         final String token = jwtTokenUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new JwtResponse(token));
+        JwtResponse jwtResponse = new JwtResponse(token, jwtUserDetailsService.getUserIdByUsername(authenticationRequest.getUsername()));
+        return ResponseEntity.ok(jwtResponse);
     }
 
     @RequestMapping(value="/auth", method = RequestMethod.GET)

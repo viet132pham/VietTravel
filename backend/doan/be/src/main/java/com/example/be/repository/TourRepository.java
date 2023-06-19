@@ -40,4 +40,7 @@ public interface TourRepository extends BaseRepository<Tour, Long>{
             @Param("priceEnd") Integer priceEnd,
             @Param("sale") Integer sale
     );
+
+    @Query(value = "SELECT DISTINCT h.sale FROM Tour h ORDER BY h.sale ASC", nativeQuery = true)
+    List<Integer> getAvailableSales();
 }

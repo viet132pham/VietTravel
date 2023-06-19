@@ -33,6 +33,11 @@ public class VehicleController extends BaseController<Vehicle> {
         return vehicleRepository.findSaleVehicle();
     }
 
+    @GetMapping("/get/sale_value")
+    public List<Integer> findSaleValue() {
+        return vehicleRepository.getAvailableSales();
+    }
+
     @GetMapping("/search/{location}")
     public List<Vehicle> searchTour(@PathVariable(value = "location") String location) {
         return vehicleService.findVehicleByLocation(location);

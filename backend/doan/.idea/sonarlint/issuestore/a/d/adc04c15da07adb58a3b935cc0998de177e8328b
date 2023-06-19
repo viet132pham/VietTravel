@@ -1,15 +1,0 @@
-
-l
-java:S11922"ODefine a constant instead of duplicating this literal "id not found: " 7 times.(Å®Œ›8´êÓ¶±0
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(®øİùşÿÿÿÿ
-I
-java:S1602d",Remove useless curly braces around statement(€ù®¤8»íÓ¶±0
-I
-java:S1602q",Remove useless curly braces around statement(óê­ë8æíÓ¶±0
-I
-java:S1602}",Remove useless curly braces around statement(€ù®¤8ùíÓ¶±0
-U	java:S106‡"9Replace this use of System.out or System.err by a logger.(¼æI8‡îÓ¶±0
-J
-java:S1602°",Remove useless curly braces around statement(Ê€İ8¸îÓ¶±0
-b
-java:S1128"ERemove this unused import 'com.example.be.response.EmployeeResponse'.(ÿ‘×Ó8ÿîÓ¶±0
