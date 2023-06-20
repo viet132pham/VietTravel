@@ -1,7 +1,5 @@
-package com.example.be.entity.mapped;
+package com.example.be.entity;
 
-import com.example.be.entity.Cart;
-import com.example.be.entity.compositekey.CartitemComposite;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,14 +13,8 @@ import javax.validation.constraints.NotNull;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cartitem {
-    @EmbeddedId
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private CartitemComposite id ;
-
-    @ManyToOne
-    @MapsId("cartId")
+public class Cartitem extends BaseEntity{
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "cart_id")
     private Cart cart;
 

@@ -1,0 +1,39 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(®øÝùþÿÿÿÿ
+
+java:S4144Ž"eUpdate this method so that its implementation is not identical to "getListPaginationDTO" on line 234.(äƒãÒúÿÿÿÿ
+T
+java:S18540">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+E
+java:S14810"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+T
+java:S1854W">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+N	java:S106M"9Replace this use of System.out or System.err by a logger.(ú¼
+G
+java:S1602P",Remove useless curly braces around statement(íÐéóüÿÿÿÿ
+E
+java:S1481W"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+T
+java:S1854z">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+E
+java:S1481z"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+U
+java:S1854š">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+F
+java:S1481š"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+U
+java:S1854Ì">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+F
+java:S1481Ì"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+U
+java:S1854ð">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+F
+java:S1481ð"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+U
+java:S1854”">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+F
+java:S1481”"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+U
+java:S1854·">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+F
+java:S1481·"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ

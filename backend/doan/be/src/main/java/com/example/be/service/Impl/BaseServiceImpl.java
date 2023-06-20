@@ -53,7 +53,6 @@ public abstract class BaseServiceImpl<T extends BaseEntity> implements BaseServi
         }
     }
 
-
     @Override
     public void delete(long id) {
         baseRepo.findById(id).orElseThrow(() -> new IllegalArgumentException(("id not found: " + id)));

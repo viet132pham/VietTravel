@@ -1,8 +1,6 @@
 package com.example.be.controller;
 
 import com.example.be.entity.mapped.Comment;
-import com.example.be.entity.mapped.Review;
-import com.example.be.request.BlogRequest;
 import com.example.be.request.CommentRequest;
 import com.example.be.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;

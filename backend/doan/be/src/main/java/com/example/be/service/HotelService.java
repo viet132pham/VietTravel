@@ -1,18 +1,30 @@
 package com.example.be.service;
 
+import com.example.be.dto.HotelDTO;
 import com.example.be.entity.Hotel;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 public interface HotelService extends BaseService<Hotel> {
-    List<Hotel> findHotelTrending();
+    List<HotelDTO> findHotelTrending();
 
-    List<Hotel> searchHotels(String location, String checkIn, String checkOut, Integer numRooms, Integer numGuests);
+    List<HotelDTO> searchHotels(String location, String checkIn, String checkOut, Integer numRooms, Integer numGuests);
 
-    Hotel findHotelByName(String name);
+    HotelDTO findHotelByName(String name);
 
-    List<Hotel> filterHotels(String location, String checkIn, String checkOut, String priceStart, String priceEnd, String sale);
+    Page<HotelDTO> filterHotels(Pageable pageable, String location, String checkIn, String checkOut, String priceStart, String priceEnd, String sale);
+
+    HotelDTO getById(long id);
+
+    Page<HotelDTO> getListPaginationDTO(Pageable pageable);
+
+    Page<HotelDTO> getSortedAndPaginateDTO(Pageable pageable);
+
+    List<HotelDTO> findSaleHotel();
 }

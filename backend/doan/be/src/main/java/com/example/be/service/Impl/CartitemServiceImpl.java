@@ -1,20 +1,22 @@
 package com.example.be.service.Impl;
 
+import com.example.be.dto.CartDTO;
+import com.example.be.dto.CartitemDTO;
+import com.example.be.dto.UserDTO;
 import com.example.be.entity.Cart;
-import com.example.be.entity.mapped.Cartitem;
+import com.example.be.entity.Cartitem;
 import com.example.be.repository.CartRepository;
 import com.example.be.repository.CartitemRepository;
-import com.example.be.request.CartRequest;
 import com.example.be.request.CartitemRequest;
 import com.example.be.service.CartitemService;
-import com.example.be.util.Utils;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Log4j2
@@ -47,8 +49,19 @@ public class CartitemServiceImpl implements CartitemService {
         return cartitemRepository.save(cartitem);
     }
     @Override
-    public Cartitem getCartitemById(long id) {
-        return cartitemRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(("id not found: " + id)));
+    public CartitemDTO getCartitemById(long id) {
+        Cartitem cartitem = cartitemRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(("id not found: " + id)));
+
+            UserDTO userDTO = new UserDTO();
+            CartDTO cartDTO = new CartDTO();
+            CartitemDTO cartitemDTO = new CartitemDTO();
+            mapper.map(cartitem, cartitemDTO);
+            mapper.map(cartitem.getCart(), cartDTO);
+            mapper.map(cartitem.getCart().getUser(), userDTO);
+            cartDTO.setUserDTO(userDTO);
+            cartitemDTO.setCartDTO(cartDTO);
+
+        return cartitemDTO;
     }
 
 }

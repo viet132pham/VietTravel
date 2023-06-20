@@ -10,7 +10,10 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
 import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 @Repository
 public interface VehicleRepository extends BaseRepository<Vehicle, Long>{
     Vehicle findVehicleById(long id);
@@ -19,7 +22,7 @@ public interface VehicleRepository extends BaseRepository<Vehicle, Long>{
     @Query(value = "SELECT * \n" +
             "FROM vehicle\n" +
             "WHERE sale > 0\n" +
-            "ORDER BY sale DESC;\n;", nativeQuery = true)
+            "ORDER BY sale DESC LIMIT 6;\n;", nativeQuery = true)
     List<Vehicle> findSaleVehicle();
 
     List<Vehicle> findVehicleByLocation(Location location);
@@ -33,13 +36,14 @@ public interface VehicleRepository extends BaseRepository<Vehicle, Long>{
             "AND (:priceStart IS NULL OR h.price >= :priceStart) " +
             "AND (:priceEnd IS NULL OR h.price <= :priceEnd) " +
             "AND (:sale IS NULL OR h.sale > 0)", nativeQuery = true)
-    List<Vehicle> filterVehicles(
+    Page<Vehicle> filterVehicles(
                     @Param("location") Integer location,
                     @Param("checkIn") Timestamp checkIn,
                     @Param("checkOut") Timestamp checkOut,
                     @Param("priceStart") Integer priceStart,
                     @Param("priceEnd") Integer priceEnd,
-                    @Param("sale") Integer sale
+                    @Param("sale") Integer sale,
+                    Pageable pageable
             );
 
     @Query(value = "SELECT DISTINCT h.sale FROM Vehicle h ORDER BY h.sale ASC", nativeQuery = true)

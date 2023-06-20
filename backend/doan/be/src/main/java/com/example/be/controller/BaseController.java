@@ -19,8 +19,8 @@ public abstract class BaseController<T extends BaseEntity>{
 
     private final BaseService<T> baseService;
 
-    @GetMapping
-    public Page<T> getPagination(@RequestParam(value = "pageNumber",required = true) int pageNumber,
+    @GetMapping("/list_pagination")
+    public Page<T> getListPagination(@RequestParam(value = "pageNumber",required = true) int pageNumber,
                                  @RequestParam(value = "pageSize",required = true) int pageSize,
                                  @RequestParam(value = "sortBy",required = false) String sortBy,
                                  @RequestParam(value = "sortDir",required = false) String sortDir){

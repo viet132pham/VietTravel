@@ -1,7 +1,8 @@
 package com.example.be.service.Impl;
 
+import com.example.be.dto.*;
 import com.example.be.entity.Blog;
-import com.example.be.entity.mapped.Review;
+import com.example.be.entity.Reviews;
 import com.example.be.repository.BaseRepository;
 import com.example.be.repository.BlogRepository;
 import com.example.be.repository.UserRepository;
@@ -13,6 +14,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Service
 @Log4j2
@@ -47,9 +52,12 @@ public class BlogServiceImpl extends BaseServiceImpl<Blog> implements BlogServic
         return blogRepository.save(blog);
     }
 
-    public Blog getBlogByBlogId(long id, BindingResult bindingResult) {
+    public BlogDTO getBlogByBlogId(long id, BindingResult bindingResult) {
         Blog blog = blogRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(("id not found: " + id)));
-        return blog;
+        BlogDTO blogDTO = new BlogDTO();
+        mapper.map(blog, blogDTO);
+
+        return blogDTO;
     }
 
 //    public Blog getBlogByCategory(long id, String type, BindingResult bindingResult) {

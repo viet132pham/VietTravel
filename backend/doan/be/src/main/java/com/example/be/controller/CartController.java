@@ -1,7 +1,8 @@
 package com.example.be.controller;
 
+import com.example.be.dto.CartDTO;
+import com.example.be.dto.CartitemDTO;
 import com.example.be.entity.Cart;
-import com.example.be.entity.mapped.Cartitem;
 import com.example.be.request.CartRequest;
 import com.example.be.service.BaseService;
 import com.example.be.service.CartService;
@@ -38,13 +39,13 @@ public class CartController extends BaseController<Cart> {
 
     // khi login, tìm cart theo id user, check status cart (status cart nếu đã thanh toán thì là done, đang đăng nhập thực hiện mua bán thì là process, còn thoát đăng nhập thì waiting), nếu người dùng này có cart ở trạng thái waiting thì get ra để dùng, nếu không thì lại tạo cart bằng /post ở trên
     @GetMapping("/get/{userId}")
-    public Cart getCart(@PathVariable(value = "userId") long userId, BindingResult bindingResult) {
-        return cartService.getCart(userId, bindingResult);
+    public CartDTO getCart(@PathVariable(value = "userId") long userId) {
+        return cartService.getCart(userId);
     }
 
     // trả về list cartitem, những item có trong cart
     @GetMapping("/getItems/{cartId}")
-    public List<Cartitem> getItems(@PathVariable(value = "cartId") long cartId, BindingResult bindingResult) {
-        return cartService.getItems(cartId, bindingResult);
+    public List<CartitemDTO> getItems(@PathVariable(value = "cartId") long cartId) {
+        return cartService.getItems(cartId);
     }
 }

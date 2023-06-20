@@ -1,6 +1,7 @@
 package com.example.be.service;
 
-import com.example.be.entity.mapped.Cartitem;
+import com.example.be.dto.CartitemDTO;
+import com.example.be.entity.Cartitem;
 import com.example.be.request.CartitemRequest;
 import org.springframework.validation.BindingResult;
 
@@ -12,5 +13,5 @@ public interface CartitemService {
 
     Cartitem updateQuantityCart(int quantity, long itemId, BindingResult bindingResult);
 
-    Cartitem getCartitemById(long id);
+    CartitemDTO getCartitemById(long id);
 }

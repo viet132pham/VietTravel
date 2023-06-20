@@ -50,4 +50,8 @@ public class Tour extends BaseEntity{
     @JoinTable(name = "tour_amenity", joinColumns = {@JoinColumn(name = "tour_id")}, inverseJoinColumns = {@JoinColumn(name = "amenitytour_id")})
     private Set<Amenitytour> amenitytours = new HashSet<>();
 
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinTable(name = "tour_review", joinColumns = {@JoinColumn(name = "tour_id")}, inverseJoinColumns = {@JoinColumn(name = "review_id")})
+    private Set<Reviews> reviews = new HashSet<>();
+
 }

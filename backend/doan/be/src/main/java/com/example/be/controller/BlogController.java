@@ -1,5 +1,6 @@
 package com.example.be.controller;
 
+import com.example.be.dto.BlogDTO;
 import com.example.be.entity.Blog;
 import com.example.be.request.BlogRequest;
 import com.example.be.service.BaseService;
@@ -38,7 +39,7 @@ public class BlogController extends BaseController<Blog> {
 
     // get blog theo id blog, gen blog ra front end
     @GetMapping("/get/{id}")
-    public Blog getBlogByBlogId(@PathVariable(value = "id") long id, BindingResult bindingResult){
+    public BlogDTO getBlogByBlogId(@PathVariable(value = "id") long id, BindingResult bindingResult){
         return blogService.getBlogByBlogId(id, bindingResult);
     }
 

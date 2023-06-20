@@ -1,14 +1,22 @@
 package com.example.be.controller;
 
+import com.example.be.dto.TourDTO;
+import com.example.be.dto.VehicleDTO;
 import com.example.be.entity.Vehicle;
 import com.example.be.repository.VehicleRepository;
 import com.example.be.service.BaseService;
 import com.example.be.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/vehicle")
@@ -24,13 +32,13 @@ public class VehicleController extends BaseController<Vehicle> {
     private VehicleService vehicleService;
 
     @GetMapping("/find/trending")
-    public List<Vehicle> findCategoryIdInCartitem() {
+    public List<VehicleDTO> findCategoryIdInCartitem() {
         return vehicleService.findVehicleTrending();
     }
 
-    @GetMapping("/find/sale")
-    public List<Vehicle> findSaleVehicle() {
-        return vehicleRepository.findSaleVehicle();
+    @GetMapping("/find/top_deal")
+    public List<VehicleDTO> findSaleVehicle() {
+        return vehicleService.findSaleVehicle();
     }
 
     @GetMapping("/get/sale_value")
@@ -39,25 +47,61 @@ public class VehicleController extends BaseController<Vehicle> {
     }
 
     @GetMapping("/search/{location}")
-    public List<Vehicle> searchTour(@PathVariable(value = "location") String location) {
+    public List<VehicleDTO> searchTour(@PathVariable(value = "location") String location) {
         return vehicleService.findVehicleByLocation(location);
     }
 
-    @GetMapping("/searchbyname/{name}")
-    public Vehicle searchVehicleByName(@PathVariable(value = "name") String name) {
+    @GetMapping("/search_by_name/{name}")
+    public VehicleDTO searchVehicleByName(@PathVariable(value = "name") String name) {
         return vehicleService.findVehicleByName(name);
     }
 
     @GetMapping("/filter")
-    public List<Vehicle> filterHotels(
+    public Page<VehicleDTO> filterHotels(
             @RequestParam(value = "location", required = false) String location,
             @RequestParam(value = "checkIn", required = false) String checkIn,
             @RequestParam(value = "checkOut", required = false) String checkOut,
             @RequestParam(value = "priceStart", required = false) String priceStart,
             @RequestParam(value = "priceEnd", required = false) String priceEnd,
-            @RequestParam(value = "sale", required = false) String sale
+            @RequestParam(value = "sale", required = false) String sale,
+            @RequestParam(value = "sortBy", required = true) String sortBy,
+            @RequestParam(value = "pageNumber", required = true) int pageNumber,
+            @RequestParam(value = "pageSize", required = true) int pageSize,
+            @RequestParam(value = "sortDir", required = false, defaultValue = "asc") String sortDir
     ) {
-        return vehicleService.filterVehicles(location, checkIn, checkOut, priceStart, priceEnd, sale);
+        Sort sort = Sort.by(sortDir.equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC, sortBy);
+        Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, sort);
+        return vehicleService.filterVehicles(pageable, location, checkIn, checkOut, priceStart, priceEnd, sale);
+    }
+
+    @GetMapping("/sort_dto")
+    public Page<VehicleDTO> getSortedAndPaginateDTO(
+            @RequestParam(value = "sortBy", required = true) String sortBy,
+            @RequestParam(value = "pageNumber", required = true) int pageNumber,
+            @RequestParam(value = "pageSize", required = true) int pageSize,
+            @RequestParam(value = "sortDir", required = false, defaultValue = "asc") String sortDir) {
+
+        Sort sort = Sort.by(sortDir.equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC, sortBy);
+        Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, sort);
+
+        return vehicleService.getSortedAndPaginateDTO(pageable);
+    }
+
+    @GetMapping("/list_pagination_dto")
+    public Page<VehicleDTO> getListPaginationDTO(@RequestParam(value = "pageNumber",required = true) int pageNumber,
+                                              @RequestParam(value = "pageSize",required = true) int pageSize,
+                                              @RequestParam(value = "sortBy",required = false) String sortBy,
+                                              @RequestParam(value = "sortDir",required = false) String sortDir){
+        if (sortDir!= null){
+            Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+            return vehicleService.getListPaginationDTO(PageRequest.of(pageNumber-1,pageSize,sort));
+        }
+        return vehicleService.getListPaginationDTO(PageRequest.of(pageNumber-1,pageSize));
+    }
+
+    @GetMapping("/get_by_id_dto/{id}")
+    public VehicleDTO getById(@PathVariable("id") long id)  {
+        return  vehicleService.getById(id);
     }
 
 }

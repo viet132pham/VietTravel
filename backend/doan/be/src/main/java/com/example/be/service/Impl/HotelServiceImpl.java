@@ -1,7 +1,10 @@
 package com.example.be.service.Impl;
 
+import com.example.be.dto.*;
 import com.example.be.entity.Hotel;
 import com.example.be.entity.Location;
+import com.example.be.entity.Reviews;
+import com.example.be.entity.Tour;
 import com.example.be.repository.BaseRepository;
 import com.example.be.repository.CartitemRepository;
 import com.example.be.repository.HotelRepository;
@@ -10,17 +13,16 @@ import com.example.be.service.HotelService;
 import com.example.be.util.Utils;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 @Service
 @Log4j2
@@ -37,7 +39,45 @@ public class HotelServiceImpl extends BaseServiceImpl<Hotel> implements HotelSer
 
     @Autowired
     private CartitemRepository cartitemRepository;
-    public List<Hotel> findHotelTrending() {
+    @Autowired
+    private ModelMapper mapper;
+
+    public List<HotelDTO> findSaleHotel() {
+        List<Hotel> result = hotelRepository.findSaleHotel();
+        List<HotelDTO> hotelDTOList = new ArrayList<>();
+        for (int i = 0; i < result.size(); i++){
+            HotelDTO hotelDTO = new HotelDTO();
+            LocationDTO locationDTO = new LocationDTO();
+            ReviewsDTO reviewsDTO = new ReviewsDTO();
+            Hotel hotel = result.get(i);
+            mapper.map(hotel, hotelDTO);
+
+            mapper.map(hotel.getLocation(), locationDTO);
+            hotelDTO.setLocationDTO(locationDTO);
+
+            Set<Reviews> reviewsSet = hotel.getReviews();
+            List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
+
+            List<ReviewsDTO> reviewsDTOList = new ArrayList<>();
+
+            for (int j = 0; j < reviewsList.size(); j++){
+                UserDTO userDTO = new UserDTO();
+                ReviewsDTO reviewsDTO1 = new ReviewsDTO();
+                mapper.map(reviewsList.get(j), reviewsDTO1);
+                mapper.map(reviewsList.get(j).getUser(), userDTO);
+                reviewsDTO1.setUser(userDTO);
+                reviewsDTOList.add(reviewsDTO1);
+            }
+
+            hotelDTO.setReviewsDTOS(reviewsDTOList);
+
+            hotelDTOList.add(hotelDTO);
+        }
+
+        return hotelDTOList;
+    }
+
+    public List<HotelDTO> findHotelTrending() {
         List<Integer> cartitems = cartitemRepository.findCategoryIdInCartitem("hotel");
         System.out.println(cartitems);
         List<Hotel> result = new ArrayList<>();
@@ -45,10 +85,40 @@ public class HotelServiceImpl extends BaseServiceImpl<Hotel> implements HotelSer
         cartitems.forEach(cartitem -> {
             result.add(hotelRepository.findHotelById(cartitem));
         });
-        return result;
+        List<HotelDTO> hotelDTOList = new ArrayList<>();
+        for (int i = 0; i < result.size(); i++){
+            HotelDTO hotelDTO = new HotelDTO();
+            LocationDTO locationDTO = new LocationDTO();
+            ReviewsDTO reviewsDTO = new ReviewsDTO();
+            Hotel hotel = result.get(i);
+            mapper.map(hotel, hotelDTO);
+
+            mapper.map(hotel.getLocation(), locationDTO);
+            hotelDTO.setLocationDTO(locationDTO);
+
+            Set<Reviews> reviewsSet = hotel.getReviews();
+            List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
+
+            List<ReviewsDTO> reviewsDTOList = new ArrayList<>();
+
+            for (int j = 0; j < reviewsList.size(); j++){
+                UserDTO userDTO = new UserDTO();
+                ReviewsDTO reviewsDTO1 = new ReviewsDTO();
+                mapper.map(reviewsList.get(j), reviewsDTO1);
+                mapper.map(reviewsList.get(j).getUser(), userDTO);
+                reviewsDTO1.setUser(userDTO);
+                reviewsDTOList.add(reviewsDTO1);
+            }
+
+            hotelDTO.setReviewsDTOS(reviewsDTOList);
+
+            hotelDTOList.add(hotelDTO);
+        }
+
+        return hotelDTOList;
     }
     @SneakyThrows
-    public List<Hotel> searchHotels(String location, String checkIn, String checkOut, Integer numRooms, Integer numGuests) {
+    public List<HotelDTO> searchHotels(String location, String checkIn, String checkOut, Integer numRooms, Integer numGuests) {
         Location location1 = locationRepository.findLocationByName(location);
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
@@ -57,14 +127,70 @@ public class HotelServiceImpl extends BaseServiceImpl<Hotel> implements HotelSer
 
         Date checkOutConvert = formatter.parse(checkOut);
         Timestamp checkOutTimestamp = new Timestamp(checkOutConvert.getTime());
-        return hotelRepository.searchHotels(location1, checkInTimestamp, checkOutTimestamp, numRooms, numGuests);
+        List<Hotel> result = hotelRepository.searchHotels(location1, checkInTimestamp, checkOutTimestamp, numRooms, numGuests);
+        List<HotelDTO> hotelDTOList = new ArrayList<>();
+        for (int i = 0; i < result.size(); i++){
+            HotelDTO hotelDTO = new HotelDTO();
+            LocationDTO locationDTO = new LocationDTO();
+            ReviewsDTO reviewsDTO = new ReviewsDTO();
+            Hotel hotel = result.get(i);
+            mapper.map(hotel, hotelDTO);
+
+            mapper.map(hotel.getLocation(), locationDTO);
+            hotelDTO.setLocationDTO(locationDTO);
+
+            Set<Reviews> reviewsSet = hotel.getReviews();
+            List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
+
+            List<ReviewsDTO> reviewsDTOList = new ArrayList<>();
+
+            for (int j = 0; j < reviewsList.size(); j++){
+                UserDTO userDTO = new UserDTO();
+                ReviewsDTO reviewsDTO1 = new ReviewsDTO();
+                mapper.map(reviewsList.get(j), reviewsDTO1);
+                mapper.map(reviewsList.get(j).getUser(), userDTO);
+                reviewsDTO1.setUser(userDTO);
+                reviewsDTOList.add(reviewsDTO1);
+            }
+
+            hotelDTO.setReviewsDTOS(reviewsDTOList);
+
+            hotelDTOList.add(hotelDTO);
+        }
+
+        return hotelDTOList;
     }
 
-    public Hotel findHotelByName(String name) {
-        return hotelRepository.findHotelByName(name);
+    public HotelDTO findHotelByName(String name) {
+        Hotel hotel = hotelRepository.findHotelByName(name);
+        HotelDTO hotelDTO = new HotelDTO();
+        LocationDTO locationDTO = new LocationDTO();
+        ReviewsDTO reviewsDTO = new ReviewsDTO();
+        mapper.map(hotel, hotelDTO);
+
+        mapper.map(hotel.getLocation(), locationDTO);
+        hotelDTO.setLocationDTO(locationDTO);
+
+        Set<Reviews> reviewsSet = hotel.getReviews();
+        List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
+
+        List<ReviewsDTO> reviewsDTOList = new ArrayList<>();
+
+        for (int j = 0; j < reviewsList.size(); j++){
+            UserDTO userDTO = new UserDTO();
+            ReviewsDTO reviewsDTO1 = new ReviewsDTO();
+            mapper.map(reviewsList.get(j), reviewsDTO1);
+            mapper.map(reviewsList.get(j).getUser(), userDTO);
+            reviewsDTO1.setUser(userDTO);
+            reviewsDTOList.add(reviewsDTO1);
+        }
+
+        hotelDTO.setReviewsDTOS(reviewsDTOList);
+
+        return hotelDTO;
     }
     @SneakyThrows
-    public List<Hotel> filterHotels(String location, String checkIn, String checkOut, String priceStart, String priceEnd, String sale) {
+    public Page<HotelDTO> filterHotels(Pageable pageable, String location, String checkIn, String checkOut, String priceStart, String priceEnd, String sale) {
         Location location1 = locationRepository.findLocationByName(location);
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
@@ -82,7 +208,143 @@ public class HotelServiceImpl extends BaseServiceImpl<Hotel> implements HotelSer
         if (saleWrap != 1){
             saleWrap = null;
         }
-        return hotelRepository.filterHotels(Math.toIntExact(location1.getId()), checkInTimestamp, checkOutTimestamp, priceStartString, priceEndString, saleWrap);
+
+        Page<Hotel> hotels = hotelRepository.filterHotels(Math.toIntExact(location1.getId()), checkInTimestamp, checkOutTimestamp, priceStartString, priceEndString, saleWrap, pageable);
+        List<HotelDTO> hotelDTOList = new ArrayList<>();
+        for (int i = 0; i < hotels.getContent().size(); i++){
+            HotelDTO hotelDTO = new HotelDTO();
+            LocationDTO locationDTO = new LocationDTO();
+            ReviewsDTO reviewsDTO = new ReviewsDTO();
+            Hotel hotel = hotels.getContent().get(i);
+            mapper.map(hotel, hotelDTO);
+
+            mapper.map(hotel.getLocation(), locationDTO);
+            hotelDTO.setLocationDTO(locationDTO);
+
+            Set<Reviews> reviewsSet = hotel.getReviews();
+            List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
+
+            List<ReviewsDTO> reviewsDTOList = new ArrayList<>();
+
+            for (int j = 0; j < reviewsList.size(); j++){
+                UserDTO userDTO = new UserDTO();
+                ReviewsDTO reviewsDTO1 = new ReviewsDTO();
+                mapper.map(reviewsList.get(j), reviewsDTO1);
+                mapper.map(reviewsList.get(j).getUser(), userDTO);
+                reviewsDTO1.setUser(userDTO);
+                reviewsDTOList.add(reviewsDTO1);
+            }
+
+            hotelDTO.setReviewsDTOS(reviewsDTOList);
+
+            hotelDTOList.add(hotelDTO);
+        }
+
+        Page<HotelDTO> hotelDTOPage = new PageImpl<>(hotelDTOList, hotels.getPageable(), hotels.getTotalElements());
+
+        return hotelDTOPage;
+    }
+
+    public Page<HotelDTO> getListPaginationDTO(Pageable pageable) {
+        Page<Hotel> hotels = hotelRepository.findAll(pageable);
+        List<HotelDTO> hotelDTOList = new ArrayList<>();
+        for (int i = 0; i < hotels.getContent().size(); i++){
+            HotelDTO hotelDTO = new HotelDTO();
+            LocationDTO locationDTO = new LocationDTO();
+            ReviewsDTO reviewsDTO = new ReviewsDTO();
+            Hotel hotel = hotels.getContent().get(i);
+            mapper.map(hotel, hotelDTO);
+
+            mapper.map(hotel.getLocation(), locationDTO);
+            hotelDTO.setLocationDTO(locationDTO);
+
+            Set<Reviews> reviewsSet = hotel.getReviews();
+            List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
+
+            List<ReviewsDTO> reviewsDTOList = new ArrayList<>();
+
+            for (int j = 0; j < reviewsList.size(); j++){
+                UserDTO userDTO = new UserDTO();
+                ReviewsDTO reviewsDTO1 = new ReviewsDTO();
+                mapper.map(reviewsList.get(j), reviewsDTO1);
+                mapper.map(reviewsList.get(j).getUser(), userDTO);
+                reviewsDTO1.setUser(userDTO);
+                reviewsDTOList.add(reviewsDTO1);
+            }
+
+            hotelDTO.setReviewsDTOS(reviewsDTOList);
+
+            hotelDTOList.add(hotelDTO);
+        }
+
+        Page<HotelDTO> hotelDTOPage = new PageImpl<>(hotelDTOList, hotels.getPageable(), hotels.getTotalElements());
+        return hotelDTOPage;
+    }
+
+    public Page<HotelDTO> getSortedAndPaginateDTO(Pageable pageable) {
+        Page<Hotel> hotels = hotelRepository.findAll(pageable);
+        List<HotelDTO> hotelDTOList = new ArrayList<>();
+        for (int i = 0; i < hotels.getContent().size(); i++){
+            HotelDTO hotelDTO = new HotelDTO();
+            LocationDTO locationDTO = new LocationDTO();
+            ReviewsDTO reviewsDTO = new ReviewsDTO();
+            Hotel hotel = hotels.getContent().get(i);
+            mapper.map(hotel, hotelDTO);
+
+            mapper.map(hotel.getLocation(), locationDTO);
+            hotelDTO.setLocationDTO(locationDTO);
+
+            Set<Reviews> reviewsSet = hotel.getReviews();
+            List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
+
+            List<ReviewsDTO> reviewsDTOList = new ArrayList<>();
+
+            for (int j = 0; j < reviewsList.size(); j++){
+                UserDTO userDTO = new UserDTO();
+                ReviewsDTO reviewsDTO1 = new ReviewsDTO();
+                mapper.map(reviewsList.get(j), reviewsDTO1);
+                mapper.map(reviewsList.get(j).getUser(), userDTO);
+                reviewsDTO1.setUser(userDTO);
+                reviewsDTOList.add(reviewsDTO1);
+            }
+
+            hotelDTO.setReviewsDTOS(reviewsDTOList);
+
+            hotelDTOList.add(hotelDTO);
+        }
+
+        Page<HotelDTO> hotelDTOPage = new PageImpl<>(hotelDTOList, hotels.getPageable(), hotels.getTotalElements());
+        return hotelDTOPage;
+    }
+
+    @Override
+    public HotelDTO getById(long id) {
+        Hotel hotel = hotelRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("id not found: " + id));
+        HotelDTO hotelDTO = new HotelDTO();
+        LocationDTO locationDTO = new LocationDTO();
+        ReviewsDTO reviewsDTO = new ReviewsDTO();
+        mapper.map(hotel, hotelDTO);
+
+        mapper.map(hotel.getLocation(), locationDTO);
+        hotelDTO.setLocationDTO(locationDTO);
+
+        Set<Reviews> reviewsSet = hotel.getReviews();
+        List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
+
+        List<ReviewsDTO> reviewsDTOList = new ArrayList<>();
+
+        for (int j = 0; j < reviewsList.size(); j++){
+            UserDTO userDTO = new UserDTO();
+            ReviewsDTO reviewsDTO1 = new ReviewsDTO();
+            mapper.map(reviewsList.get(j), reviewsDTO1);
+            mapper.map(reviewsList.get(j).getUser(), userDTO);
+            reviewsDTO1.setUser(userDTO);
+            reviewsDTOList.add(reviewsDTO1);
+        }
+
+        hotelDTO.setReviewsDTOS(reviewsDTOList);
+
+        return hotelDTO;
     }
 
 }

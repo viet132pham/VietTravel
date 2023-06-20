@@ -1,15 +1,27 @@
 package com.example.be.service;
 
+import com.example.be.dto.VehicleDTO;
 import com.example.be.entity.Vehicle;
 
 import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 public interface VehicleService extends BaseService<Vehicle> {
-    List<Vehicle> findVehicleTrending();
+    List<VehicleDTO> findVehicleTrending();
 
-    List<Vehicle> findVehicleByLocation(String location);
+    List<VehicleDTO> findVehicleByLocation(String location);
 
-    Vehicle findVehicleByName(String name);
+    VehicleDTO findVehicleByName(String name);
 
-    List<Vehicle> filterVehicles(String location, String checkIn, String checkOut, String priceStart, String priceEnd, String sale);
+    Page<VehicleDTO> filterVehicles(Pageable pageable, String location, String checkIn, String checkOut, String priceStart, String priceEnd, String sale);
+
+    VehicleDTO getById(long id);
+
+    Page<VehicleDTO> getListPaginationDTO(Pageable pageable);
+
+    Page<VehicleDTO> getSortedAndPaginateDTO(Pageable pageable);
+
+    List<VehicleDTO> findSaleVehicle();
 }

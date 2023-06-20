@@ -8,6 +8,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "vehicle")
@@ -45,4 +47,7 @@ public class Vehicle extends BaseEntity{
     @JoinColumn(name = "admin_id")
     private User admin;
 
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinTable(name = "vehicle_review", joinColumns = {@JoinColumn(name = "vehicle_id")}, inverseJoinColumns = {@JoinColumn(name = "review_id")})
+    private Set<Reviews> reviews = new HashSet<>();
 }

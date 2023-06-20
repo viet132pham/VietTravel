@@ -11,7 +11,10 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 @Repository
 public interface HotelRepository extends BaseRepository<Hotel, Long>{
     Hotel findHotelById(long id);
@@ -20,7 +23,7 @@ public interface HotelRepository extends BaseRepository<Hotel, Long>{
     @Query(value = "SELECT * \n" +
             "FROM hotel\n" +
             "WHERE sale > 0\n" +
-            "ORDER BY sale DESC;\n;", nativeQuery = true)
+            "ORDER BY sale DESC LIMIT 6;\n;", nativeQuery = true)
     List<Hotel> findSaleHotel();
 
     List<Hotel> findHotelByLocation(Location location);
@@ -48,13 +51,14 @@ public interface HotelRepository extends BaseRepository<Hotel, Long>{
             "AND (:priceStart IS NULL OR h.price >= :priceStart) " +
             "AND (:priceEnd IS NULL OR h.price <= :priceEnd) " +
             "AND (:sale IS NULL OR h.sale > 0)", nativeQuery = true)
-    List<Hotel> filterHotels(
+    Page<Hotel> filterHotels(
             @Param("location") Integer location,
             @Param("checkIn") Timestamp checkIn,
             @Param("checkOut") Timestamp checkOut,
             @Param("priceStart") Integer priceStart,
             @Param("priceEnd") Integer priceEnd,
-            @Param("sale") Integer sale
+            @Param("sale") Integer sale,
+            Pageable pageable
     );
 
     @Query(value = "SELECT DISTINCT h.sale FROM Hotel h ORDER BY h.sale ASC", nativeQuery = true)

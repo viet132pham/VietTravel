@@ -1,7 +1,8 @@
 package com.example.be.service;
 
+import com.example.be.dto.CartDTO;
+import com.example.be.dto.CartitemDTO;
 import com.example.be.entity.Cart;
-import com.example.be.entity.mapped.Cartitem;
 import com.example.be.request.CartRequest;
 import org.springframework.validation.BindingResult;
 
@@ -13,7 +14,7 @@ public interface CartService extends BaseService<Cart> {
 
     Cart updateCart(long id, CartRequest cartRequest, BindingResult bindingResult);
 
-    Cart getCart(long userId, BindingResult bindingResult);
+    CartDTO getCart(long userId);
 
-    List<Cartitem> getItems(long cartId, BindingResult bindingResult);
+    List<CartitemDTO> getItems(long cartId);
 }

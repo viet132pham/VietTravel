@@ -1,8 +1,11 @@
 package com.example.be.service.Impl;
 
+import com.example.be.dto.CartDTO;
+import com.example.be.dto.CartitemDTO;
+import com.example.be.dto.UserDTO;
 import com.example.be.entity.Cart;
+import com.example.be.entity.Cartitem;
 import com.example.be.entity.User;
-import com.example.be.entity.mapped.Cartitem;
 import com.example.be.repository.BaseRepository;
 import com.example.be.repository.CartRepository;
 import com.example.be.repository.CartitemRepository;
@@ -58,24 +61,42 @@ public class CartServiceImpl extends BaseServiceImpl<Cart> implements CartServic
         }
     }
 
-    public Cart getCart(long userId, BindingResult bindingResult){
+    public CartDTO getCart(long userId){
         User user = userRepository.findUserById(userId);
         Cart cart = cartRepository.findCartByUserAndStatus(user, "WAITING");
         if (cart == null) {
             return null;
         } else {
             cart.setStatus("PROCESS");
-            return cart;
+            CartDTO cartDTO = new CartDTO();
+            UserDTO userDTO = new UserDTO();
+            mapper.map(cart, cartDTO);
+            mapper.map(cart.getUser(), userDTO);
+            cartDTO.setUserDTO(userDTO);
+            return cartDTO;
         }
     }
 
-    public List<Cartitem> getItems(long cartId, BindingResult bindingResult) {
+    public List<CartitemDTO> getItems(long cartId) {
         List<Long> cartitems = cartitemRepository.findAllItems(cartId);
+
         List<Cartitem> result = new ArrayList<>();
         cartitems.forEach(cartitem -> {
                         result.add(cartitemRepository.findById(cartitem).orElseThrow(() -> new IllegalArgumentException(("id not found: " + cartitem))));
                     });
-        return result;
+        List<CartitemDTO> cartitemDTOList = new ArrayList<>();
+        for (int j = 0; j < result.size(); j++){
+            UserDTO userDTO = new UserDTO();
+            CartDTO cartDTO = new CartDTO();
+            CartitemDTO cartitemDTO = new CartitemDTO();
+            mapper.map(result.get(j), cartitemDTO);
+            mapper.map(result.get(j).getCart(), cartDTO);
+            mapper.map(result.get(j).getCart().getUser(), userDTO);
+            cartDTO.setUserDTO(userDTO);
+            cartitemDTO.setCartDTO(cartDTO);
+            cartitemDTOList.add(cartitemDTO);
+        }
+        return cartitemDTOList;
     }
 
 }

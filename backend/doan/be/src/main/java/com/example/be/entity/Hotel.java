@@ -61,4 +61,8 @@ public class Hotel extends BaseEntity{
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinTable(name = "hotel_landmark", joinColumns = {@JoinColumn(name = "hotel_id")}, inverseJoinColumns = {@JoinColumn(name = "landmark_id")})
     private Set<Landmarks> landmarks = new HashSet<>();
+
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinTable(name = "hotel_review", joinColumns = {@JoinColumn(name = "hotel_id")}, inverseJoinColumns = {@JoinColumn(name = "review_id")})
+    private Set<Reviews> reviews = new HashSet<>();
 }
