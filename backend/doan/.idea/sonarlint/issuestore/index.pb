@@ -136,8 +136,6 @@ n
 0be/src/main/java/com/example/be/entity/Tour.java,4\f\4f74292d12070a06a488f2bbd73943170cbb7484
 j
 :be/src/main/java/com/example/be/entity/mapped/Comment.java,0\d\0d66584686b556f68dcd878fe9daba3fa7db3e53
-r
-Bbe/src/main/java/com/example/be/repository/LocationRepository.java,2\c\2c3c77a40ed8882f9ba6a97d94c456e7bb5e544c
 f
 6be/src/main/java/com/example/be/model/JwtResponse.java,8\8\8825f01f2b90801355f4a4e4751ac70c6978dc5d
 q
@@ -162,5 +160,13 @@ w
 Gbe/src/main/java/com/example/be/service/Impl/JwtUserDetailsService.java,f\2\f26c9e6b40d343c5c3a7acc9dc01030051cf7610
 l
 <be/src/main/java/com/example/be/config/JwtRequestFilter.java,9\e\9e5e1a1b4d4697b9c86b3dfc59090ff73b7c6484
+`
+0be/src/main/java/com/example/be/entity/Cart.java,f\1\f19e4fccce324a58b72a9166ead4adf31ebbaaba
+d
+4be/src/main/java/com/example/be/entity/Cartitem.java,e\f\efadd6a163964d65c7246ad99101a5417fbcf417
 r
-Bbe/src/main/java/com/example/be/controller/LocationController.java,2\1\2180b3802f2e85384d7a2e8af8959bbdaab8666f
+Bbe/src/main/java/com/example/be/service/Impl/HotelServiceImpl.java,8\3\83b1c19083e7ab61dfc33e099c5578e8325d50ef
+n
+>be/src/main/java/com/example/be/repository/CartRepository.java,4\8\4864b134cdf931069cd071d310656683830a08de
+r
+Bbe/src/main/java/com/example/be/repository/CartitemRepository.java,0\e\0ed13db0ac2e446ac8ae89cdf569c2d115dcd1d7
