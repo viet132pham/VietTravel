@@ -1,5 +1,6 @@
 package com.example.be.controller;
 
+import com.example.be.dto.CommentDTO;
 import com.example.be.entity.mapped.Comment;
 import com.example.be.request.CommentRequest;
 import com.example.be.service.CommentService;
@@ -35,13 +36,13 @@ public class CommentController {
 
     // get comment theo blog id, gen ra những comment có trong blog này
     @GetMapping("/get/{id}")
-    public List<Comment> getCommentByBlogId(@PathVariable(value = "id") long id, BindingResult bindingResult){
-        return commentService.getCommentByBlogId(id, bindingResult);
+    public List<CommentDTO> getCommentByBlogId(@PathVariable(value = "id") long id){
+        return commentService.getCommentByBlogId(id);
     }
 
     // get all comment, quản lý trong admin site
     @GetMapping("/get")
-    public List<Comment> getAllComment(BindingResult bindingResult){
-        return commentService.getAllComment(bindingResult);
+    public List<CommentDTO> getAllComment(){
+        return commentService.getAllComment();
     }
 }

@@ -1,5 +1,6 @@
 package com.example.be.service;
 
+import com.example.be.dto.CommentDTO;
 import com.example.be.entity.mapped.Comment;
 import com.example.be.request.CommentRequest;
 import org.springframework.validation.BindingResult;
@@ -14,7 +15,7 @@ public interface CommentService {
 
     Comment updateComment(long id, CommentRequest commentRequest, BindingResult bindingResult);
 
-    List<Comment> getCommentByBlogId(long id, BindingResult bindingResult);
+    List<CommentDTO> getCommentByBlogId(long id);
 
-    List<Comment> getAllComment(BindingResult bindingResult);
+    List<CommentDTO> getAllComment();
 }

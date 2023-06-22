@@ -1,5 +1,7 @@
 package com.example.be.service.Impl;
 
+import com.example.be.dto.CommentDTO;
+import com.example.be.dto.UserDTO;
 import com.example.be.entity.mapped.Comment;
 import com.example.be.repository.BlogRepository;
 import com.example.be.repository.CommentRepository;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -47,11 +50,31 @@ public class CommentServiceImpl implements CommentService {
         return commentRepository.save(comment);
     }
 
-    public List<Comment> getCommentByBlogId(long id, BindingResult bindingResult) {
-        return commentRepository.findCommentsByBlog(blogRepository.findBlogById(id));
+    public List<CommentDTO> getCommentByBlogId(long id) {
+        List<Comment> commentList = commentRepository.findCommentsByBlog(blogRepository.findBlogById(id));
+        List<CommentDTO> commentDTOList = new ArrayList<>();
+        for (int i = 0; i < commentList.size(); i++){
+            CommentDTO commentDTO = new CommentDTO();
+            UserDTO userDTO = new UserDTO();
+            mapper.map(commentList.get(i), commentDTO);
+            mapper.map(commentList.get(i).getUser(), userDTO);
+            commentDTO.setUserDTO(userDTO);
+            commentDTOList.add(commentDTO);
+        }
+        return commentDTOList;
     }
 
-    public List<Comment> getAllComment(BindingResult bindingResult) {
-        return commentRepository.findAll();
+    public List<CommentDTO> getAllComment() {
+        List<Comment> commentList = commentRepository.findAll();
+        List<CommentDTO> commentDTOList = new ArrayList<>();
+        for (int i = 0; i < commentList.size(); i++){
+            CommentDTO commentDTO = new CommentDTO();
+            UserDTO userDTO = new UserDTO();
+            mapper.map(commentList.get(i), commentDTO);
+            mapper.map(commentList.get(i).getUser(), userDTO);
+            commentDTO.setUserDTO(userDTO);
+            commentDTOList.add(commentDTO);
+        }
+        return commentDTOList;
     }
 }
