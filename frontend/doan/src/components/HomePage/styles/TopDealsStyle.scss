@@ -1,0 +1,44 @@
+.top-deals {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .top-deals-wrapper{
+    width: 70%;
+    .title {
+      font-size: 24px;
+      font-weight: 500;
+      color: #0F1824;
+    }
+
+    .divide-1 {
+      display: flex;
+      justify-content: center;
+      margin: 24px auto;
+      width: 60px;
+      height: 2px;
+      background: red;
+    }
+  
+    .list-deal {
+      width: 100%;
+      display: flex;
+      flex-wrap: nowrap;
+      .banner-wrapper {
+        width: calc(100% / 3 - 12px);
+        height: 400px;
+        margin-right: 16px;
+        &:last-child{
+          margin-right: unset;
+        }
+        .banner-image {
+          img {
+            width: 100%;
+            height: 100%;
+          }
+
+        }
+      }
+    }
+  }
+}

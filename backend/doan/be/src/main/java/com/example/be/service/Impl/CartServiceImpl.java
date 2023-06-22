@@ -67,7 +67,6 @@ public class CartServiceImpl extends BaseServiceImpl<Cart> implements CartServic
         if (cart == null) {
             return null;
         } else {
-            cart.setStatus("PROCESS");
             CartDTO cartDTO = new CartDTO();
             UserDTO userDTO = new UserDTO();
             mapper.map(cart, cartDTO);

@@ -31,13 +31,13 @@ public class CartController extends BaseController<Cart> {
         return cartService.createRequest(cartRequest, bindingResult);
     }
 
-    // Update cart khi khách hàng sign out, update trạng thái cart là waiting chẳng hạn
+    // get lai cart sau khi dang nhap laị
     @PutMapping("/put/{cartId}")
     public Cart updateCart(@PathVariable(value = "cartId") long cartId, @RequestBody @Valid CartRequest cartRequest , BindingResult bindingResult) {
         return cartService.updateCart(cartId, cartRequest, bindingResult);
     }
 
-    // khi login, tìm cart theo id user, check status cart (status cart nếu đã thanh toán thì là done, đang đăng nhập thực hiện mua bán thì là process, còn thoát đăng nhập thì waiting), nếu người dùng này có cart ở trạng thái waiting thì get ra để dùng, nếu không thì lại tạo cart bằng /post ở trên
+    // khi login, tìm cart theo id user, check status cart (status cart nếu đã thanh toán thì là process, di choi về thì là done), nếu người dùng này có cart ở trạng thái waiting thì get ra để dùng, nếu không thì lại tạo cart bằng /post ở trên
     @GetMapping("/get/{userId}")
     public CartDTO getCart(@PathVariable(value = "userId") long userId) {
         return cartService.getCart(userId);

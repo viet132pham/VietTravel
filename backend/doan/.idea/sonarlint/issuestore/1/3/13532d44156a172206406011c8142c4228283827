@@ -1,7 +1,7 @@
 
 t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(®øİùşÿÿÿÿ
-ƒ
-java:S4144š"eUpdate this method so that its implementation is not identical to "getListPaginationDTO" on line 246.(¥ÂÀ¬8ÀÁ§Ê1
+|
+java:S4144š"eUpdate this method so that its implementation is not identical to "getListPaginationDTO" on line 246.(¥ÂÀ¬
 T
 java:S18546">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
 E
@@ -12,28 +12,33 @@ G
 java:S1602W",Remove useless curly braces around statement(íĞéóüÿÿÿÿ
 E
 java:S1481_"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
-\
-java:S1854ƒ">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ8ÒÁ§Ê1
-M
-java:S1481ƒ"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ8ÓÁ§Ê1
-\
-java:S1854¤">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ8×Á§Ê1
-M
-java:S1481¤"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ8ØÁ§Ê1
-\
-java:S1854×">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ8ÛÁ§Ê1
-V	java:S106Ó"9Replace this use of System.out or System.err by a logger.(ìÈ˜´8àÁ§Ê1
-M
-java:S1481×"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ8âÁ§Ê1
-\
-java:S1854ü">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ8æÁ§Ê1
-M
-java:S1481ü"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ8èÁ§Ê1
-\
-java:S1854 ">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ8ìÁ§Ê1
-M
-java:S1481 "/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ8îÁ§Ê1
-\
-java:S1854Ã">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ8óÁ§Ê1
-M
-java:S1481Ã"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ8öÁ§Ê1
+U
+java:S1854ƒ">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+F
+java:S1481ƒ"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+U
+java:S1854¤">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+F
+java:S1481¤"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+U
+java:S1854×">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+O	java:S106Ó"9Replace this use of System.out or System.err by a logger.(ìÈ˜´
+F
+java:S1481×"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+U
+java:S1854ü">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+F
+java:S1481ü"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+U
+java:S1854 ">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+F
+java:S1481 "/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+U
+java:S1854Ã">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+F
+java:S1481Ã"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+Y
+java:S1128
+"7Remove this unused import 'com.example.be.entity.User'.(‘á•œÿÿÿÿÿ8©ò‰1
+
+java:S1128"_Remove this unused import 'org.springframework.security.core.authority.SimpleGrantedAuthority'.(– ‹Ìûÿÿÿÿ8ªò‰1

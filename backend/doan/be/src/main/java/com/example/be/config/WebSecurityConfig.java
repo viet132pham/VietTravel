@@ -49,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @ Bean
+    @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
@@ -60,10 +60,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // We don't need CSRF for this example
         httpSecurity.cors().and().csrf().disable()
                 // dont authenticate this particular request
-                .authorizeRequests().antMatchers("/api/login", "/api/register", "/auth").permitAll()
+                .authorizeRequests().antMatchers(
+                        "/api/login",
+                        "/api/register", "/auth",
+                        "/api/location/find/topdestination",
+                        "/api/tour/find/trending",
+                        "/api/vehicle/find/trending",
+                        "/api/hotel/find/trending",
+                        "/api/tour/find/top_deal",
+                        "/api/vehicle/find/top_deal",
+                        "/api/hotel/find/top_deal",
+                        "/api/blog/get",
+                        "/api/blog/get/{id}"
+                ).permitAll()
                 .antMatchers(HttpMethod.POST, "/api/guest/").permitAll()
 //                .antMatchers(HttpMethod.GET).permitAll()
-                        .
+        .
                 // all other requests need to be authenticated
                         anyRequest().authenticated().and().
                 // make sure we use stateless session; session won't be used to

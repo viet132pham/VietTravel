@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @CrossOrigin("*")
@@ -41,6 +42,11 @@ public class BlogController extends BaseController<Blog> {
     @GetMapping("/get/{id}")
     public BlogDTO getBlogByBlogId(@PathVariable(value = "id") long id, BindingResult bindingResult){
         return blogService.getBlogByBlogId(id, bindingResult);
+    }
+
+    @GetMapping("/get")
+    public List<BlogDTO> getListBlog(){
+        return blogService.getListBlog();
     }
 
     // get blog theo category blog, có thể là list blog theo category, filter chẳng hạn nhưng nếu không có time thì thôi

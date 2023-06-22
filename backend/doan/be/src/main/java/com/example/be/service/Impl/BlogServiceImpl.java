@@ -60,6 +60,17 @@ public class BlogServiceImpl extends BaseServiceImpl<Blog> implements BlogServic
         return blogDTO;
     }
 
+    public List<BlogDTO> getListBlog() {
+        List<Blog> blogs = blogRepository.findAll();
+        List<BlogDTO> blogDTOS = new ArrayList<>();
+        for (int i = 0; i < blogs.size(); i++){
+            BlogDTO blogDTO = new BlogDTO();
+            mapper.map(blogs.get(i), blogDTO);
+            blogDTOS.add(blogDTO);
+        }
+        return blogDTOS;
+    }
+
 //    public Blog getBlogByCategory(long id, String type, BindingResult bindingResult) {
 //
 //    }

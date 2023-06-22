@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface LocationRepository extends BaseRepository<Location, Long> {
 
-    @Query(value = "SELECT loc.image AS locationImage loc.name AS locationName, COUNT(DISTINCT h.id) AS totalHotel, COUNT(DISTINCT t.id) AS totalTour, COUNT(DISTINCT v.id) AS totalVehicle,\n" +
+    @Query(value = "SELECT loc.image AS locationImage, loc.name AS locationName, COUNT(DISTINCT h.id) AS totalHotel, COUNT(DISTINCT t.id) AS totalTour, COUNT(DISTINCT v.id) AS totalVehicle,\n" +
             "       (COUNT(DISTINCT h.id) + COUNT(DISTINCT t.id) + COUNT(DISTINCT v.id)) AS totalAll\n" +
             "FROM location loc\n" +
             "LEFT JOIN tour t ON loc.id = t.location_id\n" +
