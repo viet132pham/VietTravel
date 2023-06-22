@@ -192,56 +192,69 @@ public class TourServiceImpl extends BaseServiceImpl<Tour> implements TourServic
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
-        Date checkInConvert = formatter.parse(checkIn);
-        Timestamp checkInTimestamp = new Timestamp(checkInConvert.getTime());
-
-        Date checkOutConvert = formatter.parse(checkOut);
-        Timestamp checkOutTimestamp = new Timestamp(checkOutConvert.getTime());
-
-        Integer priceStartString = Integer.parseInt(priceStart);
-        Integer priceEndString = Integer.parseInt(priceEnd);
-
-        Integer saleWrap = Integer.parseInt(sale);
-        if (saleWrap != 1) {
-            saleWrap = null;
+        Timestamp checkInTimestamp = null;
+        if (checkIn != null) {
+            Date checkInConvert = formatter.parse(checkIn);
+            checkInTimestamp = new Timestamp(checkInConvert.getTime());
         }
 
-        Page<Tour> tours = tourRepository.filterTours(Math.toIntExact(location1.getId()), checkInTimestamp, checkOutTimestamp, priceStartString, priceEndString, saleWrap, pageable);
+        Timestamp checkOutTimestamp = null;
+        if (checkOut != null) {
+            Date checkOutConvert = formatter.parse(checkOut);
+            checkOutTimestamp = new Timestamp(checkOutConvert.getTime());
+        }
+
+        Integer priceStartString = null;
+        if (priceStart != null && !priceStart.isEmpty()) {
+            priceStartString = Integer.parseInt(priceStart);
+        }
+
+        Integer priceEndString = null;
+        if (priceEnd != null && !priceEnd.isEmpty()) {
+            priceEndString = Integer.parseInt(priceEnd);
+        }
+
+        Integer saleWrap = null;
+        if (sale != null && !sale.isEmpty()) {
+            saleWrap = Integer.parseInt(sale);
+            if (saleWrap != 1) {
+                saleWrap = null;
+            }
+        }
+
+        Page<Tour> tours = tourRepository.filterTours(
+                Math.toIntExact(location1.getId()),
+                checkInTimestamp,
+                checkOutTimestamp,
+                priceStartString,
+                priceEndString,
+                saleWrap,
+                pageable
+        );
+
         List<TourDTO> tourDTOList = new ArrayList<>();
-        System.out.println(tours);
-        for (int i = 0; i < tours.getContent().size(); i++){
-            TourDTO tourDTO = new TourDTO();
-            LocationDTO locationDTO = new LocationDTO();
-            ReviewsDTO reviewsDTO = new ReviewsDTO();
-            Tour tour = tours.getContent().get(i);
-            mapper.map(tour, tourDTO);
 
-            mapper.map(tour.getLocation(), locationDTO);
+        for (Tour tour : tours) {
+            TourDTO tourDTO = mapper.map(tour, TourDTO.class);
+            LocationDTO locationDTO = mapper.map(tour.getLocation(), LocationDTO.class);
             tourDTO.setLocationDTO(locationDTO);
-
-            Set<Reviews> reviewsSet = tour.getReviews();
-            List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
 
             List<ReviewsDTO> reviewsDTOList = new ArrayList<>();
 
-            for (int j = 0; j < reviewsList.size(); j++){
-                UserDTO userDTO = new UserDTO();
-                ReviewsDTO reviewsDTO1 = new ReviewsDTO();
-                mapper.map(reviewsList.get(j), reviewsDTO1);
-                mapper.map(reviewsList.get(j).getUser(), userDTO);
-                reviewsDTO1.setUser(userDTO);
-                reviewsDTOList.add(reviewsDTO1);
+            for (Reviews reviews : tour.getReviews()) {
+                ReviewsDTO reviewsDTO = mapper.map(reviews, ReviewsDTO.class);
+                UserDTO userDTO = mapper.map(reviews.getUser(), UserDTO.class);
+                reviewsDTO.setUser(userDTO);
+                reviewsDTOList.add(reviewsDTO);
             }
 
             tourDTO.setReviewsDTOS(reviewsDTOList);
-
             tourDTOList.add(tourDTO);
         }
 
-        Page<TourDTO> tourDTOPage = new PageImpl<>(tourDTOList, tours.getPageable(), tours.getTotalElements());
-
-        return tourDTOPage;
+        return new PageImpl<>(tourDTOList, pageable, tours.getTotalElements());
     }
+
 
     public Page<TourDTO> getListPaginationDTO(Pageable pageable) {
         Page<Tour> tours = tourRepository.findAll(pageable);
