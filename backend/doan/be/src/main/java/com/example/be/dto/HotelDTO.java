@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -28,8 +29,8 @@ public class HotelDTO {
     private String timeStart;
     private String timeEnd;
     private LocationDTO locationDTO;
-    private Amenityhotel amenityhotel;
+    private ArrayList<Amenityhotel> amenityhotel;
     private List<ReviewsDTO> reviewsDTOS;
-    private Landmarks landmarks;
-    private Essentials essentials;
+    private ArrayList<Landmarks> landmarks;
+    private ArrayList<Essentials> essentials;
 }

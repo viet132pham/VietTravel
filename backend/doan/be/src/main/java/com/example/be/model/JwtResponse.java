@@ -9,18 +9,13 @@ public class JwtResponse implements Serializable {
 
     private static final long serialVersionUID = -8091879091924046844L;
     private final String jwttoken;
-    private final long userId;
 
-    public JwtResponse(String jwttoken, long userId) {
+    public JwtResponse(String jwttoken) {
         this.jwttoken = jwttoken;
-        this.userId = userId;
     }
 
     public String getToken() {
         return this.jwttoken;
-    }
-    public long getUserId() {
-        return this.userId;
     }
 }
 

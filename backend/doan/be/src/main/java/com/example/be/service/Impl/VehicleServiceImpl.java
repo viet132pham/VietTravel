@@ -182,18 +182,34 @@ public class VehicleServiceImpl extends BaseServiceImpl<Vehicle> implements Vehi
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
-        Date checkInConvert = formatter.parse(checkIn);
-        Timestamp checkInTimestamp = new Timestamp(checkInConvert.getTime());
+        Timestamp checkInTimestamp = null;
+        if (checkIn != null) {
+            Date checkInConvert = formatter.parse(checkIn);
+            checkInTimestamp = new Timestamp(checkInConvert.getTime());
+        }
 
-        Date checkOutConvert = formatter.parse(checkOut);
-        Timestamp checkOutTimestamp = new Timestamp(checkOutConvert.getTime());
+        Timestamp checkOutTimestamp = null;
+        if (checkOut != null) {
+            Date checkOutConvert = formatter.parse(checkOut);
+            checkOutTimestamp = new Timestamp(checkOutConvert.getTime());
+        }
 
-        Integer priceStartString = Integer.parseInt(priceStart);
-        Integer priceEndString = Integer.parseInt(priceEnd);
+        Integer priceStartString = null;
+        if (priceStart != null && !priceStart.isEmpty()) {
+            priceStartString = Integer.parseInt(priceStart);
+        }
 
-        Integer saleWrap = Integer.parseInt(sale);
-        if (saleWrap != 1){
-            saleWrap = null;
+        Integer priceEndString = null;
+        if (priceEnd != null && !priceEnd.isEmpty()) {
+            priceEndString = Integer.parseInt(priceEnd);
+        }
+
+        Integer saleWrap = null;
+        if (sale != null && !sale.isEmpty()) {
+            saleWrap = Integer.parseInt(sale);
+            if (saleWrap != 1) {
+                saleWrap = null;
+            }
         }
 
         Page<Vehicle> vehicles = vehicleRepository.filterVehicles(Math.toIntExact(location1.getId()), checkInTimestamp, checkOutTimestamp, priceStartString, priceEndString, saleWrap, pageable);

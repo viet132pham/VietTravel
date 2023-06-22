@@ -9,6 +9,7 @@ import lombok.Setter;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 
 @Getter
 @Setter
@@ -16,8 +17,9 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Service
 public class BlogDTO {
+    private String id;
     private String title;
     private String description;
     private String image;
-    private Blogcategory blogcategory;
+    private ArrayList<Blogcategory> blogcategory;
 }

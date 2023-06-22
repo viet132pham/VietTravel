@@ -2,7 +2,6 @@ package com.example.be.controller;
 
 import com.example.be.config.JwtTokenUtil;
 import com.example.be.dto.UserRegisterDTO;
-import com.example.be.entity.Role;
 import com.example.be.entity.User;
 import com.example.be.model.JwtRequest;
 import com.example.be.model.JwtResponse;
@@ -84,9 +83,9 @@ public class JwtAuthenticationController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tài khoản không tồn tại.");
         }
 
-        final String token = jwtTokenUtil.generateToken(userDetails);
+        final String token = jwtTokenUtil.generateToken(userDetails, jwtUserDetailsService.getUserIdByUsername(authenticationRequest.getUsername()), jwtUserDetailsService.getRoleNameByUsername(authenticationRequest.getUsername()));
 
-        JwtResponse jwtResponse = new JwtResponse(token, jwtUserDetailsService.getUserIdByUsername(authenticationRequest.getUsername()));
+        JwtResponse jwtResponse = new JwtResponse(token);
         return ResponseEntity.ok(jwtResponse);
     }
 

@@ -1,7 +1,9 @@
 package com.example.be.service.Impl;
 
+import com.example.be.dto.BlogDTO;
 import com.example.be.dto.CommentDTO;
 import com.example.be.dto.UserDTO;
+import com.example.be.entity.Blog;
 import com.example.be.entity.mapped.Comment;
 import com.example.be.repository.BlogRepository;
 import com.example.be.repository.CommentRepository;
@@ -56,8 +58,19 @@ public class CommentServiceImpl implements CommentService {
         for (int i = 0; i < commentList.size(); i++){
             CommentDTO commentDTO = new CommentDTO();
             UserDTO userDTO = new UserDTO();
+            BlogDTO blogDTO = new BlogDTO();
             mapper.map(commentList.get(i), commentDTO);
             mapper.map(commentList.get(i).getUser(), userDTO);
+            mapper.map(commentList.get(i).getBlog(), blogDTO);
+            // Kiểm tra và khởi tạo blogcategory nếu nó là null
+            if (blogDTO.getBlogcategory() == null) {
+                blogDTO.setBlogcategory(new ArrayList<>());
+            }
+
+            commentList.get(i).getBlog().getBlogcategorie().forEach(blogcategory -> {
+                blogDTO.getBlogcategory().add(blogcategory);
+            });
+            commentDTO.setBlogDTO(blogDTO);
             commentDTO.setUserDTO(userDTO);
             commentDTOList.add(commentDTO);
         }
@@ -70,8 +83,19 @@ public class CommentServiceImpl implements CommentService {
         for (int i = 0; i < commentList.size(); i++){
             CommentDTO commentDTO = new CommentDTO();
             UserDTO userDTO = new UserDTO();
+            BlogDTO blogDTO = new BlogDTO();
             mapper.map(commentList.get(i), commentDTO);
             mapper.map(commentList.get(i).getUser(), userDTO);
+            mapper.map(commentList.get(i).getBlog(), blogDTO);
+            // Kiểm tra và khởi tạo blogcategory nếu nó là null
+            if (blogDTO.getBlogcategory() == null) {
+                blogDTO.setBlogcategory(new ArrayList<>());
+            }
+
+            commentList.get(i).getBlog().getBlogcategorie().forEach(blogcategory -> {
+                blogDTO.getBlogcategory().add(blogcategory);
+            });
+            commentDTO.setBlogDTO(blogDTO);
             commentDTO.setUserDTO(userDTO);
             commentDTOList.add(commentDTO);
         }

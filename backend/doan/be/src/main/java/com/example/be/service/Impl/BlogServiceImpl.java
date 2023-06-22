@@ -63,9 +63,19 @@ public class BlogServiceImpl extends BaseServiceImpl<Blog> implements BlogServic
     public List<BlogDTO> getListBlog() {
         List<Blog> blogs = blogRepository.findAll();
         List<BlogDTO> blogDTOS = new ArrayList<>();
-        for (int i = 0; i < blogs.size(); i++){
+        for (int i = 0; i < blogs.size(); i++) {
             BlogDTO blogDTO = new BlogDTO();
             mapper.map(blogs.get(i), blogDTO);
+
+            // Kiểm tra và khởi tạo blogcategory nếu nó là null
+            if (blogDTO.getBlogcategory() == null) {
+                blogDTO.setBlogcategory(new ArrayList<>());
+            }
+
+            blogs.get(i).getBlogcategorie().forEach(blogcategory -> {
+                blogDTO.getBlogcategory().add(blogcategory);
+            });
+
             blogDTOS.add(blogDTO);
         }
         return blogDTOS;

@@ -1,5 +1,6 @@
 package com.example.be.service.Impl;
 
+import com.example.be.entity.Role;
 import com.example.be.entity.User;
 import com.example.be.repository.JwtUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,17 @@ public class JwtUserDetailsService implements UserDetailsService {
     public long getUserIdByUsername(String username) {
         User user = jwtUserRepository.findUserByUsername(username);
         return user.getId();
+    }
+
+    public String getRoleNameByUsername(String username) {
+        User user = jwtUserRepository.findUserByUsername(username);
+        Set<Role> roles = user.getRoles();
+
+        for (Role role : roles) {
+            return role.getRoleName();
+        }
+
+        return null; // Trả về giá trị mặc định nếu không tìm thấy role
     }
 
     public User save(User user){

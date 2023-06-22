@@ -27,6 +27,6 @@ public class TourDTO {
     private String timeStart;
     private String timeEnd;
     private LocationDTO locationDTO;
-    private Amenitytour amenitytour;
+    private ArrayList<Amenitytour> amenitytour;
     private List<ReviewsDTO> reviewsDTOS;
 }

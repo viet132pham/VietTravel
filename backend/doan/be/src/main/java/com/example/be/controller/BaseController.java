@@ -32,7 +32,7 @@ public abstract class BaseController<T extends BaseEntity>{
     }
 
 
-    @GetMapping("/")
+    @GetMapping("/list")
     public List<T> list() {
         return baseService.findAll();
     }

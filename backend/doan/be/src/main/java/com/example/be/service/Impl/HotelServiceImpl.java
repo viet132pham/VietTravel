@@ -54,7 +54,13 @@ public class HotelServiceImpl extends BaseServiceImpl<Hotel> implements HotelSer
 
             mapper.map(hotel.getLocation(), locationDTO);
             hotelDTO.setLocationDTO(locationDTO);
+            if (hotelDTO.getAmenityhotel() == null) {
+                hotelDTO.setAmenityhotel(new ArrayList<>());
+            }
 
+            hotel.getAmenityhotels().forEach(amenitytour -> {
+                hotelDTO.getAmenityhotel().add(amenitytour);
+            });
             Set<Reviews> reviewsSet = hotel.getReviews();
             List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
 
@@ -95,7 +101,13 @@ public class HotelServiceImpl extends BaseServiceImpl<Hotel> implements HotelSer
 
             mapper.map(hotel.getLocation(), locationDTO);
             hotelDTO.setLocationDTO(locationDTO);
+            if (hotelDTO.getAmenityhotel() == null) {
+                hotelDTO.setAmenityhotel(new ArrayList<>());
+            }
 
+            hotel.getAmenityhotels().forEach(amenitytour -> {
+                hotelDTO.getAmenityhotel().add(amenitytour);
+            });
             Set<Reviews> reviewsSet = hotel.getReviews();
             List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
 
@@ -138,7 +150,13 @@ public class HotelServiceImpl extends BaseServiceImpl<Hotel> implements HotelSer
 
             mapper.map(hotel.getLocation(), locationDTO);
             hotelDTO.setLocationDTO(locationDTO);
+            if (hotelDTO.getAmenityhotel() == null) {
+                hotelDTO.setAmenityhotel(new ArrayList<>());
+            }
 
+            hotel.getAmenityhotels().forEach(amenitytour -> {
+                hotelDTO.getAmenityhotel().add(amenitytour);
+            });
             Set<Reviews> reviewsSet = hotel.getReviews();
             List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
 
@@ -170,7 +188,13 @@ public class HotelServiceImpl extends BaseServiceImpl<Hotel> implements HotelSer
 
         mapper.map(hotel.getLocation(), locationDTO);
         hotelDTO.setLocationDTO(locationDTO);
+        if (hotelDTO.getAmenityhotel() == null) {
+            hotelDTO.setAmenityhotel(new ArrayList<>());
+        }
 
+        hotel.getAmenityhotels().forEach(amenitytour -> {
+            hotelDTO.getAmenityhotel().add(amenitytour);
+        });
         Set<Reviews> reviewsSet = hotel.getReviews();
         List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
 
@@ -195,18 +219,34 @@ public class HotelServiceImpl extends BaseServiceImpl<Hotel> implements HotelSer
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
-        Date checkInConvert = formatter.parse(checkIn);
-        Timestamp checkInTimestamp = new Timestamp(checkInConvert.getTime());
+        Timestamp checkInTimestamp = null;
+        if (checkIn != null) {
+            Date checkInConvert = formatter.parse(checkIn);
+            checkInTimestamp = new Timestamp(checkInConvert.getTime());
+        }
 
-        Date checkOutConvert = formatter.parse(checkOut);
-        Timestamp checkOutTimestamp = new Timestamp(checkOutConvert.getTime());
+        Timestamp checkOutTimestamp = null;
+        if (checkOut != null) {
+            Date checkOutConvert = formatter.parse(checkOut);
+            checkOutTimestamp = new Timestamp(checkOutConvert.getTime());
+        }
 
-        Integer priceStartString = Integer.parseInt(priceStart);
-        Integer priceEndString = Integer.parseInt(priceEnd);
+        Integer priceStartString = null;
+        if (priceStart != null && !priceStart.isEmpty()) {
+            priceStartString = Integer.parseInt(priceStart);
+        }
 
-        Integer saleWrap = Integer.parseInt(sale);
-        if (saleWrap != 1){
-            saleWrap = null;
+        Integer priceEndString = null;
+        if (priceEnd != null && !priceEnd.isEmpty()) {
+            priceEndString = Integer.parseInt(priceEnd);
+        }
+
+        Integer saleWrap = null;
+        if (sale != null && !sale.isEmpty()) {
+            saleWrap = Integer.parseInt(sale);
+            if (saleWrap != 1) {
+                saleWrap = null;
+            }
         }
 
         Page<Hotel> hotels = hotelRepository.filterHotels(Math.toIntExact(location1.getId()), checkInTimestamp, checkOutTimestamp, priceStartString, priceEndString, saleWrap, pageable);
@@ -220,7 +260,13 @@ public class HotelServiceImpl extends BaseServiceImpl<Hotel> implements HotelSer
 
             mapper.map(hotel.getLocation(), locationDTO);
             hotelDTO.setLocationDTO(locationDTO);
+            if (hotelDTO.getAmenityhotel() == null) {
+                hotelDTO.setAmenityhotel(new ArrayList<>());
+            }
 
+            hotel.getAmenityhotels().forEach(amenitytour -> {
+                hotelDTO.getAmenityhotel().add(amenitytour);
+            });
             Set<Reviews> reviewsSet = hotel.getReviews();
             List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
 
@@ -257,7 +303,13 @@ public class HotelServiceImpl extends BaseServiceImpl<Hotel> implements HotelSer
 
             mapper.map(hotel.getLocation(), locationDTO);
             hotelDTO.setLocationDTO(locationDTO);
+            if (hotelDTO.getAmenityhotel() == null) {
+                hotelDTO.setAmenityhotel(new ArrayList<>());
+            }
 
+            hotel.getAmenityhotels().forEach(amenitytour -> {
+                hotelDTO.getAmenityhotel().add(amenitytour);
+            });
             Set<Reviews> reviewsSet = hotel.getReviews();
             List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
 
@@ -293,7 +345,13 @@ public class HotelServiceImpl extends BaseServiceImpl<Hotel> implements HotelSer
 
             mapper.map(hotel.getLocation(), locationDTO);
             hotelDTO.setLocationDTO(locationDTO);
+            if (hotelDTO.getAmenityhotel() == null) {
+                hotelDTO.setAmenityhotel(new ArrayList<>());
+            }
 
+            hotel.getAmenityhotels().forEach(amenitytour -> {
+                hotelDTO.getAmenityhotel().add(amenitytour);
+            });
             Set<Reviews> reviewsSet = hotel.getReviews();
             List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
 
@@ -327,7 +385,27 @@ public class HotelServiceImpl extends BaseServiceImpl<Hotel> implements HotelSer
 
         mapper.map(hotel.getLocation(), locationDTO);
         hotelDTO.setLocationDTO(locationDTO);
+        if (hotelDTO.getAmenityhotel() == null) {
+            hotelDTO.setAmenityhotel(new ArrayList<>());
+        }
 
+        hotel.getAmenityhotels().forEach(amenitytour -> {
+            hotelDTO.getAmenityhotel().add(amenitytour);
+        });
+//        if (hotelDTO.getEssentials() == null) {
+//            hotelDTO.setEssentials(new ArrayList<>());
+//        }
+//
+//        hotel.getEssentials().forEach(essential -> {
+//            hotelDTO.getEssentials().add(essential);
+//        });
+//        if (hotelDTO.getLandmarks() == null) {
+//            hotelDTO.setLandmarks(new ArrayList<>());
+//        }
+//
+//        hotel.getLandmarks().forEach(landmark -> {
+//            hotelDTO.getLandmarks().add(landmark);
+//        });
         Set<Reviews> reviewsSet = hotel.getReviews();
         List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
 

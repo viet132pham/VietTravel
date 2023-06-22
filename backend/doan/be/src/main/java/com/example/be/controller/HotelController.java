@@ -66,24 +66,36 @@ public class HotelController extends BaseController<Hotel> {
             @RequestParam(value = "priceStart", required = false) String priceStart,
             @RequestParam(value = "priceEnd", required = false) String priceEnd,
             @RequestParam(value = "sale", required = false) String sale,
-            @RequestParam(value = "sortBy", required = true) String sortBy,
+            @RequestParam(value = "sortBy", required = false) String sortBy,
             @RequestParam(value = "pageNumber", required = true) int pageNumber,
             @RequestParam(value = "pageSize", required = true) int pageSize,
             @RequestParam(value = "sortDir", required = false, defaultValue = "asc") String sortDir
     ) {
-        Sort sort = Sort.by(sortDir.equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC, sortBy);
+        Sort.Direction sortDirection = sortDir.equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
+
+        if (sortBy == null) {
+            sortBy = "id";
+        }
+
+        Sort sort = Sort.by(sortDirection, sortBy);
         Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, sort);
         return hotelService.filterHotels(pageable, location, checkIn, checkOut, priceStart, priceEnd, sale);
     }
 
     @GetMapping("/sort_dto")
     public Page<HotelDTO> getSortedAndPaginateDTO(
-            @RequestParam(value = "sortBy", required = true) String sortBy,
+            @RequestParam(value = "sortBy", required = false) String sortBy,
             @RequestParam(value = "pageNumber", required = true) int pageNumber,
             @RequestParam(value = "pageSize", required = true) int pageSize,
             @RequestParam(value = "sortDir", required = false, defaultValue = "asc") String sortDir) {
 
-        Sort sort = Sort.by(sortDir.equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC, sortBy);
+        Sort.Direction sortDirection = sortDir.equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
+
+        if (sortBy == null) {
+            sortBy = "id";
+        }
+
+        Sort sort = Sort.by(sortDirection, sortBy);
         Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, sort);
 
         return hotelService.getSortedAndPaginateDTO(pageable);
@@ -94,9 +106,21 @@ public class HotelController extends BaseController<Hotel> {
                                               @RequestParam(value = "pageSize",required = true) int pageSize,
                                               @RequestParam(value = "sortBy",required = false) String sortBy,
                                               @RequestParam(value = "sortDir",required = false) String sortDir){
-        if (sortDir!= null){
-            Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
-            return hotelService.getListPaginationDTO(PageRequest.of(pageNumber-1,pageSize,sort));
+//        if (sortDir!= null){
+//            Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+//            return hotelService.getListPaginationDTO(PageRequest.of(pageNumber-1,pageSize,sort));
+//        }
+        Sort sort;
+        if (sortDir != null) {
+            sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ?
+                    Sort.by(sortBy).ascending() :
+                    Sort.by(sortBy).descending();
+        } else {
+            Sort.Direction sortDirection = Sort.Direction.ASC;
+            if (sortBy == null) {
+                sortBy = "id";
+            }
+            sort = Sort.by(sortDirection, sortBy);
         }
         return hotelService.getListPaginationDTO(PageRequest.of(pageNumber-1,pageSize));
     }

@@ -100,10 +100,24 @@ public class TourController extends BaseController<Tour> {
                                      @RequestParam(value = "pageSize",required = true) int pageSize,
                                      @RequestParam(value = "sortBy",required = false) String sortBy,
                                      @RequestParam(value = "sortDir",required = false) String sortDir){
-        if (sortDir!= null){
-            Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
-            return tourService.getListPaginationDTO(PageRequest.of(pageNumber-1,pageSize,sort));
+//        if (sortDir!= null){
+//            Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+//            return tourService.getListPaginationDTO(PageRequest.of(pageNumber-1,pageSize,sort));
+//        }
+        Sort sort;
+        if (sortDir != null) {
+            sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ?
+                    Sort.by(sortBy).ascending() :
+                    Sort.by(sortBy).descending();
+        } else {
+            Sort.Direction sortDirection = Sort.Direction.ASC;
+            if (sortBy == null) {
+                sortBy = "id";
+            }
+            sort = Sort.by(sortDirection, sortBy);
         }
+
+        Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, sort);
         return tourService.getListPaginationDTO(PageRequest.of(pageNumber-1,pageSize));
     }
 

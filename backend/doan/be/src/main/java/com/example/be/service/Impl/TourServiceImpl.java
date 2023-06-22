@@ -57,7 +57,13 @@ public class TourServiceImpl extends BaseServiceImpl<Tour> implements TourServic
 
             mapper.map(tour.getLocation(), locationDTO);
             tourDTO.setLocationDTO(locationDTO);
+            if (tourDTO.getAmenitytour() == null) {
+                tourDTO.setAmenitytour(new ArrayList<>());
+            }
 
+            tour.getAmenitytours().forEach(amenitytour -> {
+                tourDTO.getAmenitytour().add(amenitytour);
+            });
             Set<Reviews> reviewsSet = tour.getReviews();
             List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
 
@@ -98,7 +104,13 @@ public class TourServiceImpl extends BaseServiceImpl<Tour> implements TourServic
 
             mapper.map(tour.getLocation(), locationDTO);
             tourDTO.setLocationDTO(locationDTO);
+            if (tourDTO.getAmenitytour() == null) {
+                tourDTO.setAmenitytour(new ArrayList<>());
+            }
 
+            tour.getAmenitytours().forEach(amenitytour -> {
+                tourDTO.getAmenitytour().add(amenitytour);
+            });
             Set<Reviews> reviewsSet = tour.getReviews();
             List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
 
@@ -134,7 +146,13 @@ public class TourServiceImpl extends BaseServiceImpl<Tour> implements TourServic
 
             mapper.map(tour.getLocation(), locationDTO);
             tourDTO.setLocationDTO(locationDTO);
+            if (tourDTO.getAmenitytour() == null) {
+                tourDTO.setAmenitytour(new ArrayList<>());
+            }
 
+            tour.getAmenitytours().forEach(amenitytour -> {
+                tourDTO.getAmenitytour().add(amenitytour);
+            });
             Set<Reviews> reviewsSet = tour.getReviews();
             List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
 
@@ -166,7 +184,13 @@ public class TourServiceImpl extends BaseServiceImpl<Tour> implements TourServic
 
         mapper.map(tour.getLocation(), locationDTO);
         tourDTO.setLocationDTO(locationDTO);
+        if (tourDTO.getAmenitytour() == null) {
+            tourDTO.setAmenitytour(new ArrayList<>());
+        }
 
+        tour.getAmenitytours().forEach(amenitytour -> {
+            tourDTO.getAmenitytour().add(amenitytour);
+        });
         Set<Reviews> reviewsSet = tour.getReviews();
         List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
 
@@ -238,7 +262,13 @@ public class TourServiceImpl extends BaseServiceImpl<Tour> implements TourServic
             TourDTO tourDTO = mapper.map(tour, TourDTO.class);
             LocationDTO locationDTO = mapper.map(tour.getLocation(), LocationDTO.class);
             tourDTO.setLocationDTO(locationDTO);
+            if (tourDTO.getAmenitytour() == null) {
+                tourDTO.setAmenitytour(new ArrayList<>());
+            }
 
+            tour.getAmenitytours().forEach(amenitytour -> {
+                tourDTO.getAmenitytour().add(amenitytour);
+            });
             List<ReviewsDTO> reviewsDTOList = new ArrayList<>();
 
             for (Reviews reviews : tour.getReviews()) {
@@ -268,7 +298,13 @@ public class TourServiceImpl extends BaseServiceImpl<Tour> implements TourServic
 
             mapper.map(tour.getLocation(), locationDTO);
             tourDTO.setLocationDTO(locationDTO);
+            if (tourDTO.getAmenitytour() == null) {
+                tourDTO.setAmenitytour(new ArrayList<>());
+            }
 
+            tour.getAmenitytours().forEach(amenitytour -> {
+                tourDTO.getAmenitytour().add(amenitytour);
+            });
             Set<Reviews> reviewsSet = tour.getReviews();
             List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
 
@@ -304,7 +340,13 @@ public class TourServiceImpl extends BaseServiceImpl<Tour> implements TourServic
 
             mapper.map(tour.getLocation(), locationDTO);
             tourDTO.setLocationDTO(locationDTO);
+            if (tourDTO.getAmenitytour() == null) {
+                tourDTO.setAmenitytour(new ArrayList<>());
+            }
 
+            tour.getAmenitytours().forEach(amenitytour -> {
+                tourDTO.getAmenitytour().add(amenitytour);
+            });
             Set<Reviews> reviewsSet = tour.getReviews();
             List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
 
@@ -339,6 +381,13 @@ public class TourServiceImpl extends BaseServiceImpl<Tour> implements TourServic
         mapper.map(tour.getLocation(), locationDTO);
         tourDTO.setLocationDTO(locationDTO);
 
+        if (tourDTO.getAmenitytour() == null) {
+            tourDTO.setAmenitytour(new ArrayList<>());
+        }
+
+        tour.getAmenitytours().forEach(amenitytour -> {
+            tourDTO.getAmenitytour().add(amenitytour);
+        });
         Set<Reviews> reviewsSet = tour.getReviews();
         List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
 
