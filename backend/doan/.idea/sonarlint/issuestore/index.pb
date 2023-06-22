@@ -18,8 +18,6 @@ n
 >be/src/main/java/com/example/be/repository/UserRepository.java,5\f\5fa61f0b88e18ac200616597e3755319994b2d07
 i
 9be/src/main/java/com/example/be/request/HotelRequest.java,1\4\14d7833ff7719e3971791bba442259d9254f4445
-l
-<be/src/main/java/com/example/be/response/TopDestination.java,2\d\2dd1e78f18814826d3d970204940e610877d1c04
 e
 5be/src/main/java/com/example/be/model/JwtRequest.java,0\8\0822a9362397d04ea2a521a49c23dc1baf0d61b6
 w
