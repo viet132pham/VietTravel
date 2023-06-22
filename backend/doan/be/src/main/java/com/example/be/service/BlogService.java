@@ -15,7 +15,7 @@ public interface BlogService extends BaseService<Blog> {
 
     Blog updateBlog(long id, BlogRequest blogRequest, BindingResult bindingResult);
 
-    BlogDTO getBlogByBlogId(long id, BindingResult bindingResult);
+    BlogDTO getBlogByBlogId(long id);
 
     List<BlogDTO> getListBlog();
 

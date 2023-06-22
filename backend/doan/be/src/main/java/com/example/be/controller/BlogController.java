@@ -40,8 +40,8 @@ public class BlogController extends BaseController<Blog> {
 
     // get blog theo id blog, gen blog ra front end
     @GetMapping("/get/{id}")
-    public BlogDTO getBlogByBlogId(@PathVariable(value = "id") long id, BindingResult bindingResult){
-        return blogService.getBlogByBlogId(id, bindingResult);
+    public BlogDTO getBlogByBlogId(@PathVariable(value = "id") long id){
+        return blogService.getBlogByBlogId(id);
     }
 
     @GetMapping("/get")

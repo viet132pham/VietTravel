@@ -52,7 +52,7 @@ public class BlogServiceImpl extends BaseServiceImpl<Blog> implements BlogServic
         return blogRepository.save(blog);
     }
 
-    public BlogDTO getBlogByBlogId(long id, BindingResult bindingResult) {
+    public BlogDTO getBlogByBlogId(long id) {
         Blog blog = blogRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(("id not found: " + id)));
         BlogDTO blogDTO = new BlogDTO();
         mapper.map(blog, blogDTO);
