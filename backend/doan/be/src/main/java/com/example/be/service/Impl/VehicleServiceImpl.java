@@ -179,7 +179,11 @@ public class VehicleServiceImpl extends BaseServiceImpl<Vehicle> implements Vehi
     @SneakyThrows
     public Page<VehicleDTO> filterVehicles(Pageable pageable, String location, String checkIn, String checkOut, String priceStart, String priceEnd, String sale) {
         Location location1 = locationRepository.findLocationByName(location);
-
+        Integer location2 = null;
+        if (location1 != null) {
+            // Thay thế giá trị null bằng một giá trị mặc định
+            location2 = Math.toIntExact(location1.getId());
+        }
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
         Timestamp checkInTimestamp = null;
@@ -212,7 +216,7 @@ public class VehicleServiceImpl extends BaseServiceImpl<Vehicle> implements Vehi
             }
         }
 
-        Page<Vehicle> vehicles = vehicleRepository.filterVehicles(Math.toIntExact(location1.getId()), checkInTimestamp, checkOutTimestamp, priceStartString, priceEndString, saleWrap, pageable);
+        Page<Vehicle> vehicles = vehicleRepository.filterVehicles(location2, checkInTimestamp, checkOutTimestamp, priceStartString, priceEndString, saleWrap, pageable);
         List<VehicleDTO> vehicleDTOList = new ArrayList<>();
         for (int i = 0; i < vehicles.getContent().size(); i++){
             VehicleDTO vehicleDTO = new VehicleDTO();

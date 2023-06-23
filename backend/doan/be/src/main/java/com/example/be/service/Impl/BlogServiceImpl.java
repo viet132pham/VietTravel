@@ -5,6 +5,7 @@ import com.example.be.entity.Blog;
 import com.example.be.entity.Reviews;
 import com.example.be.repository.BaseRepository;
 import com.example.be.repository.BlogRepository;
+import com.example.be.repository.BlogcategoryRepository;
 import com.example.be.repository.UserRepository;
 import com.example.be.request.BlogRequest;
 import com.example.be.service.BlogService;
@@ -12,6 +13,9 @@ import com.example.be.util.Utils;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
@@ -34,6 +38,9 @@ public class BlogServiceImpl extends BaseServiceImpl<Blog> implements BlogServic
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private BlogcategoryRepository blogcategoryRepository;
     public Blog createRequest(BlogRequest blogRequest, BindingResult bindingResult) {
         Blog blog = new Blog();
         mapper.map(blogRequest, blog);
@@ -81,8 +88,27 @@ public class BlogServiceImpl extends BaseServiceImpl<Blog> implements BlogServic
         return blogDTOS;
     }
 
-//    public Blog getBlogByCategory(long id, String type, BindingResult bindingResult) {
-//
-//    }
+     public Page<BlogDTO> filterBlogs(Pageable pageable, String category) {
+        Long id = blogcategoryRepository.findBlogcategoryByName(category).getId();
+
+         Page<Blog> blogs = blogRepository.findBlogsByCategoryId(pageable, id);
+         List<BlogDTO> blogDTOS = new ArrayList<>();
+         for (int i = 0; i < blogs.getContent().size(); i++) {
+             BlogDTO blogDTO = new BlogDTO();
+             mapper.map(blogs.getContent().get(i), blogDTO);
+
+             // Kiểm tra và khởi tạo blogcategory nếu nó là null
+             if (blogDTO.getBlogcategory() == null) {
+                 blogDTO.setBlogcategory(new ArrayList<>());
+             }
+
+             blogs.getContent().get(i).getBlogcategorie().forEach(blogcategory -> {
+                 blogDTO.getBlogcategory().add(blogcategory);
+             });
+
+             blogDTOS.add(blogDTO);
+         }
+         return new PageImpl<>(blogDTOS, pageable, blogs.getTotalElements());
+     }
 
 }

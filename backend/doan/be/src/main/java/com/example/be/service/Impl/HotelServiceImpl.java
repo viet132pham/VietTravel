@@ -216,7 +216,11 @@ public class HotelServiceImpl extends BaseServiceImpl<Hotel> implements HotelSer
     @SneakyThrows
     public Page<HotelDTO> filterHotels(Pageable pageable, String location, String checkIn, String checkOut, String priceStart, String priceEnd, String sale) {
         Location location1 = locationRepository.findLocationByName(location);
-
+        Integer location2 = null;
+        if (location1 != null) {
+            // Thay thế giá trị null bằng một giá trị mặc định
+            location2 = Math.toIntExact(location1.getId());
+        }
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
         Timestamp checkInTimestamp = null;
@@ -249,7 +253,7 @@ public class HotelServiceImpl extends BaseServiceImpl<Hotel> implements HotelSer
             }
         }
 
-        Page<Hotel> hotels = hotelRepository.filterHotels(Math.toIntExact(location1.getId()), checkInTimestamp, checkOutTimestamp, priceStartString, priceEndString, saleWrap, pageable);
+        Page<Hotel> hotels = hotelRepository.filterHotels(location2, checkInTimestamp, checkOutTimestamp, priceStartString, priceEndString, saleWrap, pageable);
         List<HotelDTO> hotelDTOList = new ArrayList<>();
         for (int i = 0; i < hotels.getContent().size(); i++){
             HotelDTO hotelDTO = new HotelDTO();

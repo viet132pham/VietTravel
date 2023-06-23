@@ -6,6 +6,10 @@ import com.example.be.request.BlogRequest;
 import com.example.be.service.BaseService;
 import com.example.be.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,10 +53,23 @@ public class BlogController extends BaseController<Blog> {
         return blogService.getListBlog();
     }
 
-    // get blog theo category blog, có thể là list blog theo category, filter chẳng hạn nhưng nếu không có time thì thôi
-//    @GetMapping("/get/{id}/{type}")
-//    public Blog getBlogByCategory(@PathVariable(value = "id") long id, @PathVariable(value = "type") String type, BindingResult bindingResult){
-//        return blogService.getBlogByCategory(id, type, bindingResult);
-//    }
+    @GetMapping("/filter")
+    public Page<BlogDTO> filterBlogs (
+            @RequestParam(value = "category", required = false) String category,
+            @RequestParam(value = "sortBy", required = false) String sortBy,
+            @RequestParam(value = "pageNumber", required = true) int pageNumber,
+            @RequestParam(value = "pageSize", required = true) int pageSize,
+            @RequestParam(value = "sortDir", required = false, defaultValue = "asc") String sortDir
+    ) {
+        Sort.Direction sortDirection = sortDir.equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
+
+        if (sortBy == null) {
+            sortBy = "id";
+        }
+
+        Sort sort = Sort.by(sortDirection, sortBy);
+        Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, sort);
+        return blogService.filterBlogs(pageable, category);
+    }
 
 }

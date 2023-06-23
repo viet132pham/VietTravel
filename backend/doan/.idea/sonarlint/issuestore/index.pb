@@ -22,8 +22,6 @@ e
 5be/src/main/java/com/example/be/model/JwtRequest.java,0\8\0822a9362397d04ea2a521a49c23dc1baf0d61b6
 h
 8be/src/main/java/com/example/be/request/BlogRequest.java,d\b\db76386f3aabd7003af56b6840728cf873017a95
-n
->be/src/main/java/com/example/be/repository/BlogRepository.java,c\f\cfd84619783339defb17b451fee6b74d2a24056c
 k
 ;be/src/main/java/com/example/be/request/CommentRequest.java,c\2\c2a5ab2d0de55fc29cc08bb8a98c976678814056
 q

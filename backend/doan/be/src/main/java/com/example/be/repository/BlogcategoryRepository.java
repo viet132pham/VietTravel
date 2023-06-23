@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BlogcategoryRepository extends BaseRepository<Blogcategory, Long> {
-
+    public Blogcategory findBlogcategoryByName(String name);
 }
