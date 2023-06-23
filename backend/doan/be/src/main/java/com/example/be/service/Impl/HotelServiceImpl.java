@@ -217,36 +217,36 @@ public class HotelServiceImpl extends BaseServiceImpl<Hotel> implements HotelSer
     public Page<HotelDTO> filterHotels(Pageable pageable, String location, String checkIn, String checkOut, String priceStart, String priceEnd, String sale) {
         Location location1 = locationRepository.findLocationByName(location);
         Integer location2 = null;
-        if (location1 != null) {
+        if (location1 != null && !location.equals("undefined") && !location.equals("null")) {
             // Thay thế giá trị null bằng một giá trị mặc định
             location2 = Math.toIntExact(location1.getId());
         }
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
         Timestamp checkInTimestamp = null;
-        if (checkIn != null) {
+        if (checkIn != null && !checkIn.equals("undefined") && !checkIn.equals("null")) {
             Date checkInConvert = formatter.parse(checkIn);
             checkInTimestamp = new Timestamp(checkInConvert.getTime());
         }
 
         Timestamp checkOutTimestamp = null;
-        if (checkOut != null) {
+        if (checkOut != null && !checkOut.equals("undefined") && !checkOut.equals("null")) {
             Date checkOutConvert = formatter.parse(checkOut);
             checkOutTimestamp = new Timestamp(checkOutConvert.getTime());
         }
 
         Integer priceStartString = null;
-        if (priceStart != null && !priceStart.isEmpty()) {
+        if (priceStart != null && !priceStart.equals("undefined") && !priceStart.equals("null")) {
             priceStartString = Integer.parseInt(priceStart);
         }
 
         Integer priceEndString = null;
-        if (priceEnd != null && !priceEnd.isEmpty()) {
+        if (priceEnd != null && !priceEnd.equals("undefined") && !priceEnd.equals("null")) {
             priceEndString = Integer.parseInt(priceEnd);
         }
 
         Integer saleWrap = null;
-        if (sale != null && !sale.isEmpty()) {
+        if (sale != null && !sale.equals("undefined") && !sale.equals("null")) {
             saleWrap = Integer.parseInt(sale);
             if (saleWrap != 1) {
                 saleWrap = null;
