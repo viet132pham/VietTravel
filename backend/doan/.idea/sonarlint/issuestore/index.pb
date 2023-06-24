@@ -82,8 +82,6 @@ w
 Gbe/src/main/java/com/example/be/service/Impl/JwtUserDetailsService.java,f\2\f26c9e6b40d343c5c3a7acc9dc01030051cf7610
 h
 8be/src/main/java/com/example/be/config/JwtTokenUtil.java,2\b\2b145858277fcb3c3bf642c6a99c2e9f660218f4
-{
-Kbe/src/main/java/com/example/be/controller/JwtAuthenticationController.java,7\e\7ea77948ff25f45fd3418b5333efd50228c92c51
 n
 >be/src/main/java/com/example/be/controller/BaseController.java,5\2\521bcd945968bb008eec9ec2fc01cb7a958e3009
 h

@@ -75,7 +75,7 @@ public class JwtAuthenticationController {
         try {
             authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Sai tên đăng nhập hoặc mật khẩu.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sai tên đăng nhập hoặc mật khẩu.");
         }
 
         final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
