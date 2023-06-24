@@ -25,12 +25,22 @@ public class CartitemController {
 
     @PostMapping("/post")
     public ResponseEntity<?> postRequest(@RequestBody @Valid CartitemRequest cartitemRequest, BindingResult bindingResult) {
-        try {
-            cartitemService.createRequest(cartitemRequest, bindingResult);
-        } catch (Exception exception) {
-            return new ResponseEntity<>("fail", HttpStatus.BAD_REQUEST);
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>("Validation failed", HttpStatus.BAD_REQUEST);
         }
-        return  new ResponseEntity<>("oke", HttpStatus.OK);
+
+        try {
+            String result = cartitemService.createRequest(cartitemRequest, bindingResult);
+            if (result.equals("oke")) {
+                return new ResponseEntity<>("Success", HttpStatus.OK);
+            } else if (result.startsWith("id not found")) {
+                return new ResponseEntity<>(result, HttpStatus.NOT_FOUND);
+            } else {
+                return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception exception) {
+            return new ResponseEntity<>("Fail", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     // remove all san pham khoi cart

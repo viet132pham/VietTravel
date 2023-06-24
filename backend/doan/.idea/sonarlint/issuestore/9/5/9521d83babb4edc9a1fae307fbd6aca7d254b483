@@ -1,0 +1,45 @@
+
+h
+java:S1192·"JDefine a constant instead of duplicating this literal "undefined" 6 times.(­Ë¦•8„·ŸÂ1
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(®øİùşÿÿÿÿ
+ˆ
+java:S4144¢"eUpdate this method so that its implementation is not identical to "getListPaginationDTO" on line 254.(äƒãÒúÿÿÿÿ8‘Ö¤1
+T
+java:S18540">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+E
+java:S14810"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+[
+java:S1854W">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ8ŸŠß‰1
+U	java:S106M"9Replace this use of System.out or System.err by a logger.(ú¼8¡Šß‰1
+N
+java:S1602P",Remove useless curly braces around statement(íĞéóüÿÿÿÿ8¢Šß‰1
+L
+java:S1481W"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ8¦Šß‰1
+[
+java:S1854z">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ8®Šß‰1
+L
+java:S1481z"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ8³Šß‰1
+\
+java:S1854š">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ8»Šß‰1
+M
+java:S1481š"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ8¾Šß‰1
+u
+java:S3776´"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(¢Óˆøÿÿÿÿ8ƒ‚Â1
+\
+java:S1854à">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ8´Ö¤1
+M
+java:S1481à"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ8¾Ö¤1
+\
+java:S1854„">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ8ÅÖ¤1
+M
+java:S1481„"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ8ÈÖ¤1
+\
+java:S1854¨">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ8ÏÖ¤1
+M
+java:S1481¨"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ8ÓÖ¤1
+\
+java:S1854Ë">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ8ÚÖ¤1
+M
+java:S1481Ë"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ8ÜÖ¤1
+N
+java:S1128"8Remove this unused import 'com.example.be.entity.Hotel'.(åõİü

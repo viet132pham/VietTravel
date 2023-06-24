@@ -1,0 +1,66 @@
+
+h
+java:S1192Ü"JDefine a constant instead of duplicating this literal "undefined" 6 times.(­Ë¦•8Í¹¤Â1
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(®øİùşÿÿÿÿ
+ƒ
+java:S4144Ô"eUpdate this method so that its implementation is not identical to "getListPaginationDTO" on line 298.(Ü¸‘8ËÍä¥1
+T
+java:S18543">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+E
+java:S14813"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+A
+java:S1602=",Remove useless curly braces around statement(¤Øı<
+T
+java:S1854b">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+N	java:S106X"9Replace this use of System.out or System.err by a logger.(ú¼
+N
+java:S1602[",Remove useless curly braces around statement(íĞéóüÿÿÿÿ8¥ŒË¥1
+E
+java:S1481b"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+H
+java:S1602l",Remove useless curly braces around statement(¤Øı<8İÇá¥1
+U
+java:S1854“">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+F
+java:S1481“"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+I
+java:S1602",Remove useless curly braces around statement(¤Øı<8’Îä¥1
+U
+java:S1854º">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+F
+java:S1481º"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+I
+java:S1602Ã",Remove useless curly braces around statement(¤Øı<8±å¥1
+u
+java:S3776Ù"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(©ªŞåøÿÿÿÿ8—‡´1
+U
+java:S1854…">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+F
+java:S1481…"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+I
+java:S1602",Remove useless curly braces around statement(¤Øı<8ä©å¥1
+U
+java:S1854°">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+F
+java:S1481°"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+I
+java:S1602º",Remove useless curly braces around statement(¤Øı<8üÅå¥1
+U
+java:S1854Ú">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+M
+java:S1481Ú"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ8¤ÌäÊ1
+I
+java:S1602ä",Remove useless curly braces around statement(¤Øı<8âå¥1
+\
+java:S1854ƒ">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ8ÍèìÊ1
+M
+java:S1481ƒ"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ8ÒèìÊ1
+I
+java:S1602Œ",Remove useless curly braces around statement(¤Øı<8Çæ¥1
+Y	java:S125"<This block of commented-out lines of code should be removed.(“Ğ–À8ıÅå¥1
+Y
+java:S1128"7Remove this unused import 'com.example.be.entity.Tour'.(‡áéƒşÿÿÿÿ8ì¯Ñ¥1
+s
+java:S1128"QRemove this unused import 'org.springframework.format.annotation.DateTimeFormat'.(‡ˆôƒøÿÿÿÿ8ì¯Ñ¥1
+V
+java:S1128"4Remove this unused import 'java.time.LocalDateTime'.(æÃ§ƒüÿÿÿÿ8ì¯Ñ¥1
