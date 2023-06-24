@@ -3,10 +3,8 @@ package com.example.be.service.Impl;
 import com.example.be.dto.CartDTO;
 import com.example.be.dto.CartitemDTO;
 import com.example.be.dto.UserDTO;
-import com.example.be.entity.Cart;
-import com.example.be.entity.Cartitem;
-import com.example.be.repository.CartRepository;
-import com.example.be.repository.CartitemRepository;
+import com.example.be.entity.*;
+import com.example.be.repository.*;
 import com.example.be.request.CartitemRequest;
 import com.example.be.service.CartitemService;
 import lombok.extern.log4j.Log4j2;
@@ -29,13 +27,55 @@ public class CartitemServiceImpl implements CartitemService {
 
     @Autowired
     private CartRepository cartRepository;
+    @Autowired
+    private TourRepository tourRepository;
+    @Autowired
+    private HotelRepository hotelRepository;
+    @Autowired
+    private VehicleRepository vehicleRepository;
     @Override
-    public Cartitem createRequest(CartitemRequest cartitemRequest, BindingResult bindingResult) {
+    public String createRequest(CartitemRequest cartitemRequest, BindingResult bindingResult) {
         Cartitem cartitem = new Cartitem();
-        mapper.map(cartitemRequest, cartitem);
-        Cart cart = cartRepository.findById(cartitemRequest.getCartId()).orElseThrow(() -> new IllegalArgumentException(("id not found: " + cartitemRequest.getCartId())));
-        cartitem.setCart(cart);
-        return cartitemRepository.save(cartitem);
+
+        if (cartitemRequest.getCategoryName().equals("tour")) {
+            Tour tour = tourRepository.findTourById(cartitemRequest.getCategoryId());
+            if (tour != null) {
+                mapper.map(cartitemRequest, cartitem);
+                Cart cart = cartRepository.findById(cartitemRequest.getCartId())
+                        .orElseThrow(() -> new IllegalArgumentException("id not found: " + cartitemRequest.getCartId()));
+                cartitem.setCart(cart);
+                cartitemRepository.save(cartitem);
+                return "oke";
+            } else {
+                return "id not founda";
+            }
+        } else if (cartitemRequest.getCategoryName().equals("hotel")) {
+            Hotel hotel = hotelRepository.findHotelById(cartitemRequest.getCategoryId());
+            if (hotel != null) {
+                mapper.map(cartitemRequest, cartitem);
+                Cart cart = cartRepository.findById(cartitemRequest.getCategoryId())
+                        .orElseThrow(() -> new IllegalArgumentException("id not found: " + cartitemRequest.getCartId()));
+                cartitem.setCart(cart);
+                cartitemRepository.save(cartitem);
+                return "oke";
+            } else {
+                return "id not foundb";
+            }
+        } else if (cartitemRequest.getCategoryName().equals("vehicle")) {
+            Vehicle vehicle = vehicleRepository.findVehicleById(cartitemRequest.getCategoryId());
+            if (vehicle != null) {
+                mapper.map(cartitemRequest, cartitem);
+                Cart cart = cartRepository.findById(cartitemRequest.getCategoryId())
+                        .orElseThrow(() -> new IllegalArgumentException("id not found: " + cartitemRequest.getCartId()));
+                cartitem.setCart(cart);
+                cartitemRepository.save(cartitem);
+                return "oke";
+            } else {
+                return "id not foundc";
+            }
+        } else {
+            return "not found ten item";
+        }
     }
 
     @Override

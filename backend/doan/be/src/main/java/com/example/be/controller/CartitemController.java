@@ -6,6 +6,8 @@ import com.example.be.repository.CartitemRepository;
 import com.example.be.request.CartitemRequest;
 import com.example.be.service.CartitemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,8 +24,13 @@ public class CartitemController {
     private CartitemService cartitemService;
 
     @PostMapping("/post")
-    public Cartitem postRequest(@RequestBody @Valid CartitemRequest cartitemRequest, BindingResult bindingResult) {
-        return cartitemService.createRequest(cartitemRequest, bindingResult);
+    public ResponseEntity<?> postRequest(@RequestBody @Valid CartitemRequest cartitemRequest, BindingResult bindingResult) {
+        try {
+            cartitemService.createRequest(cartitemRequest, bindingResult);
+        } catch (Exception exception) {
+            return new ResponseEntity<>("fail", HttpStatus.BAD_REQUEST);
+        }
+        return  new ResponseEntity<>("oke", HttpStatus.OK);
     }
 
     // remove all san pham khoi cart

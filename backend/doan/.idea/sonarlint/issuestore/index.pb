@@ -54,8 +54,6 @@ h
 8be/src/main/java/com/example/be/service/BaseService.java,c\9\c93bfdbebfbd8ad9dddfd97b45e46d965d628080
 q
 Abe/src/main/java/com/example/be/service/Impl/BaseServiceImpl.java,b\3\b394b71d23db1a48867ca53f9cde0684d2380220
-o
-?be/src/main/java/com/example/be/repository/HotelRepository.java,b\e\be06a91c8be5618cf78b1001841adcfb95c94939
 s
 Cbe/src/main/java/com/example/be/controller/LandmarksController.java,8\e\8ec10605aa0b06c138c81faca72d76cf8d646444
 v
@@ -66,8 +64,6 @@ v
 Fbe/src/main/java/com/example/be/controller/AmenityhotelController.java,d\f\dfb50ffe7755c2fc61ab81bf30ea0b45dd50ffcf
 y
 Ibe/src/main/java/com/example/be/entity/compositekey/CommentComposite.java,f\3\f38a859c7cca82e1899fdca114c3f42818c30669
-l
-<be/src/main/java/com/example/be/request/CartitemRequest.java,7\9\791ef834c3f330af0dffdaa82f9cf9b3074d3cf0
 `
 0be/src/main/java/com/example/be/entity/Tour.java,4\f\4f74292d12070a06a488f2bbd73943170cbb7484
 q
@@ -76,8 +72,6 @@ c
 3be/src/main/java/com/example/be/entity/Vehicle.java,4\9\497e1998070354cc3767dfb4a9d559d69e2691a7
 d
 4be/src/main/java/com/example/be/entity/Cartitem.java,e\f\efadd6a163964d65c7246ad99101a5417fbcf417
-n
->be/src/main/java/com/example/be/repository/CartRepository.java,4\8\4864b134cdf931069cd071d310656683830a08de
 w
 Gbe/src/main/java/com/example/be/config/JwtAuthenticationEntryPoint.java,0\1\0109950040317c5855f8c0456680a0ecc4a74f11
 m
