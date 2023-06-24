@@ -22,4 +22,6 @@ public class CartitemRequest {
     private int price;
 
     private int quantity;
+
+    private String image;
 }

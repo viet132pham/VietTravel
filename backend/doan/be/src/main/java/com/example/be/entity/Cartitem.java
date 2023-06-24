@@ -32,4 +32,7 @@ public class Cartitem extends BaseEntity{
 
     @NotNull
     private int quantity;
+
+    @NotNull
+    private String image;
 }

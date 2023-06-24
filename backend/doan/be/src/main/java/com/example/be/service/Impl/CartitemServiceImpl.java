@@ -44,6 +44,7 @@ public class CartitemServiceImpl implements CartitemService {
                 Cart cart = cartRepository.findById(cartitemRequest.getCartId())
                         .orElseThrow(() -> new IllegalArgumentException("id not found: " + cartitemRequest.getCartId()));
                 cartitem.setCart(cart);
+                cartitem.setImage(tour.getImage());
                 cartitemRepository.save(cartitem);
                 return "oke";
             } else {
@@ -56,6 +57,7 @@ public class CartitemServiceImpl implements CartitemService {
                 Cart cart = cartRepository.findById(cartitemRequest.getCartId())
                         .orElseThrow(() -> new IllegalArgumentException("id not found: " + cartitemRequest.getCartId()));
                 cartitem.setCart(cart);
+                cartitem.setImage(hotel.getImage());
                 cartitemRepository.save(cartitem);
                 return "oke";
             } else {
@@ -68,6 +70,7 @@ public class CartitemServiceImpl implements CartitemService {
                 Cart cart = cartRepository.findById(cartitemRequest.getCartId())
                         .orElseThrow(() -> new IllegalArgumentException("id not found: " + cartitemRequest.getCartId()));
                 cartitem.setCart(cart);
+                cartitem.setImage(vehicle.getImage());
                 cartitemRepository.save(cartitem);
                 return "oke";
             } else {
