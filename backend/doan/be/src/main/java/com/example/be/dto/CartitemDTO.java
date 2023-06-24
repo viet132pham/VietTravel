@@ -20,4 +20,5 @@ public class CartitemDTO {
     private int price;
     private int quantity;
     private String image;
+    private int sale;
 }

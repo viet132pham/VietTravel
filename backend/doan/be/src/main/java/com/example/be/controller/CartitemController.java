@@ -51,8 +51,8 @@ public class CartitemController {
 
     // add san pham, tang quantity
     @PutMapping("/put/{quantity}/{itemId}")
-    public Cartitem updateQuantityCart(@PathVariable(value = "quantity") int quantity, @PathVariable(value = "itemId") long itemId, BindingResult bindingResult) {
-        return cartitemService.updateQuantityCart(quantity, itemId, bindingResult);
+    public Cartitem updateQuantityCart(@PathVariable(value = "quantity") int quantity, @PathVariable(value = "itemId") long itemId) {
+        return cartitemService.updateQuantityCart(quantity, itemId);
     }
 
     @GetMapping("/get/{id}")

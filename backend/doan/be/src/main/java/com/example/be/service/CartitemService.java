@@ -11,7 +11,7 @@ public interface CartitemService {
 
     void deleteCartitem(long id);
 
-    Cartitem updateQuantityCart(int quantity, long itemId, BindingResult bindingResult);
+    Cartitem updateQuantityCart(int quantity, long itemId);
 
     CartitemDTO getCartitemById(long id);
 }
