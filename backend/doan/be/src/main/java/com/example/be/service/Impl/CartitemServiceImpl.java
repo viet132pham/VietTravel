@@ -53,7 +53,7 @@ public class CartitemServiceImpl implements CartitemService {
             Hotel hotel = hotelRepository.findHotelById(cartitemRequest.getCategoryId());
             if (hotel != null) {
                 mapper.map(cartitemRequest, cartitem);
-                Cart cart = cartRepository.findById(cartitemRequest.getCategoryId())
+                Cart cart = cartRepository.findById(cartitemRequest.getCartId())
                         .orElseThrow(() -> new IllegalArgumentException("id not found: " + cartitemRequest.getCartId()));
                 cartitem.setCart(cart);
                 cartitemRepository.save(cartitem);
@@ -65,7 +65,7 @@ public class CartitemServiceImpl implements CartitemService {
             Vehicle vehicle = vehicleRepository.findVehicleById(cartitemRequest.getCategoryId());
             if (vehicle != null) {
                 mapper.map(cartitemRequest, cartitem);
-                Cart cart = cartRepository.findById(cartitemRequest.getCategoryId())
+                Cart cart = cartRepository.findById(cartitemRequest.getCartId())
                         .orElseThrow(() -> new IllegalArgumentException("id not found: " + cartitemRequest.getCartId()));
                 cartitem.setCart(cart);
                 cartitemRepository.save(cartitem);
