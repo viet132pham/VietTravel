@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 @NoArgsConstructor
 @Service
 public class CartDTO {
+    private String id;
     private String status;
     private UserDTO userDTO;
 }

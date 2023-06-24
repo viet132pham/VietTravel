@@ -11,6 +11,7 @@ import com.example.be.repository.CartRepository;
 import com.example.be.repository.CartitemRepository;
 import com.example.be.repository.UserRepository;
 import com.example.be.request.CartRequest;
+import com.example.be.response.CartitemStatus;
 import com.example.be.service.CartService;
 import com.example.be.util.Utils;
 import lombok.extern.log4j.Log4j2;
@@ -96,6 +97,16 @@ public class CartServiceImpl extends BaseServiceImpl<Cart> implements CartServic
             cartitemDTOList.add(cartitemDTO);
         }
         return cartitemDTOList;
+    }
+
+    public List<CartitemStatus> getListOrdered(long userId) {
+        List<Long> cartitems = cartitemRepository.findListItemsOrdered(userId);
+
+        List<CartitemStatus> result = new ArrayList<>();
+        cartitems.forEach(cartitem -> {
+            result.add(cartitemRepository.findByIdCartitem(cartitem));
+        });
+        return result;
     }
 
 }

@@ -4,6 +4,7 @@ import com.example.be.dto.CartDTO;
 import com.example.be.dto.CartitemDTO;
 import com.example.be.entity.Cart;
 import com.example.be.request.CartRequest;
+import com.example.be.response.CartitemStatus;
 import com.example.be.service.BaseService;
 import com.example.be.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +48,11 @@ public class CartController extends BaseController<Cart> {
     @GetMapping("/getItems/{cartId}")
     public List<CartitemDTO> getItems(@PathVariable(value = "cartId") long cartId) {
         return cartService.getItems(cartId);
+    }
+
+    // get ra list những dịch vụ mà khách đã order, get theo user id, cái này nằm trong phần order ở account page
+    @GetMapping("/get_list_ordered/{userId}")
+    public List<CartitemStatus> getListOrdered(@PathVariable(value = "userId") long userId) {
+        return cartService.getListOrdered(userId);
     }
 }
