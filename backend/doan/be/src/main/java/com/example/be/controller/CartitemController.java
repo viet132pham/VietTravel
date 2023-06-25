@@ -43,10 +43,22 @@ public class CartitemController {
         }
     }
 
-    // remove all san pham khoi cart
+    // remove san pham theo id khoi cart
     @DeleteMapping("/delete/{id}")
     public void deleteCartitem(@PathVariable(value = "id") long id){
         cartitemService.deleteCartitem(id);
+    }
+
+    // Truyền vào cartId, từ đó get ra list id của item rồi xóa.
+    @DeleteMapping("/delete_all/{cartId}")
+    public ResponseEntity<String> deleteAllCartitem(@PathVariable(value = "cartId") long cartId) {
+        try {
+            cartitemService.deleteAllCartitem(cartId);
+            return ResponseEntity.ok("Xóa thành công");
+        } catch (Exception e) {
+            // Xử lý ngoại lệ và trả về thông báo lỗi
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Đã xảy ra lỗi: " + e.getMessage());
+        }
     }
 
     // add san pham, tang quantity

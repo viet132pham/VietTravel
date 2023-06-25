@@ -88,6 +88,14 @@ public class CartitemServiceImpl implements CartitemService {
     public void deleteCartitem(long id) {
         cartitemRepository.deleteById(id);
     }
+
+    @Override
+    public void deleteAllCartitem(long cartId) {
+        List<Long> cartItemIdList = cartitemRepository.findAllItems(cartId);
+        cartItemIdList.forEach(cartitem -> {
+            cartitemRepository.deleteById(cartitem);
+        });
+    }
     @Override
     public Cartitem updateQuantityCart(int quantity, long itemId) {
         Cartitem cartitem = cartitemRepository.findById(itemId).orElseThrow(() -> new IllegalArgumentException(("id not found: " + itemId)));

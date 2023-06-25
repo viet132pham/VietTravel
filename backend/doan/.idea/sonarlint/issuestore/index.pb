@@ -168,5 +168,3 @@ l
 <be/src/main/java/com/example/be/response/CartitemStatus.java,7\5\751e6f97dea4c5b7a2bc69e882411c342d007205
 l
 <be/src/main/java/com/example/be/response/TopDestination.java,2\d\2dd1e78f18814826d3d970204940e610877d1c04
-r
-Bbe/src/main/java/com/example/be/repository/CartitemRepository.java,0\e\0ed13db0ac2e446ac8ae89cdf569c2d115dcd1d7

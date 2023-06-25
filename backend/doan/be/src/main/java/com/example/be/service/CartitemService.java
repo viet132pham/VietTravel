@@ -14,4 +14,6 @@ public interface CartitemService {
     Cartitem updateQuantityCart(int quantity, long itemId);
 
     CartitemDTO getCartitemById(long id);
+
+    void deleteAllCartitem(long cartId);
 }
