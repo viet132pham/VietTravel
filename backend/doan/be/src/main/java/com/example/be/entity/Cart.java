@@ -20,6 +20,10 @@ public class Cart extends BaseEntity{
     @NotNull
     private String status;
 
+    private String priceTotal;
+
+    private String paymentMethod;
+
     @NotNull
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")

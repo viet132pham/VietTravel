@@ -24,7 +24,7 @@ public class HotelDTO {
     private int sale;
     private int status;
     private String image;
-    private String price;
+    private int price;
     private String description;
     private String timeStart;
     private String timeEnd;

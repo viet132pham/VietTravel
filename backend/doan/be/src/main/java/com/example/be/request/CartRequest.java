@@ -14,6 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class CartRequest {
     private String status;
-
+    private String priceTotal;
+    private String paymentMethod;
     private long userId;
 }

@@ -30,7 +30,7 @@ public class Tour extends BaseEntity{
     @NotNull
     private String image;
     @NotNull
-    private String price;
+    private int price;
     @NotNull
     private String description;
     @NotNull

@@ -14,5 +14,7 @@ import org.springframework.stereotype.Service;
 public class CartDTO {
     private String id;
     private String status;
+    private String priceTotal;
+    private String paymentMethod;
     private UserDTO userDTO;
 }
