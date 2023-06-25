@@ -25,7 +25,7 @@ function Search(props) {
         <div className="item hotel" onClick={() => setSearchItem("hotel")}>
           <div className="icon">
             <i
-              class="fa-solid fa-hotel"
+              className="fa-solid fa-hotel"
               style={{ fontSize: "30px", marginRight: "8px" }}
             ></i>
           </div>
@@ -34,7 +34,7 @@ function Search(props) {
         <div className="item tour" onClick={() => setSearchItem("tour")}>
           <div className="icon">
             <i
-              class="fa-solid fa-plane-departure"
+              className="fa-solid fa-plane-departure"
               style={{ fontSize: "30px", marginRight: "8px" }}
             ></i>
           </div>
@@ -43,7 +43,7 @@ function Search(props) {
         <div className="item car" onClick={() => setSearchItem("vehicle")}>
           <div className="icon">
             <i
-              class="fa-solid fa-car"
+              className="fa-solid fa-car"
               style={{ fontSize: "30px", marginRight: "8px" }}
             ></i>
           </div>

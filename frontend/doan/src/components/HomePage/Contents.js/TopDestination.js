@@ -14,7 +14,7 @@ function TopDestination(props) {
         <div className="list-destination">
           {items?.map((e, index) => {
             return (
-              <div className={`destination-item item-${index}`} style={{backgroundImage: `url(https://mytour.webtravel.vn/images/desti1.jpeg)`}}>
+              <div className={`destination-item item-${index}`} style={{backgroundImage: `url(${e?.locationImage})`, backgroundSize: 'cover'}}>
                 <div className="location">{e?.locationName}</div>
                 <div className="divide"></div>
                 <div className="services">

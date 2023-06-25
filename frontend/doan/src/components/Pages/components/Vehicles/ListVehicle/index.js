@@ -3,17 +3,46 @@ import "../styles/ListVehicle.scss";
 import Pagination from "../../../../commons/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getListVehicle } from "../actions/ListVehicleActionCallApi";
+import { getListFilterVehicle, getListVehicle } from "../actions/ListVehicleActionCallApi";
+import {
+  everageStar,
+  handleEverageStar,
+} from "../../../../commons/actions/actionCommons";
+import { useHistory } from "react-router-dom";
+import { Button } from "@mui/material";
+import { addCartItem } from "../../Cart/actions/CartActionCallApi";
 
 function ListVehicle(props) {
-
-  const items = useSelector(state => state.vehicle.items);
+  const items = useSelector((state) => state.vehicle.items);
+  const filter = useSelector((state) => state.vehicle.filter);
+  const cartId = useSelector(state => state.cart.id);
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
-    dispatch(getListVehicle());
+    dispatch(getListVehicle(filter));
   }, []);
+
+  useEffect(() => {
+    dispatch(getListFilterVehicle());
+  }, [filter]);
+
+  const handleShowDetail = (id) => {
+    history.push(`/vehicle/detail/${id}`);
+  };
+
+  const handleAddCartItem = (e) => {
+    const cartModel = {
+      cartId: cartId,
+      categoryName: 'vehicle',
+      categoryId: e?.id,
+      name: e?.name,
+      price: Number(e?.price),
+      quantity: 1,
+    }
+    dispatch(addCartItem(cartModel));
+  }
 
   return (
     <div className="list-vehicle-wrapper">
@@ -32,32 +61,39 @@ function ListVehicle(props) {
         {items?.map((e) => {
           return (
             <div className="vehicle-item">
-              <div className="image">
+              <div className="image" onClick={() => handleShowDetail(e.id)}>
                 <img src={e.image}></img>
                 <div className="location d-flex">
                   <div className="icon">
-                  <i className="fa-solid fa-location-dot fa-xl"></i>
+                    <i className="fa-solid fa-location-dot fa-xl"></i>
                   </div>
-                  <div className="text">{e?.location?.description}</div>
+                  <div className="text">{e?.locationDTO?.description}</div>
                 </div>
               </div>
+              <Button onClick={() => handleAddCartItem(e)}>Add to Cart</Button>
               <div className="rate">
-              <i className="fa-solid fa-star"></i>
+                {handleEverageStar(e?.reviewsDTOS)?.map((item) => {
+                  return (
+                    <i
+                      className="fa-solid fa-star"
+                      style={{ color: "#b0d12b", marginRight: "3px" }}
+                    ></i>
+                  );
+                })}
               </div>
               <div className="point-rate d-flex">
-                <div className="point">4.0/5.0</div>
-                <div className="view">( 1 review )</div>
+                <div className="point">{everageStar(e?.reviewsDTOS)}.0/5.0</div>
+                <div className="view">( {e?.reviewsDTOS?.length || 0} review )</div>
               </div>
               <div className="price">
-                {" "}
                 From $ <b>{e.price}</b>{" "}
               </div>
             </div>
           );
         })}
       </div>
-      <Pagination />
-    </div>
+      <Pagination filter={filter} />
+      </div>
   );
 }
 export default ListVehicle;

@@ -7,14 +7,22 @@ import TravelTip from "./TraverTip";
 import WhyChoose from "./WhyChoose";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getDestinationItems } from "../actions/actionCallApi";
+import { getDestinationItems, getTourTrending, getVehicleTrending } from "../actions/actionCallApi";
+import { getHotelDeal } from "../../Pages/components/Hotels/actions/ListHotelActionCallApi";
+import { getTourDeals } from "../../Pages/components/Tours/actions/ListTourActionCallApi";
+import { getVehicleDealItems } from "../../Pages/components/Vehicles/actions/ListVehicleActionCallApi";
 
 function Contents(props){
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getDestinationItems())
+    dispatch(getDestinationItems());
+    dispatch(getTourTrending());
+    dispatch(getVehicleTrending());
+    dispatch(getHotelDeal());
+    dispatch(getTourDeals());
+    dispatch(getVehicleDealItems());
   }, []);
 
   return (

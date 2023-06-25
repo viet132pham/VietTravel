@@ -44,6 +44,8 @@
         }
         .account {
           margin-right: 24px;
+          cursor: pointer;
+          position: relative;
           .avatar {
             margin-right: 8px;
             width: 30px;
@@ -53,6 +55,30 @@
             display: flex;
             justify-content: center;
             align-items: center;
+          }
+          .dropdown-account-wrapper {
+            box-shadow: 2px 2px 2px 2px;
+            z-index: 999;
+            position: absolute;
+            background-color: #FFFFFF;
+            color: #0F1824;
+            width: 250px;
+            border-radius: 4px;
+            height: max-content;
+            top: 40px;
+            right: 0px;
+            padding: 12px 16px;
+            font-weight: 400;
+            >div {
+              margin-bottom: 12px;
+              &:last-child {
+                margin-bottom: 0;
+              }
+              &:hover {
+                color: orange;
+                font-weight: 500;
+              }
+            }
           }
         }
        

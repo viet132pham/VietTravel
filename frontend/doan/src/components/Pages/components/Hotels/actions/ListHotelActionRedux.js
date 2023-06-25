@@ -14,3 +14,10 @@ export const updateListHotelTrending = (data) => dispatch => {
     data
   })
 }
+
+export const updateListHotelDeal = (data) => dispatch => {
+  dispatch({
+    type: actionsHotelType.UPDATE_LIST_HOTEL_DEAL,
+    data
+  })
+}

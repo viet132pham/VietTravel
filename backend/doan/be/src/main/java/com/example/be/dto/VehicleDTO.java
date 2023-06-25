@@ -15,13 +15,14 @@ import java.util.List;
 @NoArgsConstructor
 @Service
 public class VehicleDTO {
+    private int id;
     private String code;
     private String name;
     private int numberGuest;
     private int sale;
     private int status;
     private String image;
-    private String price;
+    private int price;
     private String description;
     private String timeStart;
     private String timeEnd;

@@ -40,11 +40,10 @@ public interface CartitemRepository extends JpaRepository<Cartitem, Long>{
             "AND c.user_id = :uid", nativeQuery = true)
     List<Long> findListItemsOrdered(long uid);
 
-    @Query(value = "SELECT ci.name as name, c.status as status, ci.price as price, ci.category_id as categoryId, ci.category_name as categoryName\n" +
+    @Query(value = "SELECT ci.quantity as quantity, ci.image as image, ci.sale as sale, ci.name as name, c.status as status, ci.price as price, ci.category_id as categoryId, ci.category_name as categoryName\n" +
             "FROM cartitem ci\n" +
             "INNER JOIN cart c ON ci.cart_id = c.id " +
             "WHERE ci.id = :cid", nativeQuery = true)
     CartitemStatus findByIdCartitem(long cid);
-
 
 }

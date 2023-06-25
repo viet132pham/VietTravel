@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import "../styles/HeaderNav/HeaderNav.scss";
 import { useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
-
-
+import { useRef } from "react";
+import { useEffect } from "react";
 
 function HeaderNav(props) {
   const { handleOpenLoginForm, handleOpenRegisterForm } = props;
@@ -14,11 +14,16 @@ function HeaderNav(props) {
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [showDropDown, setShowDropDown] = useState(false);
+  const [showDropDownAccount, setShowDropDownAccount] = useState(false);
+
+  const accountRef = useRef();
+
+  const pageRef = useRef();
 
   const account = useSelector((state) => state.auth.account);
 
+  const dispatch = useDispatch();
   const history = useHistory();
-
   const CustomSnackbar = (props) => (
     <Snackbar
       autoHideDuration={4000}
@@ -28,37 +33,88 @@ function HeaderNav(props) {
       children={props.children}
     ></Snackbar>
   );
-  
+
   const onCloseClickHandler = (event) => {
     setShowSnackbar(false);
   };
 
   const handleRedirectPage = (pageUrl) => {
     try {
-      const token = sessionStorage.getItem('token');
-      if(token){
+      const token = sessionStorage.getItem("token");
+      if (token) {
         history.push(`/${pageUrl}`);
-      }
-      else {
+      } else {
         setShowAlert(true);
         setShowSnackbar(true);
       }
-    } catch(e) {
-      window.alert("You must be login for this function");
+    } catch (e) {
+      setShowAlert(true);
+      setShowSnackbar(true);
       history.push(`/`);
     }
+  };
 
+  const handleLogout = () => {
+    sessionStorage.removeItem("token");
+    dispatch({ type: "RESET_AUTH" });
+    history.push("/");
   };
 
   const renderDropdown = () => {
     return (
       <div className="dropdown-wrapper">
-        <div>Blog</div>
+        <div onClick={() => handleRedirectPage("blog")}>Blog</div>
         <div>About us</div>
         <div>Contact us</div>
       </div>
     );
   };
+
+  const renderDropdownAccount = () => {
+    return (
+      <div className="dropdown-account-wrapper">
+        <div>Profile</div>
+        <div onClick={() => handleLogout()}>Logout</div>
+      </div>
+    );
+  };
+
+  const useOutsideAccount = (accountRef) => {
+    useEffect(() => {
+      function handleClickOutside(event) {
+        if (
+          accountRef.current &&
+          !accountRef.current.contains(event.target) &&
+          !showDropDownAccount
+        ) {
+          setShowDropDownAccount(!setShowDropDownAccount);
+        }
+      }
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [accountRef]);
+  };
+  const useOutsidePage = (pageRef) => {
+    useEffect(() => {
+      function handleClickOutside(event) {
+        if (
+          pageRef.current &&
+          !pageRef.current.contains(event.target) &&
+          !showDropDown
+        ) {
+          setShowDropDown(!setShowDropDown);
+        }
+      }
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [pageRef]);
+  };
+  useOutsideAccount(accountRef);
+  useOutsidePage(pageRef);
 
   return (
     <div className="header-nav-wrapper">
@@ -70,7 +126,11 @@ function HeaderNav(props) {
         <div className="nav-bar right d-flex">
           {account?.username ? (
             <div className="d-flex">
-              <div className="account d-flex">
+              <div
+                className="account d-flex"
+                ref={accountRef}
+                onClick={() => setShowDropDownAccount(!showDropDownAccount)}
+              >
                 <div className="avatar mr-2">
                   <i
                     className="fa-solid fa-user"
@@ -80,12 +140,7 @@ function HeaderNav(props) {
                 <div className="ml-2 d-flex align-items-center text-uppercase">
                   {account.username}
                 </div>
-              </div>
-              <div className="logout">
-                <div className="icon"></div>
-                <div>
-                  <Button>Logout</Button>
-                </div>
+                {showDropDownAccount ? renderDropdownAccount() : null}
               </div>
             </div>
           ) : (
@@ -110,14 +165,21 @@ function HeaderNav(props) {
           <div onClick={() => handleRedirectPage("hotel")}>Hotel</div>
           <div onClick={() => handleRedirectPage("tour")}>Tour</div>
           <div onClick={() => handleRedirectPage("vehicle")}>Vehicle</div>
-          <div className="div-page" onClick={() => setShowDropDown(!showDropDown)}>
+          <div
+            className="div-page"
+            ref={pageRef}
+            onClick={() => setShowDropDown(!showDropDown)}
+          >
             <div className="d-flex">
-              <span style={{marginRight: '8px'}}>Page</span>
+              <span style={{ marginRight: "8px" }}>Page</span>
               <span>
-                <i class="fa-solid fa-chevron-down"></i>
+                <i className="fa-solid fa-chevron-down"></i>
               </span>
             </div>
             {showDropDown ? renderDropdown() : null}
+          </div>
+          <div className="shopping" onClick={() => handleRedirectPage("cart")}>
+          <i class="fa-solid fa-cart-shopping" style={{fontSize: '20px'}}></i>
           </div>
         </div>
       </div>

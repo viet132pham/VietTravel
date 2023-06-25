@@ -14,4 +14,11 @@ export const updateListVehicleTrending = (data) => dispatch => {
     data
   })
 };
+export const updateListVehicleDeal = (data) => dispatch => {
+  dispatch({
+    type: actionTourType.UPDATE_LIST_VEHICLE_DEAL,
+    data
+  })
+};
+
 

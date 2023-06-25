@@ -84,18 +84,8 @@ h
 0be/src/main/java/com/example/be/entity/User.java,c\1\c1d24e17f9335b7f7d4b96d2d9b10ad345b26f2a
 h
 8be/src/main/java/com/example/be/entity/Blogcategory.java,d\0\d0d5c4750042c7809a40a30142eacb61f6a9646f
-k
-;be/src/main/java/com/example/be/service/VehicleService.java,e\e\ee297d64008b39edb18441971d046a534256aa0f
-q
-Abe/src/main/java/com/example/be/controller/VehicleController.java,1\1\119e6afa9fe875d6c72cbcb655de9f2a2bd0fd74
-o
-?be/src/main/java/com/example/be/controller/HotelController.java,4\2\42b9a25ed57a442abe957a02a5638af27260b4fc
 i
 9be/src/main/java/com/example/be/service/HotelService.java,8\2\822ee7b233e747cef6739ffabb83ae132de635fd
-t
-Dbe/src/main/java/com/example/be/service/Impl/VehicleServiceImpl.java,9\5\9521d83babb4edc9a1fae307fbd6aca7d254b483
-r
-Bbe/src/main/java/com/example/be/service/Impl/HotelServiceImpl.java,8\3\83b1c19083e7ab61dfc33e099c5578e8325d50ef
 v
 Fbe/src/main/java/com/example/be/repository/BlogcategoryRepository.java,f\c\fc35997da551e8a009cefca1698ba7c08bf6779d
 n
@@ -136,7 +126,5 @@ r
 Bbe/src/main/java/com/example/be/controller/LocationController.java,2\1\2180b3802f2e85384d7a2e8af8959bbdaab8666f
 r
 Bbe/src/main/java/com/example/be/repository/LocationRepository.java,2\c\2c3c77a40ed8882f9ba6a97d94c456e7bb5e544c
-l
-<be/src/main/java/com/example/be/response/CartitemStatus.java,7\5\751e6f97dea4c5b7a2bc69e882411c342d007205
 l
 <be/src/main/java/com/example/be/response/TopDestination.java,2\d\2dd1e78f18814826d3d970204940e610877d1c04

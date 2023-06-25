@@ -1,9 +1,5 @@
 import React from "react";
 import "../styles/TrendingStyle.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { faClockFour } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { getTimeForTrip } from "../../../ulti/dateTime";
 import { useEffect } from "react";
@@ -11,7 +7,8 @@ import { useState } from "react";
 import { getTourTrendingItems } from "../../Pages/components/Tours/actions/ListTourActionCallApi";
 import { getHotelTrendingItems } from "../../Pages/components/Hotels/actions/ListHotelActionCallApi";
 import { getVehicleTrendingItems } from "../../Pages/components/Vehicles/actions/ListVehicleActionCallApi";
-import { useMemo } from "react";
+import { handleEverageStar } from "../../commons/actions/actionCommons";
+
 
 const listTitle = ["Tour", "Hotel", "Vehicle"];
 
@@ -30,8 +27,13 @@ function Trending(props) {
     dispatch(getTourTrendingItems());
     dispatch(getHotelTrendingItems());
     dispatch(getVehicleTrendingItems());
-    setItems(trendingTourItems);
   }, []);
+
+  useEffect(() => {
+    if(trendingTourItems){
+      setItems(trendingTourItems);
+    }
+  }, [trendingTourItems])
 
   useEffect(() => {
     if(curType === 'Tour'){
@@ -44,12 +46,9 @@ function Trending(props) {
     }
   }, [curType]);
 
-
   const handleChangeCurType = (type) => {
     setCurType(type);
   }
-
-  console.log("check items aaaaaaaa:", items);
 
   return (
     <div className="trending-content">
@@ -77,20 +76,22 @@ function Trending(props) {
                     <div className="location-icon">
                       <i className="fa-solid fa-location-dot fa-xl"></i>
                     </div>
-                    <div className="text">{e?.location?.description}</div>
+                    <div className="text">{e?.locationDTO?.description}</div>
                   </div>
                   <div className="tour-name">{e?.name}</div>
                   <div className="rate d-flex">
                     <div className="rate-star">
-                      <i className="fa-regular fa-star"></i>
+                     {handleEverageStar(e?.reviewsDTOS || [])?.map(e => {
+                      return (<i className="fa-solid fa-star" style={{color: '#b0d12b'}}></i>)
+                     })}
                     </div>
-                    <div className="count-view">(1 view)</div>
+                    <div className="count-view">({e?.reviewsDTOS?.length || 0} view)</div>
                   </div>
                   <div className="time d-flex">
                     <div className="icon-time ">
                       <i className="fa-regular fa-clock"></i>
                     </div>
-                    <div className="text">{getTimeForTrip(e?.timeStart, e?.timeEnd)}</div>
+                    <div className="text">{getTimeForTrip(e?.timeEnd, e?.timeStart)}</div>
                   </div>
                 </div>
               </div>

@@ -14,3 +14,10 @@ export const updateListTourTrending = (data) => dispatch => {
     data
   })
 }
+
+export const updateListTourDeal = (data) => dispatch => {
+  dispatch({
+    type: actionTourType.UPDATE_LIST_TOUR_DEAL,
+    data
+  })
+}
