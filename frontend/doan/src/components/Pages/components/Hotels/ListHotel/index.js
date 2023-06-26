@@ -36,6 +36,7 @@ function ListHotel(props) {
   };
 
   const handleAddCartItem = (e) => {
+    console.log(cartId);
     const cartModel = {
       cartId: cartId,
       categoryName: 'hotel',

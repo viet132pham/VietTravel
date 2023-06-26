@@ -9,4 +9,7 @@ public interface CartitemStatus {
      int getSale();
      int getQuantity();
      String getImage();
+
+     int getId();
+
 }

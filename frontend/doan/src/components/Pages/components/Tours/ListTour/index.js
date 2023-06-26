@@ -16,7 +16,7 @@ import { getListFilterHotel } from "../../Hotels/actions/ListHotelActionCallApi"
 function ListTour(props) {
   const items = useSelector((state) => state.tour.items);
   const filter = useSelector((state) => state.tour.filter);
-  const cartId = useSelector(state => state.cart?.id);
+  const cartId = useSelector((state) => state.cart?.id);
   const history = useHistory();
 
   const dispatch = useDispatch();
@@ -33,6 +33,7 @@ function ListTour(props) {
     history.push(`/tour/detail/${id}`);
   };
   const handleAddCartItem = (e) => {
+    console.log(cartId);
     const cartModel = {
       cartId: cartId,
       categoryName: "tour",
