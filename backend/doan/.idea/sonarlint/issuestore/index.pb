@@ -32,8 +32,6 @@ p
 @be/src/main/java/com/example/be/repository/ReviewRepository.java,8\d\8d1c52789980ccd90e6b748d9b9d78f099fc8695
 h
 8be/src/main/java/com/example/be/request/UserRequest.java,5\8\5880dcd3a9a96a3805e2560072e25ac9e4f46451
-j
-:be/src/main/java/com/example/be/request/ReviewRequest.java,f\0\f052fd6f0dae6ae60b3a94f7b16bcf0c76eaab95
 `
 0be/src/main/java/com/example/be/entity/Role.java,1\1\11264549ca0134dac54c3380dcdc2b9b91b6cb04
 e
@@ -46,8 +44,6 @@ g
 7be/src/main/java/com/example/be/entity/Amenitytour.java,6\d\6d8dfaaf121847f8d0907f479c64d3641ac70206
 d
 4be/src/main/java/com/example/be/entity/Location.java,8\e\8e9c6673f08feba54a335bde0ce443d8c160755e
-c
-3be/src/main/java/com/example/be/entity/Reviews.java,f\3\f3821d5c30923322d7dba586ddb99b777c2664e4
 h
 8be/src/main/java/com/example/be/service/BaseService.java,c\9\c93bfdbebfbd8ad9dddfd97b45e46d965d628080
 q
@@ -84,8 +80,6 @@ n
 >be/src/main/java/com/example/be/repository/BlogRepository.java,c\f\cfd84619783339defb17b451fee6b74d2a24056c
 h
 8be/src/main/java/com/example/be/service/BlogService.java,5\5\554d6dd4b9e576777a66a1382ebaaf9fda324f1e
-c
-3be/src/main/java/com/example/be/dto/ReviewsDTO.java,2\6\26b3be2df2ea2bcc8508554b28d4a54744d11bb7
 d
 4be/src/main/java/com/example/be/dto/LocationDTO.java,c\8\c8b99c9c03772c6496ecdbe46dcac84bf7da4f09
 c
@@ -148,3 +142,17 @@ r
 Bbe/src/main/java/com/example/be/controller/CartitemController.java,d\8\d826abd98f1206d37a841cd857d6882b0d3b0c70
 n
 >be/src/main/java/com/example/be/controller/CartController.java,f\f\ffcc39c4251ee69918480cc0f34cf1f56486f1bc
+n
+>be/src/main/java/com/example/be/controller/UserController.java,5\c\5cc91a440c404e3aa8b914ece1063e0962ddf0ca
+r
+Bbe/src/main/java/com/example/be/request/UpdatePasswordRequest.java,1\5\156ebad6cc0e5849afbedc6f8bfd02ac69cf3e48
+h
+8be/src/main/java/com/example/be/service/UserService.java,9\3\93fa99a23b38d3aaf99f079e287d208b85ac679e
+q
+Abe/src/main/java/com/example/be/service/Impl/UserServiceImpl.java,a\d\adc04c15da07adb58a3b935cc0998de177e8328b
+r
+Bbe/src/main/java/com/example/be/repository/CartitemRepository.java,0\e\0ed13db0ac2e446ac8ae89cdf569c2d115dcd1d7
+l
+<be/src/main/java/com/example/be/response/CartitemStatus.java,7\5\751e6f97dea4c5b7a2bc69e882411c342d007205
+`
+0be/src/main/java/com/example/be/dto/UserDTO.java,d\8\d88b8a572f8724c8fc6ed0718110bcd4dffbcee1

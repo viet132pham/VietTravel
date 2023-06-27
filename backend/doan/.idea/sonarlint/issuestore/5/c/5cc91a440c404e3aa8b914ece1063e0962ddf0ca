@@ -1,0 +1,10 @@
+
+`	java:S112b"FDefine and throw a dedicated exception instead of using a generic one.(òğ·ûÿÿÿÿ
+[
+java:S4684""@Replace this persistent entity with a simple POJO or DTO object.(Èô“Òûÿÿÿÿ
+V
+java:S4684&"@Replace this persistent entity with a simple POJO or DTO object.(•Êÿ
+‡
+java:S1130b"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(òğ·ûÿÿÿÿ
+A
+java:S1452`"&Remove usage of generic wildcard type.(Ê²ıÿÿÿÿ

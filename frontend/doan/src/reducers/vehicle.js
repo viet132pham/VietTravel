@@ -7,13 +7,14 @@ const initState = {
   deals: [],
   filter: {
     page: 1,
-    limit: 20,
+    limit: 21,
     total: 20,
     priceStart: 0,
     priceEnd: 0,
     location :'',
     checkIn: '',
-    checkOut: ''
+    checkOut: '',
+    sortType: ''
   }
 };
 
@@ -42,6 +43,21 @@ const vehicle = (state = initState, action) => {
           filter: {
             ...state.filter,
             [action.key]: action.data
+          }
+        }
+        case 'RESET_FILTER_VEHICLE': 
+        return {
+          ...state,
+          filter: {
+            page: 1,
+            limit: 21,
+            total: 20,
+            priceStart: 0,
+            priceEnd: 0,
+            location :'',
+            checkIn: '',
+            checkOut: '',
+            sortType: '',
           }
         }
     default:
