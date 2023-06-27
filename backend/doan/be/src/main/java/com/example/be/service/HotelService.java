@@ -18,7 +18,7 @@ public interface HotelService extends BaseService<Hotel> {
 
     HotelDTO findHotelByName(String name);
 
-    Page<HotelDTO> filterHotels(Pageable pageable, String location, String checkIn, String checkOut, String priceStart, String priceEnd, String sale);
+    Page<HotelDTO> filterHotels(Pageable pageable, String name, String checkIn, String checkOut, String priceStart, String priceEnd, String sale);
 
     HotelDTO getById(long id);
 

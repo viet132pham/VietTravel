@@ -15,7 +15,7 @@ public interface VehicleService extends BaseService<Vehicle> {
 
     VehicleDTO findVehicleByName(String name);
 
-    Page<VehicleDTO> filterVehicles(Pageable pageable, String location, String checkIn, String checkOut, String priceStart, String priceEnd, String sale);
+    Page<VehicleDTO> filterVehicles(Pageable pageable, String name, String checkIn, String checkOut, String priceStart, String priceEnd, String sale);
 
     VehicleDTO getById(long id);
 

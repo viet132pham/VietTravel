@@ -54,7 +54,7 @@ public class TourController extends BaseController<Tour> {
 
     @GetMapping("/filter")
     public Page<TourDTO> filterTours(
-            @RequestParam(value = "location", required = false) String location,
+            @RequestParam(value = "name", required = false) String name,
             @RequestParam(value = "checkIn", required = false) String checkIn,
             @RequestParam(value = "checkOut", required = false) String checkOut,
             @RequestParam(value = "priceStart", required = false) String priceStart,
@@ -73,7 +73,12 @@ public class TourController extends BaseController<Tour> {
 
         Sort sort = Sort.by(sortDirection, sortBy);
         Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, sort);
-        return tourService.filterTours(pageable, location, checkIn, checkOut, priceStart, priceEnd, sale);
+
+        if(name == null && checkIn == null && checkOut == null && priceStart == null && priceEnd == null && sale == null) {
+            return tourService.getListPaginationDTO(pageable);
+        } else {
+            return tourService.filterTours(pageable, name, checkIn, checkOut, priceStart, priceEnd, sale);
+        }
     }
 
     @GetMapping("/sort_dto")

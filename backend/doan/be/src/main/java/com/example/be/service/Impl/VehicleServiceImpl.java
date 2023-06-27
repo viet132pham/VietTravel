@@ -177,13 +177,7 @@ public class VehicleServiceImpl extends BaseServiceImpl<Vehicle> implements Vehi
     }
 
     @SneakyThrows
-    public Page<VehicleDTO> filterVehicles(Pageable pageable, String location, String checkIn, String checkOut, String priceStart, String priceEnd, String sale) {
-        Location location1 = locationRepository.findLocationByName(location);
-        Integer location2 = null;
-        if (location1 != null && !location.equals("undefined") && !location.equals("null")) {
-            // Thay thế giá trị null bằng một giá trị mặc định
-            location2 = Math.toIntExact(location1.getId());
-        }
+    public Page<VehicleDTO> filterVehicles(Pageable pageable, String name, String checkIn, String checkOut, String priceStart, String priceEnd, String sale) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
         Timestamp checkInTimestamp = null;
@@ -215,8 +209,13 @@ public class VehicleServiceImpl extends BaseServiceImpl<Vehicle> implements Vehi
                 saleWrap = null;
             }
         }
-
-        Page<Vehicle> vehicles = vehicleRepository.filterVehicles(location2, checkInTimestamp, checkOutTimestamp, priceStartString, priceEndString, saleWrap, pageable);
+        System.out.println(name);
+        System.out.println(checkInTimestamp);
+        System.out.println(checkOutTimestamp);
+        System.out.println(priceStartString);
+        System.out.println(priceEndString);
+        System.out.println(saleWrap);
+        Page<Vehicle> vehicles = vehicleRepository.filterVehicles(name, checkInTimestamp, checkOutTimestamp, priceStartString, priceEndString, saleWrap, pageable);
         List<VehicleDTO> vehicleDTOList = new ArrayList<>();
         for (int i = 0; i < vehicles.getContent().size(); i++){
             VehicleDTO vehicleDTO = new VehicleDTO();

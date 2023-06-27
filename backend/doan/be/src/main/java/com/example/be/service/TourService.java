@@ -15,7 +15,7 @@ public interface TourService extends BaseService<Tour> {
 
     TourDTO findTourByName(String name);
 
-    Page<TourDTO> filterTours(Pageable pageable, String location, String checkIn, String checkOut, String priceStart, String priceEnd, String sale);
+    Page<TourDTO> filterTours(Pageable pageable, String name, String checkIn, String checkOut, String priceStart, String priceEnd, String sale);
     Page<TourDTO> getListPaginationDTO(Pageable pageable);
 
     Page<TourDTO> getSortedAndPaginateDTO(Pageable pageable);

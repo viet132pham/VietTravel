@@ -58,7 +58,7 @@ public class VehicleController extends BaseController<Vehicle> {
 
     @GetMapping("/filter")
     public Page<VehicleDTO> filterHotels(
-            @RequestParam(value = "location", required = false) String location,
+            @RequestParam(value = "location", required = false) String name,
             @RequestParam(value = "checkIn", required = false) String checkIn,
             @RequestParam(value = "checkOut", required = false) String checkOut,
             @RequestParam(value = "priceStart", required = false) String priceStart,
@@ -77,7 +77,12 @@ public class VehicleController extends BaseController<Vehicle> {
 
         Sort sort = Sort.by(sortDirection, sortBy);
         Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, sort);
-        return vehicleService.filterVehicles(pageable, location, checkIn, checkOut, priceStart, priceEnd, sale);
+
+        if(name == null && checkIn == null && checkOut == null && priceStart == null && priceEnd == null && sale == null) {
+            return vehicleService.getListPaginationDTO(pageable);
+        } else {
+            return vehicleService.filterVehicles(pageable, name, checkIn, checkOut, priceStart, priceEnd, sale);
+        }
     }
 
     @GetMapping("/sort_dto")
@@ -103,10 +108,6 @@ public class VehicleController extends BaseController<Vehicle> {
                                               @RequestParam(value = "pageSize",required = true) int pageSize,
                                               @RequestParam(value = "sortBy",required = false) String sortBy,
                                               @RequestParam(value = "sortDir",required = false) String sortDir){
-//        if (sortDir!= null){
-//            Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
-//            return vehicleService.getListPaginationDTO(PageRequest.of(pageNumber-1,pageSize,sort));
-//        }
         Sort sort;
         if (sortDir != null) {
             sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ?

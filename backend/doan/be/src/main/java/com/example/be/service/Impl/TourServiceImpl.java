@@ -213,14 +213,7 @@ public class TourServiceImpl extends BaseServiceImpl<Tour> implements TourServic
     }
 
     @SneakyThrows
-    public Page<TourDTO> filterTours(Pageable pageable, String location, String checkIn, String checkOut, String priceStart, String priceEnd, String sale) {
-        System.out.println(checkOut);
-        Location location1 = locationRepository.findLocationByName(location);
-        Integer location2 = null;
-        if (location1 != null && !location.equals("undefined") && !location.equals("null")) {
-            // Thay thế giá trị null bằng một giá trị mặc định
-            location2 = Math.toIntExact(location1.getId());
-        }
+    public Page<TourDTO> filterTours(Pageable pageable, String name, String checkIn, String checkOut, String priceStart, String priceEnd, String sale) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
         Timestamp checkInTimestamp = null;
@@ -255,7 +248,7 @@ public class TourServiceImpl extends BaseServiceImpl<Tour> implements TourServic
         }
 
         Page<Tour> tours = tourRepository.filterTours(
-                location2,
+                name,
                 checkInTimestamp,
                 checkOutTimestamp,
                 priceStartString,
