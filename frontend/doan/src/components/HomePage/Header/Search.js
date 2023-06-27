@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import "../styles/SearchStyle.scss";
 import { Button, Input } from "@material-ui/core";
 import { GridSearchIcon } from "@mui/x-data-grid";
-
+import { search } from "../actions/actionCallApi";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 function Search(props) {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [searchItem, setSearchItem] = useState("hotel");
-
+  const [name, setName] = useState("");
   const renderLabel = () => {
     switch (searchItem) {
       case "hotel":
@@ -18,6 +22,19 @@ function Search(props) {
         return;
     }
   };
+
+  const handleFilterLocation = (e) => {
+    setName(e.target.value);
+    console.log("viet check",name);
+  }
+
+  const handleSearch = () => {
+    dispatch(search(searchItem, name));
+    history.push({
+      pathname: `/${searchItem}`,
+      state: { name: name }
+    });
+  }
 
   return (
     <div className="search-wrapper">
@@ -56,11 +73,12 @@ function Search(props) {
           <div className="label">{renderLabel()}</div>
 
           <div className="search-btn d-flex">
-            <Input placeholder="where are you going?" />
+            <Input placeholder="where are you going?" onChange={(e) => handleFilterLocation(e)} />
             <Button
               startIcon={<GridSearchIcon />}
               variant="contained"
               color="#0088FF"
+              onClick={() => handleSearch()}
             >
               Search
             </Button>

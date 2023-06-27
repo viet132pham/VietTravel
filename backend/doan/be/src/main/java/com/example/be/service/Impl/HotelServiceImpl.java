@@ -130,16 +130,9 @@ public class HotelServiceImpl extends BaseServiceImpl<Hotel> implements HotelSer
         return hotelDTOList;
     }
     @SneakyThrows
-    public List<HotelDTO> searchHotels(String location, String checkIn, String checkOut, Integer numRooms, Integer numGuests) {
+    public List<HotelDTO> searchHotels(String location) {
         Location location1 = locationRepository.findLocationByName(location);
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-
-        Date checkInConvert = formatter.parse(checkIn);
-        Timestamp checkInTimestamp = new Timestamp(checkInConvert.getTime());
-
-        Date checkOutConvert = formatter.parse(checkOut);
-        Timestamp checkOutTimestamp = new Timestamp(checkOutConvert.getTime());
-        List<Hotel> result = hotelRepository.searchHotels(location1, checkInTimestamp, checkOutTimestamp, numRooms, numGuests);
+        List<Hotel> result = hotelRepository.findHotelByLocation(location1);
         List<HotelDTO> hotelDTOList = new ArrayList<>();
         for (int i = 0; i < result.size(); i++){
             HotelDTO hotelDTO = new HotelDTO();
@@ -242,11 +235,8 @@ public class HotelServiceImpl extends BaseServiceImpl<Hotel> implements HotelSer
         Integer saleWrap = null;
         if (sale != null && !sale.equals("undefined") && !sale.equals("null")) {
             saleWrap = Integer.parseInt(sale);
-            if (saleWrap != 1) {
-                saleWrap = null;
-            }
         }
-
+System.out.println(name);
         Page<Hotel> hotels = hotelRepository.filterHotels(name, checkInTimestamp, checkOutTimestamp, priceStartString, priceEndString, saleWrap, pageable);
         List<HotelDTO> hotelDTOList = new ArrayList<>();
         for (int i = 0; i < hotels.getContent().size(); i++){

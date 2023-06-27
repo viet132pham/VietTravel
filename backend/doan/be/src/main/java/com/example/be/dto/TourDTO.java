@@ -16,6 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Service
 public class TourDTO {
+    private int id;
     private String code;
     private String name;
     private int numberGuest;

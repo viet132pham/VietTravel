@@ -14,8 +14,11 @@ import {
 } from "../../../../commons/actions/actionCommons";
 import { Button } from "@mui/material";
 import { addCartItem } from "../../Cart/actions/CartActionCallApi";
+import { useLocation } from 'react-router-dom';
 
 function ListHotel(props) {
+  const location = useLocation();
+  const name = location.state?.name;
   const dispatch = useDispatch();
 
   const history = useHistory();
@@ -27,15 +30,25 @@ function ListHotel(props) {
   const filter = useSelector((state) => state.hotel.filter);
 
   useEffect(() => {
-    dispatch(getListHotel(filter));
+    console.log(name);
+    if(name) {
+      dispatch({
+        type: "CHANGE_FILTER_HOTEL",
+        key: "name",
+        data: name,
+      });
+      dispatch(getListFilterHotel());
+    } else {
+      dispatch(getListHotel(filter));
+    }
   }, []);
 
   useEffect(() => {
       dispatch(getListFilterHotel());
-  }, [filter?.limit, filter?.location, 
+  }, [filter?.limit, filter?.name, 
     filter?.priceStart, 
     filter?.priceEnd, filter?.checkIn,
-     filter?.checkOut, filter?.page, filter?.sortTypes]);
+     filter?.checkOut, filter?.page, filter?.sortTypes, filter?.sale]);
 
   const handleShowDetail = (id) => {
     history.push(`/hotel/detail/${id}`);
@@ -92,7 +105,7 @@ function ListHotel(props) {
                   <div className="icon">
                     <i className="fa-solid fa-location-dot fa-xl"></i>
                   </div>
-                  <div className="text">{e?.description}</div>
+                  <div className="text">{e?.name}</div>
                 </div>
               </div>
               <Button onClick={() => handleAddCartItem(e)}>Add to Cart</Button>

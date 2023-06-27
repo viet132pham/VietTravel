@@ -15,8 +15,11 @@ import { useHistory } from "react-router-dom";
 import { Button } from "@mui/material";
 import { addCartItem } from "../../Cart/actions/CartActionCallApi";
 import { getListFilterHotel } from "../../Hotels/actions/ListHotelActionCallApi";
+import { useLocation } from 'react-router-dom';
 
 function ListTour(props) {
+  const location = useLocation();
+  const name = location.state?.name;
   const items = useSelector((state) => state.tour.items);
   const filter = useSelector((state) => state.tour.filter);
   const cartId = useSelector((state) => state.cart?.id);
@@ -25,14 +28,23 @@ function ListTour(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getListTour(filter));
+    if(name) {
+      dispatch({
+        type: "CHANGE_FILTER_HOTEL",
+        key: "name",
+        data: name,
+      });
+      dispatch(getListFilterTour());
+    } else {
+      dispatch(getListTour(filter));
+    }
   }, []);
 
   useEffect(() => {
     dispatch(getListFilterTour());
   }, [
     filter?.limit,
-    filter?.location,
+    filter?.name,
     filter?.priceStart,
     filter?.priceEnd,
     filter?.checkIn,
@@ -52,7 +64,7 @@ function ListTour(props) {
     });
   };
   const handleAddCartItem = (e) => {
-    console.log(cartId);
+    console.log(e);
     const cartModel = {
       cartId: cartId,
       categoryName: "tour",
@@ -119,7 +131,7 @@ function ListTour(props) {
                   <div className="icon">
                     <i className="fa-solid fa-location-dot fa-xl"></i>
                   </div>
-                  <div className="text">{e?.location?.description}</div>
+                  <div className="text">{e?.name}</div>
                 </div>
               </div>
               <Button onClick={() => handleAddCartItem(e)}>Add to Cart</Button>

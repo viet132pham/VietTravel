@@ -242,9 +242,6 @@ public class TourServiceImpl extends BaseServiceImpl<Tour> implements TourServic
         Integer saleWrap = null;
         if (sale != null && !sale.equals("undefined") && !sale.equals("null")) {
             saleWrap = Integer.parseInt(sale);
-            if (saleWrap != 1) {
-                saleWrap = null;
-            }
         }
 
         Page<Tour> tours = tourRepository.filterTours(

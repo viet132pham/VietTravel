@@ -1,10 +1,15 @@
 package com.example.be.repository;
 
+import com.example.be.entity.Hotel;
 import com.example.be.entity.Location;
 import com.example.be.response.TopDestination;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Repository
@@ -22,5 +27,11 @@ public interface LocationRepository extends BaseRepository<Location, Long> {
     List<TopDestination> findTopDestinations();
 
     Location findLocationByName(String name);
+
+//    @Query(value = "SELECT * FROM Location h WHERE " +
+//            "(:name IS NULL OR h.name LIKE %:name%) ", nativeQuery = true)
+//    Location findLocationByName(
+//            @Param("name") String name
+//    );
 
 }

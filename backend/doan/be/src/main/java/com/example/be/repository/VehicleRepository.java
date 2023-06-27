@@ -35,7 +35,7 @@ public interface VehicleRepository extends BaseRepository<Vehicle, Long>{
             "AND (:checkOut IS NULL OR h.time_end <= :checkOut) " +
             "AND (:priceStart IS NULL OR h.price >= :priceStart) " +
             "AND (:priceEnd IS NULL OR h.price <= :priceEnd) " +
-            "AND (:sale IS NULL OR h.sale > 0)", nativeQuery = true)
+            "AND (:sale IS NULL OR h.sale = :sale)", nativeQuery = true)
     Page<Vehicle> filterVehicles(
                     @Param("name") String name,
                     @Param("checkIn") Timestamp checkIn,

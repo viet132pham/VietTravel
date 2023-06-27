@@ -71,7 +71,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/vehicle/find/top_deal",
                         "/api/hotel/find/top_deal",
                         "/api/blog/get",
-                        "/api/blog/get/{id}"
+                        "/api/blog/get/{id}",
+                        "/api/tour/search/{location}",
+                        "/api/hotel/search/{location}",
+                        "/api/vehicle/search/{location}"
                 ).permitAll()
                 .antMatchers(HttpMethod.POST, "/api/guest/").permitAll()
 //                .antMatchers(HttpMethod.GET).permitAll()

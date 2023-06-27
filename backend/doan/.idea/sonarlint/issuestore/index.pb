@@ -60,8 +60,6 @@ y
 Ibe/src/main/java/com/example/be/entity/compositekey/CommentComposite.java,f\3\f38a859c7cca82e1899fdca114c3f42818c30669
 w
 Gbe/src/main/java/com/example/be/config/JwtAuthenticationEntryPoint.java,0\1\0109950040317c5855f8c0456680a0ecc4a74f11
-m
-=be/src/main/java/com/example/be/config/WebSecurityConfig.java,3\0\305997c5eafb7938d179a3a02c5a771b25fbba81
 l
 <be/src/main/java/com/example/be/config/JwtRequestFilter.java,9\e\9e5e1a1b4d4697b9c86b3dfc59090ff73b7c6484
 f
@@ -102,8 +100,6 @@ p
 @be/src/main/java/com/example/be/controller/ReviewController.java,a\6\a688cbcbb8a64d9ab030eb11c65288a05e8a5ead
 r
 Bbe/src/main/java/com/example/be/controller/LocationController.java,2\1\2180b3802f2e85384d7a2e8af8959bbdaab8666f
-r
-Bbe/src/main/java/com/example/be/repository/LocationRepository.java,2\c\2c3c77a40ed8882f9ba6a97d94c456e7bb5e544c
 l
 <be/src/main/java/com/example/be/response/TopDestination.java,2\d\2dd1e78f18814826d3d970204940e610877d1c04
 `
@@ -112,14 +108,8 @@ l
 0be/src/main/java/com/example/be/entity/Tour.java,4\f\4f74292d12070a06a488f2bbd73943170cbb7484
 c
 3be/src/main/java/com/example/be/entity/Vehicle.java,4\9\497e1998070354cc3767dfb4a9d559d69e2691a7
-`
-0be/src/main/java/com/example/be/dto/TourDTO.java,5\d\5d45ba5678d991f40a3fbdd75a8e4200064a6a99
-a
-1be/src/main/java/com/example/be/dto/HotelDTO.java,1\e\1e1ba7c94fbc8f0d8f5290527899c62b0ae8d1fa
 h
 8be/src/main/java/com/example/be/request/TourRequest.java,5\3\53ebecb652b60ad5636e5670b6511e2b958b629a
-c
-3be/src/main/java/com/example/be/dto/VehicleDTO.java,7\9\79fbccd85bf51f57a0032ed9708d94147624b943
 d
 4be/src/main/java/com/example/be/entity/Cartitem.java,e\f\efadd6a163964d65c7246ad99101a5417fbcf417
 d
@@ -156,3 +146,7 @@ l
 <be/src/main/java/com/example/be/response/CartitemStatus.java,7\5\751e6f97dea4c5b7a2bc69e882411c342d007205
 `
 0be/src/main/java/com/example/be/dto/UserDTO.java,d\8\d88b8a572f8724c8fc6ed0718110bcd4dffbcee1
+k
+;be/src/main/java/com/example/be/service/VehicleService.java,e\e\ee297d64008b39edb18441971d046a534256aa0f
+q
+Abe/src/main/java/com/example/be/controller/VehicleController.java,1\1\119e6afa9fe875d6c72cbcb655de9f2a2bd0fd74

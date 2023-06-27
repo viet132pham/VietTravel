@@ -42,15 +42,11 @@ public class HotelController extends BaseController<Hotel> {
         return hotelRepository.getAvailableSales();
     }
 
-    @GetMapping("/search")
+    @GetMapping("/search/{location}")
     public List<HotelDTO> searchHotels(
-            @RequestParam(value = "location", required = false) String location,
-            @RequestParam(value = "checkIn", required = false) String checkIn,
-            @RequestParam(value = "checkOut", required = false) String checkOut,
-            @RequestParam(value = "numRooms", required = false) Integer numRooms,
-            @RequestParam(value = "numGuests", required = false) Integer numGuests
+            @PathVariable(value = "location") String location
     ) {
-        return hotelService.searchHotels(location, checkIn, checkOut, numRooms, numGuests);
+        return hotelService.searchHotels(location);
     }
 
     @GetMapping("/search_by_name/{name}")

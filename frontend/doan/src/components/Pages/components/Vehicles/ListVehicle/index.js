@@ -11,8 +11,11 @@ import {
 import { useHistory } from "react-router-dom";
 import { Button } from "@mui/material";
 import { addCartItem } from "../../Cart/actions/CartActionCallApi";
+import { useLocation } from 'react-router-dom';
 
 function ListVehicle(props) {
+  const location = useLocation();
+  const name = location.state?.name;
   const items = useSelector((state) => state.vehicle.items);
   const filter = useSelector((state) => state.vehicle.filter);
   const cartId = useSelector(state => state.cart.id);
@@ -21,12 +24,21 @@ function ListVehicle(props) {
   const history = useHistory();
 
   useEffect(() => {
-    dispatch(getListVehicle(filter));
+    if(name) {
+      dispatch({
+        type: "CHANGE_FILTER_HOTEL",
+        key: "name",
+        data: name,
+      });
+      dispatch(getListFilterVehicle());
+    } else {
+      dispatch(getListVehicle(filter));
+    }
   }, []);
   
   useEffect(() => {
     dispatch(getListFilterVehicle());
-  }, [filter?.limit, filter?.location, 
+  }, [filter?.limit, filter?.name, 
     filter?.priceStart, 
     filter?.priceEnd, filter?.checkIn,
      filter?.checkOut, filter?.page, filter?.sortType]);
@@ -83,7 +95,7 @@ function ListVehicle(props) {
                       <div className="icon">
                         <i className="fa-solid fa-location-dot fa-xl"></i>
                       </div>
-                      <div className="text">{e?.locationDTO?.description}</div>
+                      <div className="text">{e?.name}</div>
                     </div>
                   </div>
                   <Button onClick={() => handleAddCartItem(e)}>Add to Cart</Button>

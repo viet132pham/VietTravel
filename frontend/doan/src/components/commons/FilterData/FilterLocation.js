@@ -9,10 +9,10 @@ import { useDispatch } from "react-redux";
 
 function FilterLocation(props){
   const { type } = props;
-  const [locationValue, setLocationValue] = useState('');
+  const [nameValue, setNameValue] = useState('');
 
   const handleFilterLocation = (e) => {
-    setLocationValue(e.target.value);
+    setNameValue(e.target.value);
   }
 
   const dispatch = useDispatch();
@@ -22,32 +22,32 @@ function FilterLocation(props){
       case "blog": {
         dispatch({
           type: "CHANGE_FILTER_BLOG",
-          key: "location",
-          data: locationValue,
+          key: "name",
+          data: nameValue,
         });
         break;
       }
       case "hotel": {
         dispatch({
           type: "CHANGE_FILTER_HOTEL",
-          key: "location",
-          data: locationValue,
+          key: "name",
+          data: nameValue,
         });
         break;
       }
       case "tour": {
         dispatch({
           type: "CHANGE_FILTER_TOUR",
-          key: "location",
-          data: locationValue,
+          key: "name",
+          data: nameValue,
         });
         break;
       }
       case "vehicle": {
         dispatch({
           type: "CHANGE_FILTER_VEHICLE",
-          key: "location",
-          data: locationValue,
+          key: "name",
+          data: nameValue,
         });
         break;
       }

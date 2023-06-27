@@ -14,7 +14,7 @@ import org.springframework.data.domain.Sort;
 public interface HotelService extends BaseService<Hotel> {
     List<HotelDTO> findHotelTrending();
 
-    List<HotelDTO> searchHotels(String location, String checkIn, String checkOut, Integer numRooms, Integer numGuests);
+    List<HotelDTO> searchHotels(String location);
 
     HotelDTO findHotelByName(String name);
 

@@ -1,0 +1,15 @@
+
+T
+java:S1854q"8Remove this useless assignment to local variable "sort".(åÖ?8ŒØ–È1
+U
+java:S1854y"8Remove this useless assignment to local variable "sort".(‹Öåè8ŒØ–È1
+F
+java:S1481o")Remove this unused "sort" local variable.(Íôà—8Ø–È1
+T
+java:S1128"7Remove this unused import 'com.example.be.dto.TourDTO'.(‡´¢‘8ØŠ¨É1
+4
+java:S1128"Remove this duplicated import.(ºêâÚ
+9
+java:S1128"Remove this duplicated import.(‡ë‚Öıÿÿÿÿ
+9
+java:S1128"Remove this duplicated import.(ëÿ€ëøÿÿÿÿ

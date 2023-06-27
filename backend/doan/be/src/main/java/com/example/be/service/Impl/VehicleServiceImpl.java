@@ -205,16 +205,8 @@ public class VehicleServiceImpl extends BaseServiceImpl<Vehicle> implements Vehi
         Integer saleWrap = null;
         if (sale != null && !sale.equals("undefined") && !sale.equals("null")) {
             saleWrap = Integer.parseInt(sale);
-            if (saleWrap != 1) {
-                saleWrap = null;
-            }
         }
-        System.out.println(name);
-        System.out.println(checkInTimestamp);
-        System.out.println(checkOutTimestamp);
-        System.out.println(priceStartString);
-        System.out.println(priceEndString);
-        System.out.println(saleWrap);
+
         Page<Vehicle> vehicles = vehicleRepository.filterVehicles(name, checkInTimestamp, checkOutTimestamp, priceStartString, priceEndString, saleWrap, pageable);
         List<VehicleDTO> vehicleDTOList = new ArrayList<>();
         for (int i = 0; i < vehicles.getContent().size(); i++){
