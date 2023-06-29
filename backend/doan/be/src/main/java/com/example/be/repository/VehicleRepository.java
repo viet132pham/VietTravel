@@ -30,7 +30,7 @@ public interface VehicleRepository extends BaseRepository<Vehicle, Long>{
     Vehicle findVehicleByName(String name);
 
     @Query(value = "SELECT * FROM Vehicle h WHERE " +
-            "(:name IS NULL OR h.name LIKE %:name%) " +
+            "(:name IS NULL OR h.name = :name) " +
             "AND (:checkIn IS NULL OR h.time_start <= :checkIn) " +
             "AND (:checkOut IS NULL OR h.time_end <= :checkOut) " +
             "AND (:priceStart IS NULL OR h.price >= :priceStart) " +

@@ -45,7 +45,7 @@ public interface HotelRepository extends BaseRepository<Hotel, Long>{
     Hotel findHotelByName(String name);
 
     @Query(value = "SELECT * FROM Hotel h WHERE " +
-            "(:name IS NULL OR h.name LIKE %:name%) " +
+            "(:name IS NULL OR h.name = :name) " +
             "AND (:checkIn IS NULL OR h.time_start <= :checkIn) " +
             "AND (:checkOut IS NULL OR h.time_end <= :checkOut) " +
             "AND (:priceStart IS NULL OR h.price >= :priceStart) " +

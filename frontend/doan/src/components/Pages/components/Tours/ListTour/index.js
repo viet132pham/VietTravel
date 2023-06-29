@@ -28,9 +28,10 @@ function ListTour(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log(name);
     if(name) {
       dispatch({
-        type: "CHANGE_FILTER_HOTEL",
+        type: "CHANGE_FILTER_TOUR",
         key: "name",
         data: name,
       });
