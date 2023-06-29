@@ -23,24 +23,19 @@ public class Hotel extends BaseEntity{
     @NotNull
     private String name;
 
-    @NotNull
-    private int numberRoom;
-    @NotNull
-    private int numberGuest;
-    @NotNull
-    private int sale;
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinTable(name = "hotel_room", joinColumns = {@JoinColumn(name = "hotel_id")}, inverseJoinColumns = {@JoinColumn(name = "room_id")})
+    private Set<Room> rooms = new HashSet<>();
     @NotNull
     private int status;
+    @NotNull
+    private int star;
     @NotNull
     private String image;
     @NotNull
     private int price;
     @NotNull
     private String description;
-    @NotNull
-    private Date timeStart;
-    @NotNull
-    private Date timeEnd;
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "location_id")
@@ -65,4 +60,8 @@ public class Hotel extends BaseEntity{
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinTable(name = "hotel_review", joinColumns = {@JoinColumn(name = "hotel_id")}, inverseJoinColumns = {@JoinColumn(name = "review_id")})
     private Set<Reviews> reviews = new HashSet<>();
+
+    private Date createdAt;
+
+    private Date updatedAt;
 }

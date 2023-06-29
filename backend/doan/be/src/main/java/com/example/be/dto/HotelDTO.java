@@ -1,15 +1,15 @@
 package com.example.be.dto;
 
-import com.example.be.entity.Amenityhotel;
-import com.example.be.entity.Essentials;
-import com.example.be.entity.Landmarks;
+import com.example.be.entity.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -34,4 +34,7 @@ public class HotelDTO {
     private List<ReviewsDTO> reviewsDTOS;
     private ArrayList<Landmarks> landmarks;
     private ArrayList<Essentials> essentials;
+    private ArrayList<Room> rooms;
+    private Date createdAt;
+    private Date updatedAt;
 }

@@ -13,5 +13,7 @@ import java.util.Set;
 @Setter
 public class Amenitytour extends BaseEntity {
     @NotNull
+    private String title;
+    @NotNull
     private String name;
 }

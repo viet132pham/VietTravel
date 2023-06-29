@@ -236,7 +236,7 @@ public class HotelServiceImpl extends BaseServiceImpl<Hotel> implements HotelSer
         if (sale != null && !sale.equals("undefined") && !sale.equals("null")) {
             saleWrap = Integer.parseInt(sale);
         }
-System.out.println(saleWrap);
+
         Page<Hotel> hotels = hotelRepository.filterHotels(name, checkInTimestamp, checkOutTimestamp, priceStartString, priceEndString, saleWrap, pageable);
         List<HotelDTO> hotelDTOList = new ArrayList<>();
         for (int i = 0; i < hotels.getContent().size(); i++){

@@ -68,19 +68,50 @@ public class HotelController extends BaseController<Hotel> {
             @RequestParam(value = "sortDir", required = false, defaultValue = "asc") String sortDir
     ) {
         Sort.Direction sortDirection = sortDir.equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
+        Sort sort;
 
-        if (sortBy == null) {
+        if (sortBy != null) {
+            switch (sortBy) {
+                case "low to high":
+                    sortBy = "price";
+                    sortDirection = Sort.Direction.ASC;
+                    break;
+                case "high to low":
+                    sortBy = "price";
+                    sortDirection = Sort.Direction.DESC;
+                    break;
+                case "newest":
+                    sortBy = "createdAt";
+                    sortDirection = Sort.Direction.DESC;
+                    break;
+                case "latest":
+                    sortBy = "createdAt";
+                    sortDirection = Sort.Direction.ASC;
+                    break;
+                case "sale":
+                    sortBy = "sale";
+                    sortDirection = Sort.Direction.ASC;
+                    break;
+                default:
+                    sortBy = "id";
+                    break;
+            }
+        } else {
             sortBy = "id";
         }
 
-        Sort sort = Sort.by(sortDirection, sortBy);
+        sort = Sort.by(sortDirection, sortBy);
         Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, sort);
-        if(name == null && checkIn == null && checkOut == null && priceStart == null && priceEnd == null && sale == null) {
+
+        if (name == null && checkIn == null && checkOut == null && priceStart == null && priceEnd == null && sale == null) {
             return hotelService.getListPaginationDTO(pageable);
+        } else if (sortBy != null && (sortBy.equalsIgnoreCase("low to high") || sortBy.equalsIgnoreCase("high to low") || sortBy.equalsIgnoreCase("newest") || sortBy.equalsIgnoreCase("latest") || sortBy.equalsIgnoreCase("sale"))) {
+            return hotelService.getSortedAndPaginateDTO(pageable);
         } else {
             return hotelService.filterHotels(pageable, name, checkIn, checkOut, priceStart, priceEnd, sale);
         }
     }
+
 
     @GetMapping("/sort_dto")
     public Page<HotelDTO> getSortedAndPaginateDTO(

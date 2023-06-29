@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -35,6 +36,9 @@ public class Cartitem extends BaseEntity{
 
     @NotNull
     private String image;
+
+    @NotNull
+    private Date planStart;
 
     @NotNull
     private int sale;

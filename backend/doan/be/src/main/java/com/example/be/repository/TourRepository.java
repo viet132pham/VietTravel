@@ -28,13 +28,13 @@ public interface TourRepository extends BaseRepository<Tour, Long>{
 
     Tour findTourByName(String name);
 
-    @Query(value = "SELECT * FROM Tour h WHERE " +
-            "(:name IS NULL OR h.name = :name) " +
-            "AND (:checkIn IS NULL OR h.time_start <= :checkIn) " +
-            "AND (:checkOut IS NULL OR h.time_end <= :checkOut) " +
-            "AND (:priceStart IS NULL OR h.price >= :priceStart) " +
-            "AND (:priceEnd IS NULL OR h.price <= :priceEnd) " +
-            "AND (:sale IS NULL OR h.sale = :sale", nativeQuery = true)
+    @Query(value = "SELECT * FROM Tour t WHERE " +
+            "(:name IS NULL OR t.name = :name) " +
+            "AND (:checkIn IS NULL OR t.time_start <= :checkIn) " +
+            "AND (:checkOut IS NULL OR t.time_end <= :checkOut) " +
+            "AND (:priceStart IS NULL OR t.price >= :priceStart) " +
+            "AND (:priceEnd IS NULL OR t.price <= :priceEnd) " +
+            "AND (:sale IS NULL OR t.sale = :sale)", nativeQuery = true)
     Page<Tour> filterTours(
             @Param("name") String name,
             @Param("checkIn") Timestamp checkIn,

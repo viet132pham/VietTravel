@@ -3,16 +3,17 @@ package com.example.be.entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "amenityhotel")
+@Table(name = "included")
 @Getter
 @Setter
-public class Amenityhotel extends BaseEntity {
+public class Included extends BaseEntity {
     @NotNull
     private String title;
     @NotNull
-    private String name;
+    private String description;
 }

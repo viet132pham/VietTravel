@@ -59,7 +59,6 @@ public class CartitemServiceImpl implements CartitemService {
                         .orElseThrow(() -> new IllegalArgumentException("id not found: " + cartitemRequest.getCartId()));
                 cartitem.setCart(cart);
                 cartitem.setImage(hotel.getImage());
-                cartitem.setSale(hotel.getSale());
                 cartitemRepository.save(cartitem);
                 return "oke";
             } else {

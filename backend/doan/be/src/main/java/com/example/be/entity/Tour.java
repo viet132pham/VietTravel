@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,6 +22,8 @@ public class Tour extends BaseEntity{
     private String code;
     @NotNull
     private String name;
+
+    // ví dụ tour này dành cho 3, 4 , 2, hay 1 người
     @NotNull
     private int numberGuest;
     @NotNull
@@ -29,14 +32,32 @@ public class Tour extends BaseEntity{
     private int status;
     @NotNull
     private String image;
+
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinTable(name = "tour_include", joinColumns = {@JoinColumn(name = "tour_id")}, inverseJoinColumns = {@JoinColumn(name = "include_id")})
+    private Set<Included> includeds = new HashSet<>();
+
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinTable(name = "tour_exclude", joinColumns = {@JoinColumn(name = "tour_id")}, inverseJoinColumns = {@JoinColumn(name = "exclude_id")})
+    private Set<Excluded> excludeds = new HashSet<>();
+
     @NotNull
     private int price;
+
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinTable(name = "tour_itinerary", joinColumns = {@JoinColumn(name = "tour_id")}, inverseJoinColumns = {@JoinColumn(name = "itinerary_id")})
+    private Set<Itinerary> itineraries = new HashSet<>();
+
     @NotNull
     private String description;
     @NotNull
     private String timeStart;
     @NotNull
-    private String timeEnd;
+    private String time;
+    @NotNull
+    private String vehicle;
+    @NotNull
+    private String hotel;
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "location_id")
@@ -53,5 +74,7 @@ public class Tour extends BaseEntity{
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinTable(name = "tour_review", joinColumns = {@JoinColumn(name = "tour_id")}, inverseJoinColumns = {@JoinColumn(name = "review_id")})
     private Set<Reviews> reviews = new HashSet<>();
+    private Date createdAt;
 
+    private Date updatedAt;
 }

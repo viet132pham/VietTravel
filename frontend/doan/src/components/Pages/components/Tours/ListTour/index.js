@@ -51,7 +51,7 @@ function ListTour(props) {
     filter?.checkIn,
     filter?.checkOut,
     filter?.page,
-    filter?.sortType,
+    filter?.sortType,filter?.sale
   ]);
 
   const handleShowDetail = (id) => {
@@ -65,7 +65,6 @@ function ListTour(props) {
     });
   };
   const handleAddCartItem = (e) => {
-    console.log(e);
     const cartModel = {
       cartId: cartId,
       categoryName: "tour",
@@ -93,15 +92,15 @@ function ListTour(props) {
       <div className="nav-link-filter">
         <div
           className="nav-item"
-          onClick={() => handleChangeSortType("popularity")}
+          onClick={() => handleChangeSortType("sale")}
         >
-          popularity
+          sale
         </div>
         <div
           className="nav-item"
-          onClick={() => handleChangeSortType("rating")}
+          onClick={() => handleChangeSortType("newest")}
         >
-          guest rating
+          newest
         </div>
         <div
           className="nav-item"

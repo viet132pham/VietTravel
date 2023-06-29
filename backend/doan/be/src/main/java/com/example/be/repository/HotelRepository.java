@@ -28,20 +28,6 @@ public interface HotelRepository extends BaseRepository<Hotel, Long>{
 
     List<Hotel> findHotelByLocation(Location location);
 
-    @Query("SELECT h FROM Hotel h WHERE " +
-            "(:location IS NULL OR h.location = :location) " +
-            "AND (:checkIn IS NULL OR h.timeStart <= :checkIn) " +
-            "AND (:checkOut IS NULL OR h.timeEnd <= :checkOut) " +
-            "AND (:numRooms IS NULL OR h.numberRoom = :numRooms) " +
-            "AND (:numGuests IS NULL OR h.numberGuest = :numGuests)")
-    List<Hotel> searchHotels(
-            @Param("location") Location location,
-            @Param("checkIn") Timestamp checkIn,
-            @Param("checkOut") Timestamp checkOut,
-            @Param("numRooms") Integer numRooms,
-            @Param("numGuests") Integer numGuests
-    );
-
     Hotel findHotelByName(String name);
 
     @Query(value = "SELECT * FROM Hotel h WHERE " +

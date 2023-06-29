@@ -1,9 +1,6 @@
 package com.example.be.service.Impl;
 
-import com.example.be.dto.LocationDTO;
-import com.example.be.dto.ReviewsDTO;
-import com.example.be.dto.TourDTO;
-import com.example.be.dto.UserDTO;
+import com.example.be.dto.*;
 import com.example.be.entity.Location;
 import com.example.be.entity.Reviews;
 import com.example.be.entity.Tour;
@@ -243,7 +240,7 @@ public class TourServiceImpl extends BaseServiceImpl<Tour> implements TourServic
         if (sale != null && !sale.equals("undefined") && !sale.equals("null")) {
             saleWrap = Integer.parseInt(sale);
         }
-
+        System.out.println(saleWrap);
         Page<Tour> tours = tourRepository.filterTours(
                 name,
                 checkInTimestamp,
@@ -279,8 +276,9 @@ public class TourServiceImpl extends BaseServiceImpl<Tour> implements TourServic
             tourDTO.setReviewsDTOS(reviewsDTOList);
             tourDTOList.add(tourDTO);
         }
+        Page<TourDTO> tourDTOPage = new PageImpl<>(tourDTOList, tours.getPageable(), tours.getTotalElements());
 
-        return new PageImpl<>(tourDTOList, pageable, tours.getTotalElements());
+        return tourDTOPage;
     }
 
 

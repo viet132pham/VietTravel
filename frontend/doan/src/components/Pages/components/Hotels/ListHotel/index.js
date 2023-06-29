@@ -48,13 +48,14 @@ function ListHotel(props) {
   }, [filter?.limit, filter?.name, 
     filter?.priceStart, 
     filter?.priceEnd, filter?.checkIn,
-     filter?.checkOut, filter?.page, filter?.sortTypes, filter?.sale]);
+     filter?.checkOut, filter?.page, filter?.sortType, filter?.sale]);
 
   const handleShowDetail = (id) => {
     history.push(`/hotel/detail/${id}`);
   };
 
   const handleChangeSortType = (value) => {
+    console.log("cghecklsklasdas");
     dispatch({
       type: "CHANGE_FILTER_HOTEL",
       key: "sortType",
@@ -63,7 +64,6 @@ function ListHotel(props) {
   };
 
   const handleAddCartItem = (e) => {
-    console.log(cartId);
     const cartModel = {
       cartId: cartId,
       categoryName: "hotel",
@@ -89,11 +89,36 @@ function ListHotel(props) {
         <div className="filter-reset" onClick={() => handleClearFilter()}>Clear filter</div>
       </div>
       <div className="nav-link-filter">
-        <div className="nav-item" onClick={() => handleChangeSortType('popularity')}>popularity</div>
-        <div className="nav-item" onClick={() => handleChangeSortType('rating')}>guest rating</div>
-        <div className="nav-item" onClick={() => handleChangeSortType('latest')}>latest</div>
-        <div className="nav-item" onClick={() => handleChangeSortType('low to hight')}>Price: low to hight</div>
-        <div className="nav-item" onClick={() => handleChangeSortType('hight to low')}>Price: hight to low</div>
+        <div
+          className="nav-item"
+          onClick={() => handleChangeSortType("sale")}
+        >
+          sale
+        </div>
+        <div
+          className="nav-item"
+          onClick={() => handleChangeSortType("newest")}
+        >
+          newest
+        </div>
+        <div
+          className="nav-item"
+          onClick={() => handleChangeSortType("latest")}
+        >
+          latest
+        </div>
+        <div
+          className="nav-item"
+          onClick={() => handleChangeSortType("low to hight")}
+        >
+          Price: low to hight
+        </div>
+        <div
+          className="nav-item"
+          onClick={() => handleChangeSortType("hight to low")}
+        >
+          Price: hight to low
+        </div>
       </div>
       <div className="list-items">
         {items?.map((e) => {

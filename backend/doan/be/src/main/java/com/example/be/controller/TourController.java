@@ -67,7 +67,33 @@ public class TourController extends BaseController<Tour> {
     ) {
         Sort.Direction sortDirection = sortDir.equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
 
-        if (sortBy == null) {
+        if (sortBy != null) {
+            switch (sortBy) {
+                case "low to high":
+                    sortBy = "price";
+                    sortDirection = Sort.Direction.ASC;
+                    break;
+                case "high to low":
+                    sortBy = "price";
+                    sortDirection = Sort.Direction.DESC;
+                    break;
+                case "newest":
+                    sortBy = "createdAt";
+                    sortDirection = Sort.Direction.DESC;
+                    break;
+                case "latest":
+                    sortBy = "createdAt";
+                    sortDirection = Sort.Direction.ASC;
+                    break;
+                case "sale":
+                    sortBy = "sale";
+                    sortDirection = Sort.Direction.ASC;
+                    break;
+                default:
+                    sortBy = "id";
+                    break;
+            }
+        } else {
             sortBy = "id";
         }
 
@@ -76,6 +102,8 @@ public class TourController extends BaseController<Tour> {
 
         if(name == null && checkIn == null && checkOut == null && priceStart == null && priceEnd == null && sale == null) {
             return tourService.getListPaginationDTO(pageable);
+        } else if (sortBy != null && (sortBy.equalsIgnoreCase("low to high") || sortBy.equalsIgnoreCase("high to low") || sortBy.equalsIgnoreCase("newest") || sortBy.equalsIgnoreCase("latest") || sortBy.equalsIgnoreCase("sale"))) {
+            return tourService.getSortedAndPaginateDTO(pageable);
         } else {
             return tourService.filterTours(pageable, name, checkIn, checkOut, priceStart, priceEnd, sale);
         }
