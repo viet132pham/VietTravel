@@ -25,6 +25,8 @@ public class Room extends BaseEntity{
     @NotNull
     private String numberGuest;
     @NotNull
+    private String roomBlank;
+    @NotNull
     private int sale;
     @NotNull
     private int status;
@@ -38,7 +40,7 @@ public class Room extends BaseEntity{
     private Date timeEnd; // ngay tra phong
 
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    @JoinTable(name = "hotel_amenity", joinColumns = {@JoinColumn(name = "hotel_id")}, inverseJoinColumns = {@JoinColumn(name = "amenityroom_id")})
+    @JoinTable(name = "room_amenityroom", joinColumns = {@JoinColumn(name = "room_id")}, inverseJoinColumns = {@JoinColumn(name = "amenityroom_id")})
     private Set<Amenityroom> amenityrooms = new HashSet<>();
 
 }

@@ -16,4 +16,7 @@ public class Amenitytour extends BaseEntity {
     private String title;
     @NotNull
     private String name;
+
+    @NotNull
+    private int status;
 }

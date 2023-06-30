@@ -1,0 +1,8 @@
+
+T
+java:S2589i"7Remove this expression which always evaluates to "true"(§ìÇ8‘úå¶1
+_
+java:S1854™"<Remove this useless assignment to local variable "pageable".(ØÛŠëÿÿÿÿÿ8¼Âñì1
+^	java:S125ˆ"<This block of commented-out lines of code should be removed.(¼ÜÃšùÿÿÿÿ8ÅÂñì1
+P
+java:S1481™"-Remove this unused "pageable" local variable.(ØÛŠëÿÿÿÿÿ8ÉÂñì1

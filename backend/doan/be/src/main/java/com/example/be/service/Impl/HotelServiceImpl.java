@@ -380,13 +380,7 @@ public class HotelServiceImpl extends BaseServiceImpl<Hotel> implements HotelSer
         hotel.getAmenityhotels().forEach(amenitytour -> {
             hotelDTO.getAmenityhotel().add(amenitytour);
         });
-//        if (hotelDTO.getEssentials() == null) {
-//            hotelDTO.setEssentials(new ArrayList<>());
-//        }
-//
-//        hotel.getEssentials().forEach(essential -> {
-//            hotelDTO.getEssentials().add(essential);
-//        });
+
 //        if (hotelDTO.getLandmarks() == null) {
 //            hotelDTO.setLandmarks(new ArrayList<>());
 //        }

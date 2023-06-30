@@ -33,8 +33,9 @@ public class HotelDTO {
     private ArrayList<Amenityhotel> amenityhotel;
     private List<ReviewsDTO> reviewsDTOS;
     private ArrayList<Landmarks> landmarks;
-    private ArrayList<Essentials> essentials;
     private ArrayList<Room> rooms;
+    private ArrayList<Rules> rules;
     private Date createdAt;
     private Date updatedAt;
+    private String address;
 }

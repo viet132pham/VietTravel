@@ -58,6 +58,10 @@ public class Tour extends BaseEntity{
     private String vehicle;
     @NotNull
     private String hotel;
+    @NotNull
+    private String locationStart;
+    @NotNull
+    private String locationEnd;
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "location_id")
@@ -68,13 +72,14 @@ public class Tour extends BaseEntity{
     private User admin;
 
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    @JoinTable(name = "tour_amenity", joinColumns = {@JoinColumn(name = "tour_id")}, inverseJoinColumns = {@JoinColumn(name = "amenitytour_id")})
-    private Set<Amenitytour> amenitytours = new HashSet<>();
-
-    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinTable(name = "tour_review", joinColumns = {@JoinColumn(name = "tour_id")}, inverseJoinColumns = {@JoinColumn(name = "review_id")})
     private Set<Reviews> reviews = new HashSet<>();
+
     private Date createdAt;
 
     private Date updatedAt;
+
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinTable(name = "tour_rule", joinColumns = {@JoinColumn(name = "tour_id")}, inverseJoinColumns = {@JoinColumn(name = "rule_id")})
+    private Set<Rules> rules = new HashSet<>();
 }

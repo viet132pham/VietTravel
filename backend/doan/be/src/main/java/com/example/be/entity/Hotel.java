@@ -36,6 +36,8 @@ public class Hotel extends BaseEntity{
     private int price;
     @NotNull
     private String description;
+    @NotNull
+    private String address;
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "location_id")
@@ -50,10 +52,6 @@ public class Hotel extends BaseEntity{
     private Set<Amenityhotel> amenityhotels = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    @JoinTable(name = "hotel_essential", joinColumns = {@JoinColumn(name = "hotel_id")}, inverseJoinColumns = {@JoinColumn(name = "essential_id")})
-    private Set<Essentials> essentials = new HashSet<>();
-
-    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinTable(name = "hotel_landmark", joinColumns = {@JoinColumn(name = "hotel_id")}, inverseJoinColumns = {@JoinColumn(name = "landmark_id")})
     private Set<Landmarks> landmarks = new HashSet<>();
 
@@ -64,4 +62,7 @@ public class Hotel extends BaseEntity{
     private Date createdAt;
 
     private Date updatedAt;
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinTable(name = "hotel_rule", joinColumns = {@JoinColumn(name = "hotel_id")}, inverseJoinColumns = {@JoinColumn(name = "rule_id")})
+    private Set<Rules> rules = new HashSet<>();
 }
