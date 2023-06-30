@@ -10,19 +10,29 @@ function Search(props) {
   const history = useHistory();
   const [searchItem, setSearchItem] = useState("hotel");
   const [name, setName] = useState("");
+  // const renderLabel = () => {
+  //   switch (searchItem) {
+  //     case "hotel":
+  //       return <div>Khách sạn</div>;
+  //     case "tour":
+  //       return <div>Thành phố / Địa điểm</div>;
+  //     case "vehicle":
+  //       return <div>Một chiều / Khứ hồi / Đưa đón sân bay</div>;
+  //     default:
+  //       return;
+  //   }
+  // };
   const renderLabel = () => {
     switch (searchItem) {
       case "hotel":
-        return <div>Hotel</div>;
+        return <div>Khách sạn</div>;
       case "tour":
-        return <div>City / Country</div>;
-      case "vehicle":
-        return <div>One Way / Round Trip / Airport Transfers</div>;
+        return <div>Thành phố / Địa điểm</div>;
       default:
         return;
     }
   };
-
+  
   const handleFilterLocation = (e) => {
     setName(e.target.value);
     console.log("viet check",name);
@@ -46,7 +56,7 @@ function Search(props) {
               style={{ fontSize: "30px", marginRight: "8px" }}
             ></i>
           </div>
-          <div className="text">Hotel</div>
+          <div className="text">Khách sạn</div>
         </div>
         <div className="item tour" onClick={() => setSearchItem("tour")}>
           <div className="icon">
@@ -57,7 +67,7 @@ function Search(props) {
           </div>
           <div className="text">Tour</div>
         </div>
-        <div className="item car" onClick={() => setSearchItem("vehicle")}>
+        {/* <div className="item car" onClick={() => setSearchItem("vehicle")}>
           <div className="icon">
             <i
               className="fa-solid fa-car"
@@ -65,7 +75,7 @@ function Search(props) {
             ></i>
           </div>
           <div className="text">Vehicle</div>
-        </div>
+        </div> */}
       </div>
       <div className="search-input">
         <div className="input-wrapper">
@@ -73,14 +83,14 @@ function Search(props) {
           <div className="label">{renderLabel()}</div>
 
           <div className="search-btn d-flex">
-            <Input placeholder="where are you going?" onChange={(e) => handleFilterLocation(e)} />
+            <Input placeholder="Bạn định đến đâu ?" onChange={(e) => handleFilterLocation(e)} />
             <Button
               startIcon={<GridSearchIcon />}
               variant="contained"
               color="#0088FF"
               onClick={() => handleSearch()}
             >
-              Search
+              Tìm kiếm
             </Button>
           </div>
         </div>

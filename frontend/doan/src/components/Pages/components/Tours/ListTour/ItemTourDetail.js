@@ -46,12 +46,12 @@ function ItemTourDetail(props) {
       <div className="hotel-detail-content-wrapper">
         <div className="bread-scrum d-flex">
           <div className="text" onClick={() => history.push("/")}>
-            Home >{" "}
+          Trang chủ >{" "}
           </div>
           <div className="text" onClick={() => history.push("/tour")}>
             Tour
           </div>
-          <div className="text">> Detail </div>
+          <div className="text">> Chi tiết </div>
         </div>
         <hr />
         <div className="container">
@@ -82,7 +82,7 @@ function ItemTourDetail(props) {
                       </div>
                     </div>
                     <div>
-                      <Button variant="container" onClick={() => handleAddCartItem(item)}>Add to Cart</Button>
+                      <Button variant="container" onClick={() => handleAddCartItem(item)}>Thêm vào giỏ hàng</Button>
                     </div>
                   </div>
                 </div>
@@ -91,7 +91,7 @@ function ItemTourDetail(props) {
                 </div>
                 <div className="single-hotel__description border-bottom">
                   <h5 className="text-dark font-weight-bold description-title">
-                    Description
+                  Mô tả
                   </h5>
                   <div className="description">
                     {item?.location?.description}

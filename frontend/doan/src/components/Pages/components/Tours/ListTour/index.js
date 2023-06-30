@@ -86,39 +86,39 @@ function ListTour(props) {
   return (
     <div className="list-tour-wrapper">
       <div className="title">
-        <div className="text">Tour: {items?.length || 0} results found</div>
-        <div className="filter-reset" onClick={() => handleClearFilter()}>Clear filter</div>
+        <div className="text">Tour: {items?.length || 0} kết quả tìm thấy</div>
+        <div className="filter-reset" onClick={() => handleClearFilter()}>Xóa bộ lọc</div>
       </div>
       <div className="nav-link-filter">
         <div
           className="nav-item"
           onClick={() => handleChangeSortType("sale")}
         >
-          sale
+          Giảm giá
         </div>
         <div
           className="nav-item"
           onClick={() => handleChangeSortType("newest")}
         >
-          newest
+          Mới nhất
         </div>
         <div
           className="nav-item"
           onClick={() => handleChangeSortType("latest")}
         >
-          latest
+          Cũ nhất
         </div>
         <div
           className="nav-item"
           onClick={() => handleChangeSortType("low to hight")}
         >
-          Price: low to hight
+          Giá: thấp đến cao
         </div>
         <div
           className="nav-item"
           onClick={() => handleChangeSortType("hight to low")}
         >
-          Price: hight to low
+          Giá: cao đến thấp
         </div>
       </div>
       <div className="list-items">
@@ -134,7 +134,7 @@ function ListTour(props) {
                   <div className="text">{e?.name}</div>
                 </div>
               </div>
-              <Button onClick={() => handleAddCartItem(e)}>Add to Cart</Button>
+              <Button onClick={() => handleAddCartItem(e)}>Thêm vào giỏ hàng</Button>
               <div className="rate">
                 {handleEverageStar(e?.reviewsDTOS)?.map((item) => {
                   return (
@@ -147,11 +147,11 @@ function ListTour(props) {
               </div>
               <div className="point-rate d-flex">
                 <div className="point">{everageStar(e?.reviewsDTOS)}.0/5.0</div>
-                <div className="view">( {e?.reviews?.length || 0} review )</div>
+                <div className="view">( {e?.reviews?.length || 0} đánh giá )</div>
               </div>
               <div className="price">
                 {" "}
-                From $ <b>{e.price}</b>{" "}
+                Từ VND <b>{e.price}</b>{" "}
               </div>
             </div>
           );

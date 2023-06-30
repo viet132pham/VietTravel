@@ -10,7 +10,7 @@ import { getVehicleTrendingItems } from "../../Pages/components/Vehicles/actions
 import { handleEverageStar } from "../../commons/actions/actionCommons";
 
 
-const listTitle = ["Tour", "Hotel", "Vehicle"];
+const listTitle = ["Tour", "Khách sạn"];
 
 function Trending(props) {
 
@@ -53,7 +53,7 @@ function Trending(props) {
   return (
     <div className="trending-content">
       <div className="trending-wrapper">
-        <div className="title d-flex justify-content-center">Trending</div>
+        <div className="title d-flex justify-content-center">Đang là xu hướng</div>
         <div className="divide-1"></div>
         <div className="list-title">
           {listTitle?.map((e, index) => {

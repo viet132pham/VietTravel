@@ -21,7 +21,7 @@ function TodayTopDeals(props) {
     <div className="top-deals">
       <div className="top-deals-wrapper">
         <div className="title d-flex justify-content-center">
-          Today's Top Deals
+        Ưu đãi hàng đầu hôm nay
         </div>
         <div className="divide-1"></div>
         <div className="list-deal">
