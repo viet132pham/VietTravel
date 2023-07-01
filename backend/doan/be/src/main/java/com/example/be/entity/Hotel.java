@@ -35,6 +35,8 @@ public class Hotel extends BaseEntity{
     @NotNull
     private int price;
     @NotNull
+    private int sale;
+    @NotNull
     private String description;
     @NotNull
     private String address;

@@ -172,13 +172,9 @@ d
 0be/src/main/java/com/example/be/entity/Blog.java,b\f\bf447f00a60ce7bada71058f5dbe48d82c4de09b
 c
 3be/src/main/java/com/example/be/entity/Vehicle.java,4\9\497e1998070354cc3767dfb4a9d559d69e2691a7
-o
-?be/src/main/java/com/example/be/controller/HotelController.java,4\2\42b9a25ed57a442abe957a02a5638af27260b4fc
 r
 Bbe/src/main/java/com/example/be/service/Impl/HotelServiceImpl.java,8\3\83b1c19083e7ab61dfc33e099c5578e8325d50ef
 n
 >be/src/main/java/com/example/be/repository/TourRepository.java,e\4\e414fea60fda178600e97bf0d624d3ae04187608
 o
 ?be/src/main/java/com/example/be/repository/HotelRepository.java,b\e\be06a91c8be5618cf78b1001841adcfb95c94939
-n
->be/src/main/java/com/example/be/controller/TourController.java,3\9\39405c5206de5f22302c9824977c7e3660dd911c

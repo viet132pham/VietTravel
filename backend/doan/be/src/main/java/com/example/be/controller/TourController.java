@@ -66,32 +66,28 @@ public class TourController extends BaseController<Tour> {
             @RequestParam(value = "sortDir", required = false, defaultValue = "asc") String sortDir
     ) {
         Sort.Direction sortDirection = sortDir.equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
+        System.out.println(sortBy);
 
         if (sortBy != null) {
-            switch (sortBy) {
-                case "low to high":
-                    sortBy = "price";
-                    sortDirection = Sort.Direction.ASC;
-                    break;
-                case "high to low":
-                    sortBy = "price";
-                    sortDirection = Sort.Direction.DESC;
-                    break;
-                case "newest":
-                    sortBy = "createdAt";
-                    sortDirection = Sort.Direction.DESC;
-                    break;
-                case "latest":
-                    sortBy = "createdAt";
-                    sortDirection = Sort.Direction.ASC;
-                    break;
-                case "sale":
-                    sortBy = "sale";
-                    sortDirection = Sort.Direction.ASC;
-                    break;
-                default:
-                    sortBy = "id";
-                    break;
+            System.out.println(sortBy);
+            if (sortBy.equals("low to hight")) {
+                sortBy = "price";
+                sortDirection = Sort.Direction.ASC;
+            } else if (sortBy.equals("hight to low")) {
+                sortBy = "price";
+                sortDirection = Sort.Direction.DESC;
+            } else if (sortBy.equals("newest")) {
+                sortBy = "createdAt";
+                sortDirection = Sort.Direction.DESC;
+            } else if (sortBy.equals("latest")) {
+                sortBy = "createdAt";
+                sortDirection = Sort.Direction.ASC;
+            } else if (sortBy.equals("sale")) {
+                sortBy = "sale";
+                sortDirection = Sort.Direction.DESC;
+            } else {
+                sortBy = "id";
+                System.out.println("sortBycascacs");
             }
         } else {
             sortBy = "id";

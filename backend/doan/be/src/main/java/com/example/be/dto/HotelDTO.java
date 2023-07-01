@@ -23,6 +23,7 @@ public class HotelDTO {
     private String name;
     private int numberGuest;
     private int sale;
+    private int star;
     private int status;
     private String image;
     private int price;

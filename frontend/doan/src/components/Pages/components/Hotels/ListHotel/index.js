@@ -48,7 +48,7 @@ function ListHotel(props) {
   }, [filter?.limit, filter?.name, 
     filter?.priceStart, 
     filter?.priceEnd, filter?.checkIn,
-     filter?.checkOut, filter?.page, filter?.sortType, filter?.sale]);
+     filter?.checkOut, filter?.page, filter?.sortBy, filter?.sale]);
 
   const handleShowDetail = (id) => {
     history.push(`/hotel/detail/${id}`);
@@ -58,7 +58,7 @@ function ListHotel(props) {
     console.log("cghecklsklasdas");
     dispatch({
       type: "CHANGE_FILTER_HOTEL",
-      key: "sortType",
+      key: "sortBy",
       data: value,
     });
   };

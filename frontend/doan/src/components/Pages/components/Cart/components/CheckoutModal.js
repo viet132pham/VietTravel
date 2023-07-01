@@ -106,7 +106,7 @@ function CheckoutModal(props) {
       </DialogContent>
       <DialogActions>
         <Button
-          variant="outlined"
+          variant="outlined"d
           color="error"
           onClick={() => handleClose()}
           sx={{ marginRight: "16px" }}
