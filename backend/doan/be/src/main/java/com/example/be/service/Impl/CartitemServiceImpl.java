@@ -32,6 +32,9 @@ public class CartitemServiceImpl implements CartitemService {
     @Autowired
     private HotelRepository hotelRepository;
     @Autowired
+    private RoomRepository roomRepository;
+
+    @Autowired
     private VehicleRepository vehicleRepository;
     @Override
     public String createRequest(CartitemRequest cartitemRequest, BindingResult bindingResult) {
@@ -51,14 +54,14 @@ public class CartitemServiceImpl implements CartitemService {
             } else {
                 return "id not founda";
             }
-        } else if (cartitemRequest.getCategoryName().equals("hotel")) {
-            Hotel hotel = hotelRepository.findHotelById(cartitemRequest.getCategoryId());
-            if (hotel != null) {
+        } else if (cartitemRequest.getCategoryName().equals("room")) {
+            Room room = roomRepository.findRoomById(cartitemRequest.getCategoryId());
+            if (room != null) {
                 mapper.map(cartitemRequest, cartitem);
                 Cart cart = cartRepository.findById(cartitemRequest.getCartId())
                         .orElseThrow(() -> new IllegalArgumentException("id not found: " + cartitemRequest.getCartId()));
                 cartitem.setCart(cart);
-                cartitem.setImage(hotel.getImage());
+                cartitem.setImage(room.getImage());
                 cartitemRepository.save(cartitem);
                 return "oke";
             } else {

@@ -21,6 +21,8 @@ public class Room extends BaseEntity{
     @NotNull
     private String name;
     @NotNull
+    private String hotelName;
+    @NotNull
     private String bed;
     @NotNull
     private String numberGuest;

@@ -38,8 +38,5 @@ public class Cartitem extends BaseEntity{
     private String image;
 
     @NotNull
-    private Date planStart;
-
-    @NotNull
     private int sale;
 }
