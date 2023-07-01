@@ -36,7 +36,4 @@ public class Cartitem extends BaseEntity{
 
     @NotNull
     private String image;
-
-    @NotNull
-    private int sale;
 }

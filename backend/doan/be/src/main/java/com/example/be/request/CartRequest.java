@@ -16,5 +16,8 @@ public class CartRequest {
     private String status;
     private String priceTotal;
     private String paymentMethod;
+    private String email;
+    private String phone;
+    private String fullName;
     private long userId;
 }

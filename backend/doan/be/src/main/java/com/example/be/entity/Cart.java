@@ -24,6 +24,12 @@ public class Cart extends BaseEntity{
 
     private String paymentMethod;
 
+    private String email;
+
+    private String phone;
+
+    private String fullName;
+
     @NotNull
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
