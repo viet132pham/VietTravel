@@ -13,12 +13,11 @@ const initState = {
     location :'',
     checkIn: '',
     checkOut: '',
-    sortBy: '',
+    sortType: '',
   }
 };
 
 const tour = (state = initState, action) => {
-  console.log("check tour action :", action);
 
   switch (action.type) {
     case actionTypeTour.UPDATE_LIST_TOUR:
@@ -56,7 +55,7 @@ const tour = (state = initState, action) => {
           location :'',
           checkIn: '',
           checkOut: '',
-          sortBy: '',
+          sortType: '',
         }
       }
     default:

@@ -67,7 +67,7 @@ export const updatePassword = (model) => (dispatch, getState) => {
   });
 };
 
-export const getListOrderedByUser = () => (dispatch, getState) => {
+export const getListOrderedByUser = (id) => (dispatch, getState) => {
 
   const {auth: {
     account: {
@@ -75,7 +75,7 @@ export const getListOrderedByUser = () => (dispatch, getState) => {
     }
   }} = getState();
 
-  const url = `${BASE_URL}/api/cart/get_list_ordered/${userId}`;
+  const url = `${BASE_URL}/api/cart/get_list_ordered/${id}`;
   const options = {
     method: 'GET'
   }

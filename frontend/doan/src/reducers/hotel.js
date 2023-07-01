@@ -13,12 +13,11 @@ const initState = {
     location :'',
     checkIn: '',
     checkOut: '',
-    sortBy: '',
+    sortType: '',
   }
 };
 
 const hotel = (state = initState, action) => {
-  console.log("check hotel action :", action);
   switch (action.type) {
     case actionTypeHotel.UPDATE_LIST_HOTEL:
       return {
@@ -55,7 +54,7 @@ const hotel = (state = initState, action) => {
         location :'',
         checkIn: '',
         checkOut: '',
-        sortBy: '',
+        sortType: '',
       }
     }
     default:

@@ -1,19 +1,17 @@
-
-
 import { TextField } from "@mui/material";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 import React from "react";
 import "../styles/FilterData/FilterLocaton.scss";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-function FilterLocation(props){
+function FilterLocation(props) {
   const { type } = props;
-  const [nameValue, setNameValue] = useState('');
+  const [nameValue, setNameValue] = useState("");
 
   const handleFilterLocation = (e) => {
     setNameValue(e.target.value);
-  }
+  };
 
   const dispatch = useDispatch();
 
@@ -58,14 +56,18 @@ function FilterLocation(props){
 
   return (
     <div className="filter-location-wrapper">
-      <div className="title">
-        Destination or name
-      </div>
+      <div className="title">Nơi bạn muốn đến</div>
       <div className="input-field">
-      <TextField id="standard-basic" label="Search..." variant="standard" onChange={(e) => handleFilterLocation(e)} />
+        <input
+          type="text"
+          onChange={(e) => handleFilterLocation(e)}
+          value={nameValue}
+        />
       </div>
-      <Button variant="contained" onClick={() => handleChangeFilter()}>Search</Button>
-    </div>      
-  )
+      <div className="d-flex justify-content-center">
+        <button onClick={() => handleChangeFilter()}>Tìm kiếm</button>
+      </div>
+    </div>
+  );
 }
 export default FilterLocation;

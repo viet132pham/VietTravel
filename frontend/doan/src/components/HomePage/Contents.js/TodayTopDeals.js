@@ -7,15 +7,6 @@ function TodayTopDeals(props) {
 
   const hotelDeal = useSelector(state => state.hotel.deals);
   const tourDeal = useSelector(state => state.tour.deals);
-  const vehicleDeal = useSelector(state => state.vehicle.deals)
-
-  const items = useMemo(() => {
-    const arr = [];
-    arr.concat(hotelDeal?.[0]);
-    arr.concat(tourDeal?.[0]);
-    arr.concat(vehicleDeal?.[0]);
-    return arr;
-  }, [hotelDeal, tourDeal, vehicleDeal]);
 
   return (
     <div className="top-deals">

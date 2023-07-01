@@ -53,8 +53,8 @@ export const getListFilterTour = () => (dispatch, getState) => {
   if(filter?.checkOut){
     url = url + `&checkOut=${filter.checkOut}`;
   }
-  if(filter?.sortBy){
-    url = url + `&sortBy=${filter.sortBy}`;
+  if(filter?.sortType){
+    url = url + `&sortType=${filter.sortType}`;
   }
   return callApi(url, options).then(res => {
     if(res?.data){

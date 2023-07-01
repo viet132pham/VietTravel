@@ -11,11 +11,8 @@ import {
 import { useHistory } from "react-router-dom";
 import { Button } from "@mui/material";
 import { addCartItem } from "../../Cart/actions/CartActionCallApi";
-import { useLocation } from 'react-router-dom';
 
 function ListVehicle(props) {
-  const location = useLocation();
-  const name = location.state?.name;
   const items = useSelector((state) => state.vehicle.items);
   const filter = useSelector((state) => state.vehicle.filter);
   const cartId = useSelector(state => state.cart.id);
@@ -24,24 +21,15 @@ function ListVehicle(props) {
   const history = useHistory();
 
   useEffect(() => {
-    if(name) {
-      dispatch({
-        type: "CHANGE_FILTER_HOTEL",
-        key: "name",
-        data: name,
-      });
-      dispatch(getListFilterVehicle());
-    } else {
-      dispatch(getListVehicle(filter));
-    }
+    dispatch(getListVehicle(filter));
   }, []);
   
   useEffect(() => {
     dispatch(getListFilterVehicle());
-  }, [filter?.limit, filter?.name, 
+  }, [filter?.limit, filter?.location, 
     filter?.priceStart, 
     filter?.priceEnd, filter?.checkIn,
-     filter?.checkOut, filter?.page, filter?.sortBy]);
+     filter?.checkOut, filter?.page, filter?.sortType]);
 
   const handleShowDetail = (id) => {
     history.push(`/vehicle/detail/${id}`);
@@ -49,7 +37,7 @@ function ListVehicle(props) {
   const handleChangeSortType = (value) => {
     dispatch({
       type: "CHANGE_FILTER_VEHICLE",
-      key: "sortBy",
+      key: "sortType",
       data: value,
     });
   };
@@ -95,7 +83,7 @@ function ListVehicle(props) {
                       <div className="icon">
                         <i className="fa-solid fa-location-dot fa-xl"></i>
                       </div>
-                      <div className="text">{e?.name}</div>
+                      <div className="text">{e?.locationDTO?.description}</div>
                     </div>
                   </div>
                   <Button onClick={() => handleAddCartItem(e)}>Add to Cart</Button>

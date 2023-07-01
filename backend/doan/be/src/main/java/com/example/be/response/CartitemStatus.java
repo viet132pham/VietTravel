@@ -6,7 +6,6 @@ public interface CartitemStatus {
      long getPrice();
      long getCategoryId();
      String getCategoryName();
-     int getSale();
      int getQuantity();
      String getImage();
 

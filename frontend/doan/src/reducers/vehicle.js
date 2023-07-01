@@ -14,7 +14,7 @@ const initState = {
     location :'',
     checkIn: '',
     checkOut: '',
-    sortBy: ''
+    sortType: ''
   }
 };
 
@@ -57,7 +57,7 @@ const vehicle = (state = initState, action) => {
             location :'',
             checkIn: '',
             checkOut: '',
-            sortBy: '',
+            sortType: '',
           }
         }
     default:
