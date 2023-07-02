@@ -2,7 +2,7 @@ import React from "react";
 import HeaderNav from "../../../commons/HeaderNav/HeaderNav";
 import Footer from "../../../HomePage/Footer";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   getListOrderedByUser,
   getUserById,
@@ -23,7 +23,7 @@ import {
 
 function Profile(props) {
   const dispatch = useDispatch();
-  const auth = useSelector(state => state.auth.account);
+
   const [tab, setTab] = useState(1);
   const [user, setUser] = useState({});
   const [orders, setOrders] = useState([]);
@@ -44,7 +44,7 @@ function Profile(props) {
       setFullName(res?.fullName);
       setUserName(res?.username);
     });
-    dispatch(getListOrderedByUser(auth.userId)).then((json) => setOrders(json));
+    dispatch(getListOrderedByUser()).then((json) => setOrders(json));
   }, []);
 
   const handleChangeTab = (value) => {

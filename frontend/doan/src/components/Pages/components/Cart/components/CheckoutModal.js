@@ -48,11 +48,7 @@ function CheckoutModal(props) {
       priceTotal: totalPrice,
       paymentMethod: "CASH DELIVERY",
       status: "PROCESS",
-      fullName: fullName,
-      email: email,
-      phone: phone
     };
-    console.log(cartModel);
     dispatch(updateCart(cartId, cartModel));
     dispatch(initCart(auth.userId));
     dispatch(getCartByUser(auth.userId));
