@@ -30,6 +30,8 @@ public class JwtTokenUtil implements Serializable {
 
     //retrieve username from jwt token
     public String getUsernameFromToken(String token) {
+        System.out.println("check2");
+        System.out.println(token);
         return getClaimFromToken(token, Claims::getSubject);
     }
 
@@ -45,6 +47,8 @@ public class JwtTokenUtil implements Serializable {
 
     //for retrieveing any information from token we will need the secret key
     private Claims getAllClaimsFromToken(String token) {
+        System.out.println("check3");
+        System.out.println(token);
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
     }
 

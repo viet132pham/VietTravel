@@ -30,7 +30,7 @@ body- Using Spring Authentication Manager we authenticate the username and passw
 a JWT token is created using the JWTTokenUtil and provided to the client.
  */
 @RestController
-@CrossOrigin()
+@CrossOrigin("*")
 public class JwtAuthenticationController {
 
     @Autowired
@@ -91,6 +91,8 @@ public class JwtAuthenticationController {
 
     @RequestMapping(value="/auth", method = RequestMethod.GET)
     public String getUsername(@RequestHeader("Authorization") String token) throws Exception {
+        System.out.println("check1");
+        System.out.println(token);
         final String user = jwtTokenUtil.getUsernameFromToken(token);
         return user;
     }

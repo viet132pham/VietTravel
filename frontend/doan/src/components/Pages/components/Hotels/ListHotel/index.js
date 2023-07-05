@@ -58,7 +58,7 @@ function ListHotel(props) {
     filter?.checkIn,
     filter?.checkOut,
     filter?.page,
-    filter?.sortType,
+    filter?.sortBy,
     filter?.sale,
   ]);
 
@@ -69,7 +69,7 @@ function ListHotel(props) {
   const handleChangeSortType = (value) => {
     dispatch({
       type: "CHANGE_FILTER_HOTEL",
-      key: "sortType",
+      key: "sortBy",
       data: value,
     });
   };

@@ -57,7 +57,7 @@ function ListTour(props) {
     filter?.checkIn,
     filter?.checkOut,
     filter?.page,
-    filter?.sortType,
+    filter?.sortBy,
     filter?.sale,
   ]);
 
@@ -67,7 +67,7 @@ function ListTour(props) {
   const handleChangeSortType = (value) => {
     dispatch({
       type: "CHANGE_FILTER_TOUR",
-      key: "sortType",
+      key: "sortBy",
       data: value,
     });
   };
