@@ -117,7 +117,7 @@ function ItemTourDetail(props) {
                           </span>
                           <span>Phương tiện:</span>
                           <span>
-                            {item?.locationStart} - {item?.locationEnd}
+                            {item?.vehicle}
                           </span>
                         </div>
                         <div className="info">

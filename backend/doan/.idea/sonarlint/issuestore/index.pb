@@ -38,8 +38,6 @@ h
 8be/src/main/java/com/example/be/service/BaseService.java,c\9\c93bfdbebfbd8ad9dddfd97b45e46d965d628080
 q
 Abe/src/main/java/com/example/be/service/Impl/BaseServiceImpl.java,b\3\b394b71d23db1a48867ca53f9cde0684d2380220
-s
-Cbe/src/main/java/com/example/be/controller/LandmarksController.java,8\e\8ec10605aa0b06c138c81faca72d76cf8d646444
 v
 Fbe/src/main/java/com/example/be/controller/BlogcategoryController.java,4\2\425ba927c764c68c4605ddb6f2c01c4dfb3c9b7b
 u
