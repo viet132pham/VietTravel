@@ -28,7 +28,7 @@ public interface TourRepository extends BaseRepository<Tour, Long>{
 
     Tour findTourByName(String name);
 
-    @Query(value = "SELECT * FROM Tour t WHERE " +
+    @Query(value = "SELECT * FROM tour t WHERE " +
             "(:name IS NULL OR t.name = :name) " +
             "AND (:checkIn IS NULL OR t.time_start <= :checkIn) " +
             "AND (:checkOut IS NULL OR t.time_end <= :checkOut) " +
@@ -45,6 +45,6 @@ public interface TourRepository extends BaseRepository<Tour, Long>{
             Pageable pageable
     );
 
-    @Query(value = "SELECT DISTINCT h.sale FROM Tour h ORDER BY h.sale ASC", nativeQuery = true)
+    @Query(value = "SELECT DISTINCT h.sale FROM tour h ORDER BY h.sale ASC", nativeQuery = true)
     List<Integer> getAvailableSales();
 }

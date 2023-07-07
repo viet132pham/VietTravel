@@ -1,12 +1,0 @@
-
-]	java:S125#"<This block of commented-out lines of code should be removed.(¼è÷ïøÿÿÿÿ8´¨ñ1
-U
-java:S1128"8Remove this unused import 'com.example.be.entity.Hotel'.(åõİü8ƒö¦ñ1
-c
-java:S1128"ARemove this unused import 'org.springframework.data.domain.Page'.(˜âüÿÿÿÿ8„ö¦ñ1
-g
-java:S1128"ERemove this unused import 'org.springframework.data.domain.Pageable'.(‡ë‚Öıÿÿÿÿ8§ã¥ñ1
-i
-java:S1128	"LRemove this unused import 'org.springframework.data.repository.query.Param'.(©”šô8¹¨ñ1
-K
-java:S1128"/Remove this unused import 'java.sql.Timestamp'.(èò½+8§ã¥ñ1

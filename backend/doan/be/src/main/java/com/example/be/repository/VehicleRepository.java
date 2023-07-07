@@ -29,7 +29,7 @@ public interface VehicleRepository extends BaseRepository<Vehicle, Long>{
 
     Vehicle findVehicleByName(String name);
 
-    @Query(value = "SELECT * FROM Vehicle h WHERE " +
+    @Query(value = "SELECT * FROM vehicle h WHERE " +
             "(:name IS NULL OR h.name = :name) " +
             "AND (:checkIn IS NULL OR h.time_start <= :checkIn) " +
             "AND (:checkOut IS NULL OR h.time_end <= :checkOut) " +
@@ -46,6 +46,6 @@ public interface VehicleRepository extends BaseRepository<Vehicle, Long>{
                     Pageable pageable
             );
     
-    @Query(value = "SELECT DISTINCT h.sale FROM Vehicle h ORDER BY h.sale ASC", nativeQuery = true)
+    @Query(value = "SELECT DISTINCT h.sale FROM vehicle h ORDER BY h.sale ASC", nativeQuery = true)
     List<Integer> getAvailableSales();
 }

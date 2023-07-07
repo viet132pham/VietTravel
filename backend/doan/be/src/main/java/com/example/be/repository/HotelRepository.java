@@ -30,7 +30,7 @@ public interface HotelRepository extends BaseRepository<Hotel, Long>{
 
     Hotel findHotelByName(String name);
 
-    @Query(value = "SELECT * FROM Hotel h WHERE " +
+    @Query(value = "SELECT * FROM hotel h WHERE " +
             "(:name IS NULL OR h.name = :name) " +
             "AND (:checkIn IS NULL OR h.time_start <= :checkIn) " +
             "AND (:checkOut IS NULL OR h.time_end <= :checkOut) " +
@@ -47,7 +47,7 @@ public interface HotelRepository extends BaseRepository<Hotel, Long>{
             Pageable pageable
     );
 
-    @Query(value = "SELECT DISTINCT h.sale FROM Hotel h ORDER BY h.sale ASC", nativeQuery = true)
+    @Query(value = "SELECT DISTINCT h.sale FROM hotel h ORDER BY h.sale ASC", nativeQuery = true)
     List<Integer> getAvailableSales();
 
 }
