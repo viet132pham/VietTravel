@@ -39,34 +39,47 @@ public class CartitemServiceImpl implements CartitemService {
     @Override
     public String createRequest(CartitemRequest cartitemRequest, BindingResult bindingResult) {
         Cartitem cartitem = new Cartitem();
-
         if (cartitemRequest.getCategoryName().equals("tour")) {
             Tour tour = tourRepository.findTourById(cartitemRequest.getCategoryId());
-            if (tour != null) {
-                mapper.map(cartitemRequest, cartitem);
-                Cart cart = cartRepository.findById(cartitemRequest.getCartId())
-                        .orElseThrow(() -> new IllegalArgumentException("id not found: " + cartitemRequest.getCartId()));
-                cartitem.setCart(cart);
-                cartitem.setImage(tour.getImage());
-                cartitemRepository.save(cartitem);
+            Cartitem cartitem1 = cartitemRepository.findCartitemByCategoryIdAndAndCategoryName(cartitemRequest.getCartId(),cartitemRequest.getCategoryId(), cartitemRequest.getCategoryName());
+            if (cartitem1 != null) {
+                this.updateQuantityCart(cartitem1.getQuantity()+1,cartitem1.getId());
                 return "oke";
             } else {
-                return "id not founda";
+                if (tour != null) {
+                    mapper.map(cartitemRequest, cartitem);
+                    Cart cart = cartRepository.findById(cartitemRequest.getCartId())
+                            .orElseThrow(() -> new IllegalArgumentException("id not found: " + cartitemRequest.getCartId()));
+                    cartitem.setCart(cart);
+                    cartitem.setImage(tour.getImage());
+                    cartitemRepository.save(cartitem);
+                    return "oke";
+                } else {
+                    return "id not founda";
+                }
             }
+
         } else if (cartitemRequest.getCategoryName().equals("room")) {
             Room room = roomRepository.findRoomById(cartitemRequest.getCategoryId());
-            if (room != null) {
-                mapper.map(cartitemRequest, cartitem);
-                Cart cart = cartRepository.findById(cartitemRequest.getCartId())
-                        .orElseThrow(() -> new IllegalArgumentException("id not found: " + cartitemRequest.getCartId()));
-                cartitem.setCart(cart);
-                cartitem.setImage(room.getImage());
-                cartitemRepository.save(cartitem);
+            Cartitem cartitem1 = cartitemRepository.findCartitemByCategoryIdAndAndCategoryName(cartitemRequest.getCartId(),cartitemRequest.getCategoryId(), cartitemRequest.getCategoryName());
+            if (cartitem1 != null) {
+                this.updateQuantityCart(cartitem1.getQuantity()+1,cartitem1.getId());
                 return "oke";
             } else {
-                return "id not foundb";
+                if (room != null) {
+                    mapper.map(cartitemRequest, cartitem);
+                    Cart cart = cartRepository.findById(cartitemRequest.getCartId())
+                            .orElseThrow(() -> new IllegalArgumentException("id not found: " + cartitemRequest.getCartId()));
+                    cartitem.setCart(cart);
+                    cartitem.setImage(room.getImage());
+                    cartitemRepository.save(cartitem);
+                    return "oke";
+                } else {
+                    return "id not foundb";
+                }
             }
-        } else if (cartitemRequest.getCategoryName().equals("vehicle")) {
+        }
+        else if (cartitemRequest.getCategoryName().equals("vehicle")) {
             Vehicle vehicle = vehicleRepository.findVehicleById(cartitemRequest.getCategoryId());
             if (vehicle != null) {
                 mapper.map(cartitemRequest, cartitem);

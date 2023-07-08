@@ -46,4 +46,10 @@ public interface CartitemRepository extends JpaRepository<Cartitem, Long>{
             "WHERE ci.id = :cid", nativeQuery = true)
     CartitemStatus findByIdCartitem(long cid);
 
+
+    @Query(value = "SELECT *\n" +
+            "FROM cartitem ci\n" +
+            "WHERE ci.category_id = :id AND ci.category_name = :name AND ci.cart_id = :cid", nativeQuery = true)
+    Cartitem findCartitemByCategoryIdAndAndCategoryName(long cid, long id, String name);
+
 }
