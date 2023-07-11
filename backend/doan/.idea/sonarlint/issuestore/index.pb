@@ -114,8 +114,6 @@ e
 5be/src/main/java/com/example/be/entity/Itinerary.java,0\1\0127e437ff212db82d91e87b1c672c3493ad2943
 d
 4be/src/main/java/com/example/be/entity/Included.java,e\f\ef5fc516d12f6450794c7f53fc8d81928156bbdc
-d
-4be/src/main/java/com/example/be/entity/Location.java,8\e\8e9c6673f08feba54a335bde0ce443d8c160755e
 `
 0be/src/main/java/com/example/be/entity/User.java,c\1\c1d24e17f9335b7f7d4b96d2d9b10ad345b26f2a
 `
@@ -134,16 +132,10 @@ a
 1be/src/main/java/com/example/be/entity/Rules.java,b\7\b723197a9ace057f036a0882933b258f2669dd15
 `
 0be/src/main/java/com/example/be/dto/TourDTO.java,5\d\5d45ba5678d991f40a3fbdd75a8e4200064a6a99
-`
-0be/src/main/java/com/example/be/entity/Tour.java,4\f\4f74292d12070a06a488f2bbd73943170cbb7484
-q
-Abe/src/main/java/com/example/be/service/Impl/TourServiceImpl.java,1\3\13532d44156a172206406011c8142c4228283827
 e
 5be/src/main/java/com/example/be/entity/Landmarks.java,6\a\6a78bc7af0527b3bcc0a4cba13ce0d99ca40fd7d
 a
 1be/src/main/java/com/example/be/dto/HotelDTO.java,1\e\1e1ba7c94fbc8f0d8f5290527899c62b0ae8d1fa
-a
-1be/src/main/java/com/example/be/entity/Hotel.java,7\e\7e27d9e0dd39ded5b3500def627c1a2d22667e63
 o
 ?be/src/main/java/com/example/be/controller/HotelController.java,4\2\42b9a25ed57a442abe957a02a5638af27260b4fc
 l
@@ -156,8 +148,6 @@ n
 >be/src/main/java/com/example/be/controller/RoomController.java,f\9\f9cdf42224d601d0059833eea864d62cc9c6fc46
 q
 Abe/src/main/java/com/example/be/service/Impl/RoomServiceImpl.java,0\c\0c8e1256f0ec315e4efcfb2a6afe4f2b1790f5b9
-n
->be/src/main/java/com/example/be/controller/CartController.java,f\f\ffcc39c4251ee69918480cc0f34cf1f56486f1bc
 h
 8be/src/main/java/com/example/be/service/CartService.java,e\8\e812a124ee4d25816660e4cf2cc225186dbb93da
 q

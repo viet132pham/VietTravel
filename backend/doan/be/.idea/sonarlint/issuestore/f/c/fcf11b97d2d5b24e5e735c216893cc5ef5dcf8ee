@@ -1,0 +1,44 @@
+
+f
+java:S1192Á"JDefine a constant instead of duplicating this literal "undefined" 5 times.(ÛÌŒ¨ÿÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(®øÝùþÿÿÿÿ
+|
+java:S4144£"eUpdate this method so that its implementation is not identical to "getListPaginationDTO" on line 255.(¥ÂÀ¬
+T
+java:S18545">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+E
+java:S14815"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+T
+java:S1854^">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+G
+java:S1602V",Remove useless curly braces around statement(íÐéóüÿÿÿÿ
+E
+java:S1481^"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+U
+java:S1854‚">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+F
+java:S1481‚"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+U
+java:S1854£">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+F
+java:S1481£"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+O	java:S106Â"9Replace this use of System.out or System.err by a logger.(ó´¯ƒ
+T	java:S106Û"9Replace this use of System.out or System.err by a logger.(—ÍÜÎùÿÿÿÿ
+U
+java:S1854…">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+F
+java:S1481…"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+U
+java:S1854©">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+F
+java:S1481©"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+U
+java:S1854Ì">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+F
+java:S1481Ì"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+R
+java:S1128"7Remove this unused import 'com.example.be.entity.User'.(‘á•œÿÿÿÿÿ
+z
+java:S1128"_Remove this unused import 'org.springframework.security.core.authority.SimpleGrantedAuthority'.(– ‹Ìûÿÿÿÿ
+`
+java:S1128"JRemove this unused import 'jdk.nashorn.internal.objects.Global.undefined'.(Ã„Ûý

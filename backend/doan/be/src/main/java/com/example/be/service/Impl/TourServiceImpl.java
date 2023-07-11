@@ -4,7 +4,6 @@ import com.example.be.dto.*;
 import com.example.be.entity.Location;
 import com.example.be.entity.Reviews;
 import com.example.be.entity.Tour;
-import com.example.be.entity.User;
 import com.example.be.repository.BaseRepository;
 import com.example.be.repository.CartitemRepository;
 import com.example.be.repository.LocationRepository;
@@ -16,14 +15,11 @@ import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
-import static jdk.nashorn.internal.objects.Global.undefined;
 
 @Service
 @Log4j2
