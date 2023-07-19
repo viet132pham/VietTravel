@@ -1,3 +1,4 @@
+Use sql6633081;
 -- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: doan
@@ -21,7 +22,7 @@
 
 DROP TABLE IF EXISTS `amenityhotel`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `amenityhotel` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
@@ -30,7 +31,7 @@ CREATE TABLE `amenityhotel` (
   `title` varchar(255) NOT NULL,
   `status` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=340 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=340 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,7 +50,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `amenityroom`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `amenityroom` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
@@ -58,7 +59,7 @@ CREATE TABLE `amenityroom` (
   `title` varchar(255) NOT NULL,
   `status` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -77,7 +78,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `amenitytour`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `amenitytour` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
@@ -86,7 +87,7 @@ CREATE TABLE `amenitytour` (
   `status` int NOT NULL,
   `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,7 +105,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `blog`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `blog` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
@@ -115,7 +116,7 @@ CREATE TABLE `blog` (
   `admin_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKhqsmt4xhq7o1j8a3x28ihvgro` (`admin_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -134,13 +135,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `blog_blogcategory`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `blog_blogcategory` (
   `blog_id` bigint NOT NULL,
   `blogcategory_id` bigint NOT NULL,
   PRIMARY KEY (`blog_id`,`blogcategory_id`),
   KEY `FKlo1gmgqycaibjfh98vt16sj8y` (`blogcategory_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -159,14 +160,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `blogcategory`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `blogcategory` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -185,7 +186,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cart`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `cart` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
@@ -199,7 +200,7 @@ CREATE TABLE `cart` (
   `phone` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKl70asp4l4w0jmbm1tqyofho4o` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -218,7 +219,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cartitem`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `cartitem` (
   `id` int NOT NULL AUTO_INCREMENT,
   `cart_id` bigint NOT NULL,
@@ -232,7 +233,7 @@ CREATE TABLE `cartitem` (
   `image` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FKcj0jvvlv7mum72m5qblw5m1tc` (`cart_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=93 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=93 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -251,7 +252,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `comment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `comment` (
   `blog_id` bigint NOT NULL,
   `user_id` bigint NOT NULL,
@@ -261,7 +262,7 @@ CREATE TABLE `comment` (
   PRIMARY KEY (`id`),
   KEY `FKkap39f76wn135k7ru564fbjb7` (`blog_id`),
   KEY `FK8kcum44fvpupyw6f5baccx25c` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -280,7 +281,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `excluded`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `excluded` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
@@ -288,7 +289,7 @@ CREATE TABLE `excluded` (
   `description` longtext NOT NULL,
   `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -307,7 +308,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `hotel`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `hotel` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
@@ -328,7 +329,7 @@ CREATE TABLE `hotel` (
   PRIMARY KEY (`id`),
   KEY `FKquc5qf8daoda0dnmbaflucssh` (`admin_id`),
   KEY `FK67s51cnq7o3nlcjh6pm27dqxb` (`location_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -347,13 +348,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `hotel_amenity`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `hotel_amenity` (
   `hotel_id` bigint NOT NULL,
   `amenityhotel_id` bigint NOT NULL,
   PRIMARY KEY (`hotel_id`,`amenityhotel_id`),
   KEY `FKo28so4bgd8cf6pxmimvbjktcl` (`amenityhotel_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -372,13 +373,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `hotel_landmark`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `hotel_landmark` (
   `hotel_id` bigint NOT NULL,
   `landmark_id` bigint NOT NULL,
   PRIMARY KEY (`hotel_id`,`landmark_id`),
   KEY `FKjvn3j36s694k2cvkq9mk76ogr` (`landmark_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -397,13 +398,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `hotel_review`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `hotel_review` (
   `hotel_id` bigint NOT NULL,
   `review_id` bigint NOT NULL,
   PRIMARY KEY (`review_id`),
   KEY `FK93xannw8r60drn1edtfa5e1e9` (`hotel_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -422,13 +423,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `hotel_room`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `hotel_room` (
   `hotel_id` bigint NOT NULL,
   `room_id` bigint NOT NULL,
   PRIMARY KEY (`hotel_id`,`room_id`),
   KEY `FK3agyuk66kblb5rv6986of98c2` (`room_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -447,13 +448,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `hotel_rule`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `hotel_rule` (
   `hotel_id` bigint NOT NULL,
   `rule_id` bigint NOT NULL,
   PRIMARY KEY (`hotel_id`,`rule_id`),
   KEY `FK9q91ur8icuuc7x4rob09urxny` (`rule_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -472,7 +473,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `included`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `included` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
@@ -480,7 +481,7 @@ CREATE TABLE `included` (
   `description` longtext NOT NULL,
   `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=73 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -499,7 +500,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `itinerary`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `itinerary` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
@@ -508,7 +509,7 @@ CREATE TABLE `itinerary` (
   `description` longtext NOT NULL,
   `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -527,7 +528,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `landmarks`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `landmarks` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
@@ -535,7 +536,7 @@ CREATE TABLE `landmarks` (
   `name` varchar(255) NOT NULL,
   `distance` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -554,7 +555,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `location`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `location` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
@@ -567,7 +568,7 @@ CREATE TABLE `location` (
   `admin_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKrlwg6q9t9d4gd617grgx8ylpg` (`admin_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -586,7 +587,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `reviews`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `reviews` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
@@ -600,7 +601,7 @@ CREATE TABLE `reviews` (
   PRIMARY KEY (`id`),
   KEY `FK5mykw8ddeujut4h923t2xm2bd` (`admin_id`),
   KEY `FKsdlcf7wf8l1k0m00gik0m6b1m` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -619,7 +620,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `role` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
@@ -627,7 +628,7 @@ CREATE TABLE `role` (
   `role_code` varchar(255) NOT NULL,
   `role_name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -646,7 +647,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `room`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `room` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
@@ -664,7 +665,7 @@ CREATE TABLE `room` (
   `room_blank` varchar(255) NOT NULL,
   `hotel_name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -683,13 +684,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `room_amenityroom`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `room_amenityroom` (
   `room_id` bigint NOT NULL,
   `amenityroom_id` bigint NOT NULL,
   PRIMARY KEY (`room_id`,`amenityroom_id`),
   KEY `FKk7uoxto8y4i8ijnp279m5br5f` (`amenityroom_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -708,7 +709,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rule`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `rule` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
@@ -716,7 +717,7 @@ CREATE TABLE `rule` (
   `description` longtext NOT NULL,
   `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -735,7 +736,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tour`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `tour` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
@@ -760,7 +761,7 @@ CREATE TABLE `tour` (
   PRIMARY KEY (`id`),
   KEY `FK36c3pfrjym2gm3bjfxecuvmqh` (`admin_id`),
   KEY `FKm2m7jcbrvh91t2ss2vgg93rt4` (`location_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -779,13 +780,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tour_exclude`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `tour_exclude` (
   `tour_id` bigint NOT NULL,
   `exclude_id` bigint NOT NULL,
   PRIMARY KEY (`tour_id`,`exclude_id`),
   KEY `FK8xr0utsanidbvd3t1u8ouaoj4` (`exclude_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -804,13 +805,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tour_include`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `tour_include` (
   `tour_id` bigint NOT NULL,
   `include_id` bigint NOT NULL,
   PRIMARY KEY (`tour_id`,`include_id`),
   KEY `FKo0rawvd68iox5eep5rk8ku52i` (`include_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -829,13 +830,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tour_itinerary`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `tour_itinerary` (
   `tour_id` bigint NOT NULL,
   `itinerary_id` bigint NOT NULL,
   PRIMARY KEY (`tour_id`,`itinerary_id`),
   KEY `FKjhul1wvrysowt8hv8exlgmsbk` (`itinerary_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -854,13 +855,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tour_price`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `tour_price` (
   `tour_id` bigint NOT NULL,
   `price_id` bigint NOT NULL,
   PRIMARY KEY (`tour_id`,`price_id`),
   KEY `FKiq9ih8awco3glexq7ygq0ra9t` (`price_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -878,13 +879,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tour_review`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `tour_review` (
   `tour_id` bigint NOT NULL,
   `review_id` bigint NOT NULL,
   PRIMARY KEY (`review_id`),
   KEY `FK25q5w2n1w75vxu7461uwdqe4h` (`tour_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -903,13 +904,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tour_rule`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `tour_rule` (
   `tour_id` bigint NOT NULL,
   `rule_id` bigint NOT NULL,
   PRIMARY KEY (`tour_id`,`rule_id`),
   KEY `FK1i2yug2419kxh4of7mofmo3dp` (`rule_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -928,7 +929,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
@@ -944,7 +945,7 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -963,13 +964,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `user_role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `user_role` (
   `user_id` bigint NOT NULL,
   `role_id` bigint NOT NULL,
   PRIMARY KEY (`user_id`,`role_id`),
   KEY `FKa68196081fvovjhkek5m97n3y` (`role_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -988,7 +989,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `vehicle`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `vehicle` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
@@ -1008,7 +1009,7 @@ CREATE TABLE `vehicle` (
   PRIMARY KEY (`id`),
   KEY `FKnmp7gvlcx2re3j8ea89wfhl9a` (`admin_id`),
   KEY `FKn44dl6cxj7t5neb7lj8n54a0y` (`location_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1027,13 +1028,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `vehicle_review`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `vehicle_review` (
   `vehicle_id` bigint NOT NULL,
   `review_id` bigint NOT NULL,
   PRIMARY KEY (`review_id`),
   KEY `FK6vk2hkwp57fmce9en62jy6a8b` (`vehicle_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
