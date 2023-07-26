@@ -9,6 +9,9 @@ import com.example.be.repository.JwtUserRepository;
 import com.example.be.repository.RoleRepository;
 import com.example.be.service.Impl.JwtUserDetailsService;
 
+import java.util.HashMap;
+import java.util.Map;
+import lombok.var;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -53,12 +56,14 @@ public class JwtAuthenticationController {
 
     @RequestMapping(value = "/api/register", method = RequestMethod.POST)
     public ResponseEntity<?> saveUser(@RequestBody UserRegisterDTO userRegisterDTO) {
-
+        Map<String, String> result = new HashMap<>();
         if (jwtUserRepository.findUserByUsername(userRegisterDTO.getUsername()) != null) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Tài khoản đã tồn tại.");
+            result.put("error", "Tài khoản đã tồn tại.");
+            return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
         };
         if (jwtUserRepository.findUserByEmail(userRegisterDTO.getEmail()) != null) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email đã tồn tại.");
+            result.put("error", "Email đã tồn tại.");
+            return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
         };
 
         User user = new User();
@@ -66,27 +71,37 @@ public class JwtAuthenticationController {
 
         user.setRoles(Collections.singleton(roleRepository.findRoleByRoleCode("USER")));
         user.setPassword(userRegisterDTO.getPassword());
-
-        return ResponseEntity.ok(jwtUserDetailsService.save(user));
+        var newUser = jwtUserDetailsService.save(user);
+        if (newUser != null) {
+            result.put("error", "");
+            result.put("data", "Đăng ký tài khoản thành công");
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        }
+        result.put("error", "Tạo tài khoản thất bại, vui lòng thử lại sau!");
+        return new ResponseEntity<>(result, HttpStatus.REQUEST_TIMEOUT);
     }
 
     @RequestMapping(value = "/api/login", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+        Map<String, String> result = new HashMap<>();
         try {
             authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sai tên đăng nhập hoặc mật khẩu.");
+            result.put("error", "Sai tên đăng nhập hoặc mật khẩu.");
+            return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
         }
 
         final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         if (userDetails == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tài khoản không tồn tại.");
+            result.put("error", "Tài khoản không tồn tại.");
+            return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
         }
 
         final String token = jwtTokenUtil.generateToken(userDetails, jwtUserDetailsService.getUserIdByUsername(authenticationRequest.getUsername()), jwtUserDetailsService.getRoleNameByUsername(authenticationRequest.getUsername()));
 
         JwtResponse jwtResponse = new JwtResponse(token);
-        return ResponseEntity.ok(jwtResponse);
+        result.put("token", jwtResponse.getToken());
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @RequestMapping(value="/auth", method = RequestMethod.GET)

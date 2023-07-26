@@ -5,6 +5,8 @@ import com.example.be.entity.Cartitem;
 import com.example.be.repository.CartitemRepository;
 import com.example.be.request.CartitemRequest;
 import com.example.be.service.CartitemService;
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,39 +27,52 @@ public class CartitemController {
 
     @PostMapping("/post")
     public ResponseEntity<?> postRequest(@RequestBody @Valid CartitemRequest cartitemRequest, BindingResult bindingResult) {
+        Map<String, String> resultMap = new HashMap<>();
         if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>("Validation failed", HttpStatus.BAD_REQUEST);
+            resultMap.put("error", "Có lỗi xảy ra, vui lòng thử lại sau!");
+            return new ResponseEntity<>(resultMap, HttpStatus.BAD_REQUEST);
         }
 
         try {
             String result = cartitemService.createRequest(cartitemRequest, bindingResult);
             if (result.equals("oke")) {
-                return new ResponseEntity<>("Success", HttpStatus.OK);
+                resultMap.put("data", "Thêm thành công");
+                resultMap.put("error", "");
+                return new ResponseEntity<>(resultMap, HttpStatus.OK);
             } else if (result.startsWith("id not found")) {
-                return new ResponseEntity<>(result, HttpStatus.NOT_FOUND);
+                resultMap.put("error", "Có lỗi xảy ra, Không tìm thấy id sản phẩm");
+                return new ResponseEntity<>(resultMap, HttpStatus.NOT_FOUND);
             } else {
-                return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+                resultMap.put("error", "Có lỗi xảy ra, vui lòng thử lại sau!");
+                return new ResponseEntity<>(resultMap, HttpStatus.BAD_REQUEST);
             }
         } catch (Exception exception) {
-            return new ResponseEntity<>("Fail", HttpStatus.INTERNAL_SERVER_ERROR);
+            resultMap.put("error", "Có lỗi xảy ra, vui lòng thử lại sau!");
+            return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     // remove san pham theo id khoi cart
     @DeleteMapping("/delete/{id}")
-    public void deleteCartitem(@PathVariable(value = "id") long id){
+    public ResponseEntity<?>  deleteCartitem(@PathVariable(value = "id") long id){
         cartitemService.deleteCartitem(id);
+        Map<String, String> resultMap = new HashMap<>();
+        resultMap.put("success", "Xóa thành công");
+        return new ResponseEntity<>(resultMap, HttpStatus.OK);
     }
 
     // Truyền vào cartId, từ đó get ra list id của item rồi xóa.
     @DeleteMapping("/delete_all/{cartId}")
-    public ResponseEntity<String> deleteAllCartitem(@PathVariable(value = "cartId") long cartId) {
+    public ResponseEntity<?> deleteAllCartitem(@PathVariable(value = "cartId") long cartId) {
+        Map<String, String> resultMap = new HashMap<>();
         try {
             cartitemService.deleteAllCartitem(cartId);
-            return ResponseEntity.ok("Xóa thành công");
+            resultMap.put("success", "Xóa thành công");
+            return new ResponseEntity<>(resultMap, HttpStatus.OK);
         } catch (Exception e) {
             // Xử lý ngoại lệ và trả về thông báo lỗi
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Đã xảy ra lỗi: " + e.getMessage());
+            resultMap.put("error", "Có lỗi xảy ra " + e.getMessage());
+            return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
