@@ -13,7 +13,7 @@ public interface TourService extends BaseService<Tour> {
     List<TourDTO> findTourTrending();
     List<TourDTO> findTourByLocation(String location);
 
-    TourDTO findTourByName(String name);
+    List<TourDTO> findTourByName(String name);
 
     Page<TourDTO> filterTours(Pageable pageable, String name, String checkIn, String checkOut, String priceStart, String priceEnd, String sale);
     Page<TourDTO> getListPaginationDTO(Pageable pageable);

@@ -50,7 +50,7 @@ public class HotelController extends BaseController<Hotel> {
     }
 
     @GetMapping("/search_by_name/{name}")
-    public HotelDTO searchHotelByName(@PathVariable(value = "name") String name) {
+    public List<HotelDTO> searchHotelByName(@PathVariable(value = "name") String name) {
         return hotelService.findHotelByName(name);
     }
 

@@ -48,7 +48,7 @@ public class TourController extends BaseController<Tour> {
     }
 
     @GetMapping("/search_by_name/{name}")
-    public TourDTO searchTourByName(@PathVariable(value = "name") String name) {
+    public List<TourDTO> searchTourByName(@PathVariable(value = "name") String name) {
         return tourService.findTourByName(name);
     }
 

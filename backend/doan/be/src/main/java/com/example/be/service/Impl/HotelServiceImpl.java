@@ -172,39 +172,80 @@ public class HotelServiceImpl extends BaseServiceImpl<Hotel> implements HotelSer
         return hotelDTOList;
     }
 
-    public HotelDTO findHotelByName(String name) {
-        Hotel hotel = hotelRepository.findHotelByName(name);
-        HotelDTO hotelDTO = new HotelDTO();
-        LocationDTO locationDTO = new LocationDTO();
-        ReviewsDTO reviewsDTO = new ReviewsDTO();
-        mapper.map(hotel, hotelDTO);
+//    public HotelDTO findHotelByName(String name) {
+//        Hotel hotel = hotelRepository.findHotelByName(name);
+//        HotelDTO hotelDTO = new HotelDTO();
+//        LocationDTO locationDTO = new LocationDTO();
+//        ReviewsDTO reviewsDTO = new ReviewsDTO();
+//        mapper.map(hotel, hotelDTO);
+//
+//        mapper.map(hotel.getLocation(), locationDTO);
+//        hotelDTO.setLocationDTO(locationDTO);
+//        if (hotelDTO.getAmenityhotel() == null) {
+//            hotelDTO.setAmenityhotel(new ArrayList<>());
+//        }
+//
+//        hotel.getAmenityhotels().forEach(amenitytour -> {
+//            hotelDTO.getAmenityhotel().add(amenitytour);
+//        });
+//        Set<Reviews> reviewsSet = hotel.getReviews();
+//        List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
+//
+//        List<ReviewsDTO> reviewsDTOList = new ArrayList<>();
+//
+//        for (int j = 0; j < reviewsList.size(); j++){
+//            UserDTO userDTO = new UserDTO();
+//            ReviewsDTO reviewsDTO1 = new ReviewsDTO();
+//            mapper.map(reviewsList.get(j), reviewsDTO1);
+//            mapper.map(reviewsList.get(j).getUser(), userDTO);
+//            reviewsDTO1.setUser(userDTO);
+//            reviewsDTOList.add(reviewsDTO1);
+//        }
+//
+//        hotelDTO.setReviewsDTOS(reviewsDTOList);
+//
+//        return hotelDTO;
+//    }
 
-        mapper.map(hotel.getLocation(), locationDTO);
-        hotelDTO.setLocationDTO(locationDTO);
-        if (hotelDTO.getAmenityhotel() == null) {
-            hotelDTO.setAmenityhotel(new ArrayList<>());
+    public List<HotelDTO> findHotelByName(String name) {
+        List<Hotel> result = hotelRepository.findHotelByKeyword(name);
+        List<HotelDTO> hotelDTOList = new ArrayList<>();
+        for (int i = 0; i < result.size(); i++){
+            HotelDTO hotelDTO = new HotelDTO();
+            LocationDTO locationDTO = new LocationDTO();
+            ReviewsDTO reviewsDTO = new ReviewsDTO();
+            Hotel hotel = result.get(i);
+            mapper.map(hotel, hotelDTO);
+
+            mapper.map(hotel.getLocation(), locationDTO);
+            hotelDTO.setLocationDTO(locationDTO);
+            if (hotelDTO.getAmenityhotel() == null) {
+                hotelDTO.setAmenityhotel(new ArrayList<>());
+            }
+
+            hotel.getAmenityhotels().forEach(amenitytour -> {
+                hotelDTO.getAmenityhotel().add(amenitytour);
+            });
+            Set<Reviews> reviewsSet = hotel.getReviews();
+            List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
+
+            List<ReviewsDTO> reviewsDTOList = new ArrayList<>();
+
+            for (int j = 0; j < reviewsList.size(); j++){
+                UserDTO userDTO = new UserDTO();
+                ReviewsDTO reviewsDTO1 = new ReviewsDTO();
+                mapper.map(reviewsList.get(j), reviewsDTO1);
+                mapper.map(reviewsList.get(j).getUser(), userDTO);
+                reviewsDTO1.setUser(userDTO);
+                reviewsDTOList.add(reviewsDTO1);
+            }
+
+            hotelDTO.setReviewsDTOS(reviewsDTOList);
+
+            hotelDTOList.add(hotelDTO);
         }
 
-        hotel.getAmenityhotels().forEach(amenitytour -> {
-            hotelDTO.getAmenityhotel().add(amenitytour);
-        });
-        Set<Reviews> reviewsSet = hotel.getReviews();
-        List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
-
-        List<ReviewsDTO> reviewsDTOList = new ArrayList<>();
-
-        for (int j = 0; j < reviewsList.size(); j++){
-            UserDTO userDTO = new UserDTO();
-            ReviewsDTO reviewsDTO1 = new ReviewsDTO();
-            mapper.map(reviewsList.get(j), reviewsDTO1);
-            mapper.map(reviewsList.get(j).getUser(), userDTO);
-            reviewsDTO1.setUser(userDTO);
-            reviewsDTOList.add(reviewsDTO1);
-        }
-
-        hotelDTO.setReviewsDTOS(reviewsDTOList);
-
-        return hotelDTO;
+        return hotelDTOList;
     }
     @SneakyThrows
     public Page<HotelDTO> filterHotels(Pageable pageable, String name, String checkIn, String checkOut, String priceStart, String priceEnd, String sale) {

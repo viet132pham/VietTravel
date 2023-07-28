@@ -152,33 +152,68 @@ public class TourServiceImpl extends BaseServiceImpl<Tour> implements TourServic
         return tourDTOList;
     }
 
-    public TourDTO findTourByName(String name) {
-        Tour tour = tourRepository.findTourByName(name);
-        TourDTO tourDTO = new TourDTO();
-        LocationDTO locationDTO = new LocationDTO();
-        ReviewsDTO reviewsDTO = new ReviewsDTO();
-        mapper.map(tour, tourDTO);
+//    public TourDTO findTourByName(String name) {
+//        Tour tour = tourRepository.findTourByName(name);
+//        TourDTO tourDTO = new TourDTO();
+//        LocationDTO locationDTO = new LocationDTO();
+//        ReviewsDTO reviewsDTO = new ReviewsDTO();
+//        mapper.map(tour, tourDTO);
+//
+//        mapper.map(tour.getLocation(), locationDTO);
+//        tourDTO.setLocationDTO(locationDTO);
+//
+//        Set<Reviews> reviewsSet = tour.getReviews();
+//        List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
+//
+//        List<ReviewsDTO> reviewsDTOList = new ArrayList<>();
+//
+//        for (int j = 0; j < reviewsList.size(); j++){
+//            UserDTO userDTO = new UserDTO();
+//            ReviewsDTO reviewsDTO1 = new ReviewsDTO();
+//            mapper.map(reviewsList.get(j), reviewsDTO1);
+//            mapper.map(reviewsList.get(j).getUser(), userDTO);
+//            reviewsDTO1.setUser(userDTO);
+//            reviewsDTOList.add(reviewsDTO1);
+//        }
+//
+//        tourDTO.setReviewsDTOS(reviewsDTOList);
+//
+//        return tourDTO;
+//    }
 
-        mapper.map(tour.getLocation(), locationDTO);
-        tourDTO.setLocationDTO(locationDTO);
+    public List<TourDTO> findTourByName(String name) {
+        List<Tour> result = tourRepository.findTourByKeyword(name);
+        List<TourDTO> tourDTOList = new ArrayList<>();
+        for (int i = 0; i < result.size(); i++){
+            TourDTO tourDTO = new TourDTO();
+            LocationDTO locationDTO = new LocationDTO();
+            ReviewsDTO reviewsDTO = new ReviewsDTO();
+            Tour tour = result.get(i);
+            mapper.map(tour, tourDTO);
 
-        Set<Reviews> reviewsSet = tour.getReviews();
-        List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
+            mapper.map(tour.getLocation(), locationDTO);
+            tourDTO.setLocationDTO(locationDTO);
 
-        List<ReviewsDTO> reviewsDTOList = new ArrayList<>();
+            Set<Reviews> reviewsSet = tour.getReviews();
+            List<Reviews> reviewsList = new ArrayList<>(reviewsSet);
 
-        for (int j = 0; j < reviewsList.size(); j++){
-            UserDTO userDTO = new UserDTO();
-            ReviewsDTO reviewsDTO1 = new ReviewsDTO();
-            mapper.map(reviewsList.get(j), reviewsDTO1);
-            mapper.map(reviewsList.get(j).getUser(), userDTO);
-            reviewsDTO1.setUser(userDTO);
-            reviewsDTOList.add(reviewsDTO1);
+            List<ReviewsDTO> reviewsDTOList = new ArrayList<>();
+
+            for (int j = 0; j < reviewsList.size(); j++){
+                UserDTO userDTO = new UserDTO();
+                ReviewsDTO reviewsDTO1 = new ReviewsDTO();
+                mapper.map(reviewsList.get(j), reviewsDTO1);
+                mapper.map(reviewsList.get(j).getUser(), userDTO);
+                reviewsDTO1.setUser(userDTO);
+                reviewsDTOList.add(reviewsDTO1);
+            }
+
+            tourDTO.setReviewsDTOS(reviewsDTOList);
+
+            tourDTOList.add(tourDTO);
         }
 
-        tourDTO.setReviewsDTOS(reviewsDTOList);
-
-        return tourDTO;
+        return tourDTOList;
     }
 
     @SneakyThrows

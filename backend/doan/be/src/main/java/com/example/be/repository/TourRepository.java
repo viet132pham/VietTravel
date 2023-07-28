@@ -1,5 +1,6 @@
 package com.example.be.repository;
 
+import com.example.be.entity.Hotel;
 import com.example.be.entity.Location;
 import com.example.be.entity.Tour;
 import org.springframework.data.jpa.repository.Modifying;
@@ -28,8 +29,11 @@ public interface TourRepository extends BaseRepository<Tour, Long>{
 
     Tour findTourByName(String name);
 
+    @Query(value = "SELECT * FROM tour h WHERE h.name LIKE %:name%", nativeQuery = true)
+    List<Tour> findTourByKeyword(@Param("name") String name);
+
     @Query(value = "SELECT * FROM tour t WHERE " +
-            "(:name IS NULL OR t.name = :name) " +
+            "(:name IS NULL OR t.name LIKE %:name%) " +
             "AND (:checkIn IS NULL OR t.time_start <= :checkIn) " +
             "AND (:checkOut IS NULL OR t.time_end <= :checkOut) " +
             "AND (:priceStart IS NULL OR t.price >= :priceStart) " +
