@@ -37,8 +37,8 @@ public interface HotelRepository extends BaseRepository<Hotel, Long>{
             "(:name IS NULL OR h.name LIKE CONCAT('%', :name, '%')) " +
             "AND (:checkIn IS NULL OR h.time_start <= :checkIn) " +
             "AND (:checkOut IS NULL OR h.time_end <= :checkOut) " +
-            "AND (:priceStart IS NULL OR h.price >= :priceStart) " +
-            "AND (:priceEnd IS NULL OR h.price <= :priceEnd) " +
+            "AND (:priceStart IS NULL OR h.price * h.sale / 100 >= :priceStart) " +
+            "AND (:priceEnd IS NULL OR h.price * h.sale / 100 <= :priceEnd) " +
             "AND (:sale IS NULL OR h.sale = :sale)", nativeQuery = true)
     Page<Hotel> filterHotels(
             @Param("name") String name,

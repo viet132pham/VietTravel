@@ -36,8 +36,8 @@ public interface TourRepository extends BaseRepository<Tour, Long>{
             "(:name IS NULL OR t.name LIKE CONCAT('%', :name, '%')) " +
             "AND (:checkIn IS NULL OR t.time_start <= :checkIn) " +
             "AND (:checkOut IS NULL OR t.time_end <= :checkOut) " +
-            "AND (:priceStart IS NULL OR t.price >= :priceStart) " +
-            "AND (:priceEnd IS NULL OR t.price <= :priceEnd) " +
+            "AND (:priceStart IS NULL OR t.price * t.sale / 100 >= :priceStart) " +
+            "AND (:priceEnd IS NULL OR t.price * t.sale / 100 <= :priceEnd) " +
             "AND (:sale IS NULL OR t.sale = :sale)", nativeQuery = true)
     Page<Tour> filterTours(
             @Param("name") String name,
