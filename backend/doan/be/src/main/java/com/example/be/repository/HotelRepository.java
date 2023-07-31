@@ -34,7 +34,7 @@ public interface HotelRepository extends BaseRepository<Hotel, Long>{
     List<Hotel> findHotelByKeyword(@Param("name") String name);
 
     @Query(value = "SELECT * FROM hotel h WHERE " +
-            "(:name IS NULL OR h.name LIKE %:name%) " +
+            "(:name IS NULL OR h.name LIKE CONCAT('%', :name, '%')) " +
             "AND (:checkIn IS NULL OR h.time_start <= :checkIn) " +
             "AND (:checkOut IS NULL OR h.time_end <= :checkOut) " +
             "AND (:priceStart IS NULL OR h.price >= :priceStart) " +
@@ -49,6 +49,7 @@ public interface HotelRepository extends BaseRepository<Hotel, Long>{
             @Param("sale") Integer sale,
             Pageable pageable
     );
+
 
     @Query(value = "SELECT DISTINCT h.sale FROM hotel h ORDER BY h.sale ASC", nativeQuery = true)
     List<Integer> getAvailableSales();

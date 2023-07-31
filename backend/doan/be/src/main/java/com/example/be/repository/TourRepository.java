@@ -33,7 +33,7 @@ public interface TourRepository extends BaseRepository<Tour, Long>{
     List<Tour> findTourByKeyword(@Param("name") String name);
 
     @Query(value = "SELECT * FROM tour t WHERE " +
-            "(:name IS NULL OR t.name LIKE %:name%) " +
+            "(:name IS NULL OR t.name LIKE CONCAT('%', :name, '%')) " +
             "AND (:checkIn IS NULL OR t.time_start <= :checkIn) " +
             "AND (:checkOut IS NULL OR t.time_end <= :checkOut) " +
             "AND (:priceStart IS NULL OR t.price >= :priceStart) " +
