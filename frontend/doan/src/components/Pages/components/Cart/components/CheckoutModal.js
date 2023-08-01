@@ -156,16 +156,6 @@ function CheckoutModal(props) {
                   <span>
                     <input
                       type="radio"
-                      checked={paymentMethod === "methodTrasf"}
-                      onChange={() => setPaymentMethod("methodTrasf")}
-                    ></input>
-                  </span>
-                  <span>Chuyển khoản</span>
-                </div>
-                <div className="radio-item">
-                  <span>
-                    <input
-                      type="radio"
                       checked={paymentMethod === "methodQR"}
                       onChange={() => setPaymentMethod("methodQR")}
                     ></input>
