@@ -1,105 +1,0 @@
-[1mdiff --git a/backend/doan/be/src/main/java/com/example/be/repository/TourRepository.java b/backend/doan/be/src/main/java/com/example/be/repository/TourRepository.java[m
-[1mindex 62582d89c..ccf995f9e 100644[m
-[1m--- a/backend/doan/be/src/main/java/com/example/be/repository/TourRepository.java[m
-[1m+++ b/backend/doan/be/src/main/java/com/example/be/repository/TourRepository.java[m
-[36m@@ -1,50 +1,50 @@[m
-[31m-package com.example.be.repository;[m
-[31m-[m
-[31m-import com.example.be.entity.Location;[m
-[31m-import com.example.be.entity.Tour;[m
-[31m-import org.springframework.data.jpa.repository.Modifying;[m
-[31m-import org.springframework.data.jpa.repository.Query;[m
-[31m-import org.springframework.data.repository.query.Param;[m
-[31m-import org.springframework.stereotype.Repository;[m
-[31m-[m
-[31m-import java.sql.Timestamp;[m
-[31m-import java.util.List;[m
-[31m-import org.springframework.data.domain.Page;[m
-[31m-import org.springframework.data.domain.PageRequest;[m
-[31m-import org.springframework.data.domain.Pageable;[m
-[31m-import org.springframework.data.domain.Sort;[m
-[31m-@Repository[m
-[31m-public interface TourRepository extends BaseRepository<Tour, Long>{[m
-[31m-    Tour findTourById(long id);[m
-[31m-[m
-[31m-    @Modifying[m
-[31m-    @Query(value = "SELECT * \n" +[m
-[31m-            "FROM tour\n" +[m
-[31m-            "WHERE sale > 0\n" +[m
-[31m-            "ORDER BY sale DESC LIMIT 6;\n;", nativeQuery = true)[m
-[31m-    List<Tour> findSaleTour();[m
-[31m-[m
-[31m-    List<Tour> findTourByLocation(Location location);[m
-[31m-[m
-[31m-    Tour findTourByName(String name);[m
-[31m-[m
-[31m-    @Query(value = "SELECT * FROM Tour h WHERE " +[m
-[31m-            "(:location IS NULL OR h.location_id = :location) " +[m
-[31m-            "AND (:checkIn IS NULL OR h.time_start <= :checkIn) " +[m
-[31m-            "AND (:checkOut IS NULL OR h.time_end <= :checkOut) " +[m
-[31m-            "AND (:priceStart IS NULL OR h.price >= :priceStart) " +[m
-[31m-            "AND (:priceEnd IS NULL OR h.price <= :priceEnd) " +[m
-[31m-            "AND (:sale IS NULL OR h.sale > 0)", nativeQuery = true)[m
-[31m-    Page<Tour> filterTours([m
-[31m-            @Param("location") Integer location,[m
-[31m-            @Param("checkIn") Timestamp checkIn,[m
-[31m-            @Param("checkOut") Timestamp checkOut,[m
-[31m-            @Param("priceStart") Integer priceStart,[m
-[31m-            @Param("priceEnd") Integer priceEnd,[m
-[31m-            @Param("sale") Integer sale,[m
-[31m-            Pageable pageable[m
-[31m-    );[m
-[31m-[m
-[31m-    @Query(value = "SELECT DISTINCT h.sale FROM Tour h ORDER BY h.sale ASC", nativeQuery = true)[m
-[31m-    List<Integer> getAvailableSales();[m
-[31m-}[m
-[32m+[m[32mpackage com.example.be.repository;[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32mimport com.example.be.entity.Location;[m[41m[m
-[32m+[m[32mimport com.example.be.entity.Tour;[m[41m[m
-[32m+[m[32mimport org.springframework.data.jpa.repository.Modifying;[m[41m[m
-[32m+[m[32mimport org.springframework.data.jpa.repository.Query;[m[41m[m
-[32m+[m[32mimport org.springframework.data.repository.query.Param;[m[41m[m
-[32m+[m[32mimport org.springframework.stereotype.Repository;[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32mimport java.sql.Timestamp;[m[41m[m
-[32m+[m[32mimport java.util.List;[m[41m[m
-[32m+[m[32mimport org.springframework.data.domain.Page;[m[41m[m
-[32m+[m[32mimport org.springframework.data.domain.PageRequest;[m[41m[m
-[32m+[m[32mimport org.springframework.data.domain.Pageable;[m[41m[m
-[32m+[m[32mimport org.springframework.data.domain.Sort;[m[41m[m
-[32m+[m[32m@Repository[m[41m[m
-[32m+[m[32mpublic interface TourRepository extends BaseRepository<Tour, Long>{[m[41m[m
-[32m+[m[32m    Tour findTourById(long id);[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    @Modifying[m[41m[m
-[32m+[m[32m    @Query(value = "SELECT * \n" +[m[41m[m
-[32m+[m[32m            "FROM tour\n" +[m[41m[m
-[32m+[m[32m            "WHERE sale > 0\n" +[m[41m[m
-[32m+[m[32m            "ORDER BY sale DESC LIMIT 6;\n;", nativeQuery = true)[m[41m[m
-[32m+[m[32m    List<Tour> findSaleTour();[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    List<Tour> findTourByLocation(Location location);[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    Tour findTourByName(String name);[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    @Query(value = "SELECT * FROM Tour h WHERE " +[m[41m[m
-[32m+[m[32m            "(:location IS NULL OR h.location_id = :location) " +[m[41m[m
-[32m+[m[32m            "AND (:checkIn IS NULL OR h.time_start <= :checkIn) " +[m[41m[m
-[32m+[m[32m            "AND (:checkOut IS NULL OR h.time_end <= :checkOut) " +[m[41m[m
-[32m+[m[32m            "AND (:priceStart IS NULL OR h.price >= :priceStart) " +[m[41m[m
-[32m+[m[32m            "AND (:priceEnd IS NULL OR h.price <= :priceEnd) " +[m[41m[m
-[32m+[m[32m            "AND (:sale IS NULL OR h.sale > 0)", nativeQuery = true)[m[41m[m
-[32m+[m[32m    Page<Tour> filterTours([m[41m[m
-[32m+[m[32m            @Param("location") Integer location,[m[41m[m
-[32m+[m[32m            @Param("checkIn") Timestamp checkIn,[m[41m[m
-[32m+[m[32m            @Param("checkOut") Timestamp checkOut,[m[41m[m
-[32m+[m[32m            @Param("priceStart") Integer priceStart,[m[41m[m
-[32m+[m[32m            @Param("priceEnd") Integer priceEnd,[m[41m[m
-[32m+[m[32m            @Param("sale") Integer sale,[m[41m[m
-[32m+[m[32m            Pageable pageable[m[41m[m
-[32m+[m[32m    );[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    @Query(value = "SELECT DISTINCT h.sale FROM Tour h ORDER BY h.sale ASC", nativeQuery = true)[m[41m[m
-[32m+[m[32m    List<Integer> getAvailableSales();[m[41m[m
-[32m+[m[32m}[m[41m[m
