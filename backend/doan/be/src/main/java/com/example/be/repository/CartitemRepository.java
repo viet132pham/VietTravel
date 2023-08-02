@@ -36,7 +36,7 @@ public interface CartitemRepository extends JpaRepository<Cartitem, Long>{
     @Query(value = "SELECT ci.id\n" +
             "FROM cartitem ci\n" +
             "INNER JOIN cart c ON ci.cart_id = c.id " +
-            "WHERE c.status = 'PROCESS' OR c.status = 'DONE'\n" +
+            "WHERE (c.status = 'PROCESS' OR c.status = 'DONE')\n" +
             "AND c.user_id = :uid", nativeQuery = true)
     List<Long> findListItemsOrdered(long uid);
 

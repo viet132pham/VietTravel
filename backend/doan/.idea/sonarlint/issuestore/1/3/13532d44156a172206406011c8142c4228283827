@@ -1,0 +1,39 @@
+
+f
+java:S1192à"JDefine a constant instead of duplicating this literal "undefined" 5 times.(ÛÌŒ¨ÿÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(®øÝùþÿÿÿÿ
+|
+java:S4144Â"eUpdate this method so that its implementation is not identical to "getListPaginationDTO" on line 286.(¥ÂÀ¬
+T
+java:S18541">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+E
+java:S14811"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+T
+java:S1854Z">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+G
+java:S1602R",Remove useless curly braces around statement(íÐéóüÿÿÿÿ
+E
+java:S1481Z"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+T
+java:S1854~">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+E
+java:S1481~"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+U
+java:S1854¾">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ
+^	java:S125›"<This block of commented-out lines of code should be removed.(¯ª„Žýÿÿÿÿ8×°…Ô™1
+F
+java:S1481¾"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+O	java:S106á"9Replace this use of System.out or System.err by a logger.(ó´¯ƒ
+T	java:S106ú"9Replace this use of System.out or System.err by a logger.(—ÍÜÎùÿÿÿÿ
+\
+java:S1854¤">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ8Ï‘…Ô™1
+F
+java:S1481¤"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+\
+java:S1854È">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ8Ö‘…Ô™1
+F
+java:S1481È"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ
+\
+java:S1854ë">Remove this useless assignment to local variable "reviewsDTO".(ºÌ·ñ8®µ‡Ô™1
+M
+java:S1481ë"/Remove this unused "reviewsDTO" local variable.(ºÌ·ñ8±µ‡Ô™1
