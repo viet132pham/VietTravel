@@ -110,7 +110,7 @@ function AboutUs(props) {
             <div className="col-4" style={{ margin: "0 16px" }}>
               <img style={{borderRadius: "50%" }}
                 width="100%"
-                src="https://taytou.com/wp-content/uploads/2022/08/Anh-Avatar-dai-dien-mac-dinh-nu-nen-hong.jpg"
+                src="https://cdn4.iconfinder.com/data/icons/diversity-v2-0-volume-06/64/hip-hop-black-male-512.png"
                 alt="anh-3"
               />
               <div className="mt-4">
