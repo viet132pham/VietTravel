@@ -82,7 +82,8 @@ export const getVehicleTrendingItems = () => dispatch => {
 
 export const getVehicleDealItems = () => dispatch => {
   const options = {
-    method: 'GET'
+    method: 'GET',
+    mode: 'cors'
   }
   const url =  `${BASE_URL}/api/vehicle/find/top_deal`;
 
