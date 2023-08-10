@@ -15,12 +15,11 @@ import java.util.List;
 @Repository
 public interface LocationRepository extends BaseRepository<Location, Long> {
 
-    @Query(value = "SELECT loc.image AS locationImage, loc.name AS locationName, COUNT(DISTINCT h.id) AS totalHotel, COUNT(DISTINCT t.id) AS totalTour, COUNT(DISTINCT v.id) AS totalVehicle,\n" +
-            "       (COUNT(DISTINCT h.id) + COUNT(DISTINCT t.id) + COUNT(DISTINCT v.id)) AS totalAll\n" +
+    @Query(value = "SELECT loc.image AS locationImage, loc.name AS locationName, COUNT(DISTINCT h.id) AS totalHotel, COUNT(DISTINCT t.id) AS totalTour,\n" +
+            "       (COUNT(DISTINCT h.id) + COUNT(DISTINCT t.id)) AS totalAll\n" +
             "FROM location loc\n" +
             "LEFT JOIN tour t ON loc.id = t.location_id\n" +
             "LEFT JOIN hotel h ON loc.id = h.location_id\n" +
-            "LEFT JOIN vehicle v ON loc.id = v.location_id\n" +
             "GROUP BY loc.name\n" +
             "ORDER BY totalAll DESC\n" +
             "LIMIT 6", nativeQuery = true)
