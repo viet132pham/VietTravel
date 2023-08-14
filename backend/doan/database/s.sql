@@ -1,0 +1,1 @@
+SELECT * FROM doan_vietpham.cart;
