@@ -104,7 +104,7 @@ function Cart(props) {
     const cartSelect = cart?.items?.filter((e) => checkList?.includes(e.id));
     let price = 0;
     const temp = cartSelect?.map((e) => {
-      price += e.quantity * (e.price - e?.sale);
+      price += e.quantity * (e.price * (100 - e?.sale)/100);
     });
     return price;
   }, [checkList]);

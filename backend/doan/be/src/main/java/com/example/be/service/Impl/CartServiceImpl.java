@@ -93,6 +93,7 @@ public class CartServiceImpl extends BaseServiceImpl<Cart> implements CartServic
             mapper.map(result.get(j).getCart(), cartDTO);
             mapper.map(result.get(j).getCart().getUser(), userDTO);
             cartDTO.setUserDTO(userDTO);
+            cartitemDTO.setSale(result.get(j).getSale());
             cartitemDTO.setCartDTO(cartDTO);
             cartitemDTOList.add(cartitemDTO);
         }

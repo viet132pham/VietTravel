@@ -200,7 +200,7 @@ function CheckoutModal(props) {
                         <Box className="mt-3">x{e?.quantity}</Box>
                       </Box>
                       <Box className="price">
-                        {nf.format((e?.price - e?.sale) * e.quantity)} VNĐ
+                        {nf.format((e?.price * (100 - e?.sale)/100) * e.quantity)} VNĐ
                       </Box>
                     </Box>
                   );

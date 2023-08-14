@@ -32,6 +32,9 @@ public class Cartitem extends BaseEntity{
     private int price;
 
     @NotNull
+    private int sale;  
+
+    @NotNull
     private int quantity;
 
     @NotNull
